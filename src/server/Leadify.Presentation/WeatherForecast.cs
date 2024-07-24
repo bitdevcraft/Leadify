@@ -1,4 +1,4 @@
-namespace Leadify.App;
+namespace Leadify.Presentation;
 
 public class WeatherForecast
 {

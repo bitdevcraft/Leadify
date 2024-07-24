@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace Leadify.App.Controllers;
+namespace Leadify.Presentation.Controllers;
 
 [ApiController]
 [Route("[controller]")]
