@@ -8,9 +8,14 @@ public class DeleteContactByIdCommandHandler
     : IRequestHandler<DeleteContactByIdCommand, ErrorOr<Unit>>
 {
     private readonly IContactRepository _contactRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteContactByIdCommandHandler(IContactRepository contactRepository)
+    public DeleteContactByIdCommandHandler(
+        IContactRepository contactRepository,
+        IUnitOfWork unitOfWork
+    )
     {
+        _unitOfWork = unitOfWork;
         _contactRepository = contactRepository;
     }
 
@@ -19,12 +24,16 @@ public class DeleteContactByIdCommandHandler
         CancellationToken cancellationToken
     )
     {
-        var result = await _contactRepository.GetByIdAsync(request.Id);
+        var contact = await _contactRepository.GetByIdAsync(request.Id);
 
-        if (result is null)
+        if (contact is null)
             return Error.NotFound();
 
-        _contactRepository.Delete(result);
+        _contactRepository.Delete(contact);
+        var result = await _unitOfWork.SaveChangesAsync(cancellationToken) > 0;
+
+        if (!result)
+            return Error.Failure("Failed to Delete");
 
         return Unit.Value;
     }

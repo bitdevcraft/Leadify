@@ -1,4 +1,5 @@
 ﻿using Leadify.Application.Contacts.CreateContact;
+using Leadify.Application.Contacts.DeleteContactById;
 using Leadify.Application.Contacts.GetContactById;
 using Leadify.Application.Contacts.ListContact;
 using Leadify.Application.Contacts.UpdateContactById;
@@ -42,6 +43,14 @@ public class ContactController : ApiController
     public async Task<IActionResult> UpdateContact(Guid id, Contact contact)
     {
         var query = new UpdateContactByIdCommand(id, contact);
+        var result = await Sender.Send(query);
+        return result.Match(_ => Ok(), Problem);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteContact(Guid id)
+    {
+        var query = new DeleteContactByIdCommand(id);
         var result = await Sender.Send(query);
         return result.Match(_ => Ok(), Problem);
     }
