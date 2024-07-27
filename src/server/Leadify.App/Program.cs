@@ -1,3 +1,4 @@
+using Leadify.App;
 using Leadify.Application;
 using Leadify.Persistence;
 
@@ -16,7 +17,10 @@ builder.Services.AddSwaggerGen();
 
 // Dependency Injection of Layers
 {
-    builder.Services.AddPersistenceService(builder.Configuration).AddApplicationServices();
+    builder
+        .Services.AddAppServices()
+        .AddPersistenceService(builder.Configuration)
+        .AddApplicationServices();
 }
 
 var app = builder.Build();

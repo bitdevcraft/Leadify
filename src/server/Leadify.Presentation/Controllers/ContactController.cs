@@ -1,4 +1,8 @@
-﻿using Leadify.Presentation.Abstraction;
+﻿using Leadify.Application.Contacts.CreateContact;
+using Leadify.Application.Contacts.GetContactById;
+using Leadify.Application.Contacts.ListContact;
+using Leadify.Domain.Entities;
+using Leadify.Presentation.Abstraction;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,8 +14,26 @@ public class ContactController : ApiController
         : base(sender) { }
 
     [HttpGet()]
-    public IActionResult GetContacts()
+    public async Task<IActionResult> GetContacts()
     {
-        return Ok();
+        var query = new ListContactQuery();
+        var result = await Sender.Send(query);
+        return result.Match(contacts => Ok(contacts), Problem);
+    }
+
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> GetContactById(Guid Id)
+    {
+        var query = new GetContactByIdQuery(Id);
+        var result = await Sender.Send(query);
+        return result.Match(contact => Ok(contact), Problem);
+    }
+
+    [HttpPost()]
+    public async Task<IActionResult> RegisterContact(Contact contact)
+    {
+        var query = new RegisterContactCommand(contact);
+        var result = await Sender.Send(query);
+        return result.Match(Id => Ok(Id), Problem);
     }
 }

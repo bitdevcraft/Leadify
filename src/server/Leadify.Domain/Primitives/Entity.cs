@@ -3,9 +3,8 @@
 public abstract class Entity
 {
     protected Entity(Guid id) => Id = id;
-    protected Entity()
-    {
-    }
+
+    protected Entity() { }
+
     public Guid Id { get; private init; }
 }
-
