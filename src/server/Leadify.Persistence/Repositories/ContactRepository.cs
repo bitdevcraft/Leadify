@@ -17,31 +17,17 @@ public class ContactRepository : IContactRepository
         CancellationToken cancellationToken = default
     ) => await _dbContext.Set<Contact>().ToListAsync(cancellationToken);
 
-    public async Task<Contact?> GetContactByIdAsync(
+    public async Task<Contact?> GetByIdAsync(
         Guid Id,
         CancellationToken cancellationToken = default
     ) =>
         await _dbContext
             .Set<Contact>()
-            .Where(contact => contact.Id == Id)
-            .FirstOrDefaultAsync(cancellationToken);
+            .FirstOrDefaultAsync(contact => contact.Id == Id, cancellationToken);
 
-    public async Task<Guid> RegisterContactAsync(
-        Contact contact,
-        CancellationToken cancellationToken = default
-    )
-    {
-        await _dbContext.Set<Contact>().AddAsync(contact);
-        await _dbContext.SaveChangesAsync();
-        return contact.Id;
-    }
+    public void Add(Contact contact) => _dbContext.Set<Contact>().Add(contact);
 
-    public Task<Contact?> UpdateContactById(
-        Guid Id,
-        Contact contact,
-        CancellationToken cancellationToken = default
-    )
-    {
-        throw new NotImplementedException();
-    }
+    public void Delete(Contact contact) => _dbContext.Remove(contact);
+
+    public void Update(Contact contact) => _dbContext.Set<Contact>().Update(contact);
 }

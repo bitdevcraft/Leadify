@@ -20,7 +20,7 @@ internal sealed class GetContactByIdQueryHandler
         CancellationToken cancellationToken
     )
     {
-        var result = await _contactRepository.GetContactByIdAsync(request.Id, cancellationToken);
+        var result = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (result == null)
             return Error.NotFound();

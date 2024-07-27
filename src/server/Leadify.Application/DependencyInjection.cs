@@ -11,6 +11,7 @@ public static class DependencyInjection
             options.RegisterServicesFromAssembly(AssemblyReference.Assembly);
         });
 
+        services.AddAutoMapper(AssemblyReference.Assembly);
         return services;
     }
 }

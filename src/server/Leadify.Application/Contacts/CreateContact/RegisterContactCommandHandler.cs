@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using MediatR;
 
@@ -9,8 +10,14 @@ internal sealed class RegisterContactCommandHandler
 {
     private readonly IContactRepository _contactRepository;
 
-    public RegisterContactCommandHandler(IContactRepository contactRepository)
+    private readonly IUnitOfWork _unitOfWork;
+
+    public RegisterContactCommandHandler(
+        IContactRepository contactRepository,
+        IUnitOfWork unitOfWork
+    )
     {
+        _unitOfWork = unitOfWork;
         _contactRepository = contactRepository;
     }
 
@@ -19,7 +26,16 @@ internal sealed class RegisterContactCommandHandler
         CancellationToken cancellationToken
     )
     {
-        var id = await _contactRepository.RegisterContactAsync(request.Contact, cancellationToken);
-        return id;
+        var contact = Contact.Create(
+            Guid.NewGuid(),
+            request.Contact.Name,
+            request.Contact.Email,
+            request.Contact.Mobile,
+            request.Contact.Phone
+        );
+        _contactRepository.Add(contact);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return contact.Id;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leadify.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Leadify.Persistence;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leadify.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,9 +13,12 @@ public static class DependencyInjection
     )
     {
         // Setup the connection to the Database
-        services.AddDbContext<ApplicationDbContext>(
-            options => options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
         );
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         return services;
     }
 }
