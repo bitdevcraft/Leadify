@@ -2,7 +2,7 @@
 
 namespace Leadify.Domain.Entities;
 
-public class Contact : Entity
+public class Contact : Entity, IAuditableEntity
 {
     public Contact(Guid id, string? name, string? email, string? mobile, string? phone)
         : base(id)
@@ -19,6 +19,8 @@ public class Contact : Entity
     public string? Email { get; set; }
     public string? Mobile { get; set; }
     public string? Phone { get; set; }
+    public DateTime CreatedOnUtc { get; set; }
+    public DateTime? ModifiedOnUtc { get; set; }
 
     public static Contact Create(
         Guid id,
