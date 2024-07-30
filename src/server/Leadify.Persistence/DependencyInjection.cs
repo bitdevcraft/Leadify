@@ -1,4 +1,6 @@
 ﻿using Leadify.Domain.Repositories;
+using Leadify.Domain.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +19,22 @@ public static class DependencyInjection
             options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
         );
 
+        services.AddIdentityService(configuration);
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddIdentityService(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services
+            .AddIdentityCore<User>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
         return services;
     }
