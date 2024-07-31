@@ -1,7 +1,6 @@
-﻿using ErrorOr;
+﻿using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
-using MediatR;
 
 namespace Leadify.Application.Contacts.ListContact;
 
-public sealed record ListContactQuery() : IRequest<ErrorOr<List<Contact>>>;
+public sealed record ListContactQuery() : IQuery<List<Contact>>;

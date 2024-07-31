@@ -1,12 +1,12 @@
 ﻿using ErrorOr;
+using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using MediatR;
 
 namespace Leadify.Application.Contacts.GetContactById;
 
-internal sealed class GetContactByIdQueryHandler
-    : IRequestHandler<GetContactByIdQuery, ErrorOr<Contact>>
+internal sealed class GetContactByIdQueryHandler : IQueryHandler<GetContactByIdQuery, Contact>
 {
     private readonly IContactRepository _contactRepository;
 

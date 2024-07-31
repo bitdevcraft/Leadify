@@ -1,11 +1,12 @@
 ﻿using ErrorOr;
+using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using MediatR;
 
 namespace Leadify.Application.Contacts.ListContact;
 
-public class ListContactQueryHandler : IRequestHandler<ListContactQuery, ErrorOr<List<Contact>>>
+public class ListContactQueryHandler : IQueryHandler<ListContactQuery, List<Contact>>
 {
     private readonly IContactRepository _contactRepository;
 

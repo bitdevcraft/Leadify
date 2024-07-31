@@ -1,7 +1,6 @@
-﻿using ErrorOr;
+﻿using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
-using MediatR;
 
 namespace Leadify.Application.Contacts.CreateContact;
 
-public sealed record RegisterContactCommand(Contact Contact) : IRequest<ErrorOr<Guid>>;
+public sealed record RegisterContactCommand(Contact Contact) : ICommand<Guid>;

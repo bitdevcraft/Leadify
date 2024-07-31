@@ -1,13 +1,12 @@
 using AutoMapper;
 using ErrorOr;
-using Leadify.Domain.Entities;
+using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Repositories;
 using MediatR;
 
 namespace Leadify.Application.Contacts.UpdateContactById;
 
-public class UpdateContactByIdCommandHandler
-    : IRequestHandler<UpdateContactByIdCommand, ErrorOr<Unit>>
+public class UpdateContactByIdCommandHandler : ICommandHandler<UpdateContactByIdCommand, Unit>
 {
     private readonly IContactRepository _contactRepository;
     private readonly IMapper _mapper;

@@ -1,11 +1,11 @@
 using ErrorOr;
+using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Repositories;
 using MediatR;
 
 namespace Leadify.Application.Contacts.DeleteContactById;
 
-public class DeleteContactByIdCommandHandler
-    : IRequestHandler<DeleteContactByIdCommand, ErrorOr<Unit>>
+public class DeleteContactByIdCommandHandler : ICommandHandler<DeleteContactByIdCommand, Unit>
 {
     private readonly IContactRepository _contactRepository;
     private readonly IUnitOfWork _unitOfWork;
