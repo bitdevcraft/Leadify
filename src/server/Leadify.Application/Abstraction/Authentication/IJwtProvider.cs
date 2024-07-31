@@ -1,6 +1,6 @@
 ﻿using Leadify.Domain.Users;
 
-namespace Leadify.Application.Abstraction;
+namespace Leadify.Application.Abstraction.Authentication;
 
 public interface IJwtProvider
 {

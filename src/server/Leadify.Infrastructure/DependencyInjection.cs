@@ -1,4 +1,6 @@
-﻿using Leadify.Infrastructure.Security.OptionsSetup;
+﻿using Leadify.Application.Abstraction.Caching;
+using Leadify.Infrastructure.Caching;
+using Leadify.Infrastructure.Security.OptionsSetup;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,19 +14,34 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
-        services.AddAuthenticationServices(configuration);
+        services.AddAuthenticationServices();
+
+        services.AddCaching(configuration);
         return services;
     }
 
-    private static IServiceCollection AddAuthenticationServices(
-        this IServiceCollection services,
-        IConfiguration configuration
-    )
+    private static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
     {
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<JwtBearerOptionsSetup>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+
+        return services;
+    }
+
+    private static IServiceCollection AddCaching(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        var connectionString =
+            configuration.GetConnectionString("Cache")
+            ?? throw new ArgumentNullException(nameof(configuration));
+
+        services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
+
+        services.AddSingleton<ICacheService, CacheService>();
 
         return services;
     }

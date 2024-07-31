@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Leadify.Application.Abstraction.Caching;
 using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
@@ -9,10 +10,15 @@ namespace Leadify.Application.Contacts.GetContactById;
 internal sealed class GetContactByIdQueryHandler : IQueryHandler<GetContactByIdQuery, Contact>
 {
     private readonly IContactRepository _contactRepository;
+    private readonly ICacheService _cacheService;
 
-    public GetContactByIdQueryHandler(IContactRepository contactRepository)
+    public GetContactByIdQueryHandler(
+        IContactRepository contactRepository,
+        ICacheService cacheService
+    )
     {
         _contactRepository = contactRepository;
+        _cacheService = cacheService;
     }
 
     public async Task<ErrorOr<Contact>> Handle(
@@ -20,11 +26,23 @@ internal sealed class GetContactByIdQueryHandler : IQueryHandler<GetContactByIdQ
         CancellationToken cancellationToken
     )
     {
-        var result = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
+        var contact = await _cacheService.GetAsync<Contact>(request.CacheKey);
 
-        if (result == null)
+        if (contact is not null)
+            return contact;
+
+        contact = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
+
+        if (contact is null)
             return Error.NotFound();
 
-        return result;
+        await _cacheService.SetAsync<Contact>(
+            request.CacheKey,
+            contact,
+            request.Expiration,
+            cancellationToken
+        );
+
+        return contact;
     }
 }
