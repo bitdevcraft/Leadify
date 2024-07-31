@@ -21,8 +21,6 @@ public static class DependencyInjection
 
         services.AddIdentityService(configuration);
 
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-
         return services;
     }
 

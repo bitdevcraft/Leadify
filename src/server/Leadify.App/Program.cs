@@ -1,27 +1,36 @@
 using Leadify.App;
+using Leadify.App.Middlewares;
 using Leadify.Application;
+using Leadify.Infrastructure;
 using Leadify.Persistence;
+using Leadify.Presentation;
+using Scrutor;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
-
-builder
-    .Services.AddControllers()
-    .AddApplicationPart(Leadify.Presentation.AssemblyReference.Assembly);
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
 // Dependency Injection of Layers
 {
     builder
         .Services.AddAppServices()
         .AddPersistenceService(builder.Configuration)
-        .AddApplicationServices();
+        .AddApplicationServices()
+        .AddInfrastructureServices(builder.Configuration)
+        .AddPresentationServices();
 }
+
+builder.Services.Scan(selector =>
+    selector
+        .FromAssemblies(
+            Leadify.Infrastructure.AssemblyReference.Assembly,
+            Leadify.Persistence.AssemblyReference.Assembly
+        )
+        .AddClasses(false)
+        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+        .AsImplementedInterfaces()
+        .WithScopedLifetime()
+);
 
 var app = builder.Build();
 
@@ -35,6 +44,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

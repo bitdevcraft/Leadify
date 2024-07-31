@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
     <Folder Include="Users\UpdateUser\" />
     <Folder Include="Users\Password\ForgotPassword\" />
     <Folder Include="Users\Password\ChangePassword\" />
