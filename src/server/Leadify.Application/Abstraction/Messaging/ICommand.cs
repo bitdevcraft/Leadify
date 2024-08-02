@@ -1,8 +1,8 @@
-﻿using ErrorOr;
+﻿using Leadify.Domain.Shared;
 using MediatR;
 
 namespace Leadify.Application.Abstraction.Messaging;
 
-public interface ICommand<TResponse> : IRequest<ErrorOr<TResponse>>, IBaseCommand { }
+public interface ICommand : IRequest<Result> { }
 
-public interface IBaseCommand { }
+public interface ICommand<TResponse> : IRequest<Result<TResponse>> { }

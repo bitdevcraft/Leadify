@@ -1,8 +1,7 @@
-﻿using ErrorOr;
-using Leadify.Application.Abstraction.Messaging;
+﻿using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
-using MediatR;
+using Leadify.Domain.Shared;
 
 namespace Leadify.Application.Contacts.ListContact;
 
@@ -15,7 +14,7 @@ public class ListContactQueryHandler : IQueryHandler<ListContactQuery, List<Cont
         _contactRepository = contactRepository;
     }
 
-    public async Task<ErrorOr<List<Contact>>> Handle(
+    public async Task<Result<List<Contact>>> Handle(
         ListContactQuery request,
         CancellationToken cancellationToken
     )

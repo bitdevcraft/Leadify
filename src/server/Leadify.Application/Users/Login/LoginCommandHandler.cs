@@ -1,12 +1,12 @@
-﻿using ErrorOr;
-using Leadify.Application.Abstraction.Authentication;
+﻿using Leadify.Application.Abstraction.Authentication;
+using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace Leadify.Application.Users.Login;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, ErrorOr<LoginResponse>>
+public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginResponse>>
 {
     private readonly UserManager<User> _userManager;
     private readonly IJwtProvider _jwtProvider;
@@ -23,7 +23,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, ErrorOr<LoginRe
         _sessionProvider = sessionProvider;
     }
 
-    public async Task<ErrorOr<LoginResponse>> Handle(
+    public async Task<Result<LoginResponse>> Handle(
         LoginCommand request,
         CancellationToken cancellationToken
     )
@@ -31,12 +31,12 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, ErrorOr<LoginRe
         var user = await _userManager.FindByNameAsync(request.Username);
 
         if (user == null)
-            return Error.Unauthorized();
+            return Result.Failure<LoginResponse>(Error.Unauthorized());
 
         var result = await _userManager.CheckPasswordAsync(user, request.Password);
 
         if (!result)
-            return Error.Unauthorized();
+            return Result.Failure<LoginResponse>(Error.Unauthorized());
 
         var token = _jwtProvider.Generate(user);
 

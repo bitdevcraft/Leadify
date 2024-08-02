@@ -17,7 +17,9 @@ public class UserController : ApiController
         var query = new RegisterCommand(request.Email, request.Username, request.Password);
         var result = await Sender.Send(query);
 
-        return result.Match(_ => Ok(), Problem);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 
     [HttpPost("login")]
@@ -26,6 +28,8 @@ public class UserController : ApiController
         var query = new LoginCommand(request.Username, request.Password);
         var result = await Sender.Send(query);
 
-        return result.Match(resp => Ok(resp), Problem);
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
     }
 }

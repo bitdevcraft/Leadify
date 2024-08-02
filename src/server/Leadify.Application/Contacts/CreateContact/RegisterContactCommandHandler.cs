@@ -1,8 +1,7 @@
-﻿using ErrorOr;
-using Leadify.Application.Abstraction.Messaging;
+﻿using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
-using MediatR;
+using Leadify.Domain.Shared;
 
 namespace Leadify.Application.Contacts.CreateContact;
 
@@ -21,7 +20,7 @@ internal sealed class RegisterContactCommandHandler : ICommandHandler<RegisterCo
         _contactRepository = contactRepository;
     }
 
-    public async Task<ErrorOr<Guid>> Handle(
+    public async Task<Result<Guid>> Handle(
         RegisterContactCommand request,
         CancellationToken cancellationToken
     )

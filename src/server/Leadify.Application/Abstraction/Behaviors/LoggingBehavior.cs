@@ -1,4 +1,4 @@
-﻿using ErrorOr;
+﻿using Leadify.Domain.Shared;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
@@ -7,7 +7,7 @@ namespace Leadify.Application.Abstraction.Behaviors;
 
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IBaseRequest
-    where TResponse : IErrorOr
+    where TResponse : Result
 {
     private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
@@ -30,13 +30,13 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
             var result = await next();
 
-            if (!result.IsError)
+            if (result.IsSuccess)
             {
                 _logger.LogInformation("Request {RequestName} processed successfully", requestName);
             }
             else
             {
-                using (LogContext.PushProperty("Error", result.Errors, true))
+                using (LogContext.PushProperty("Error", result.Error, true))
                 {
                     _logger.LogError("Request {RequestName} processed with error", requestName);
                 }

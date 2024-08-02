@@ -20,7 +20,10 @@ public class ContactController : ApiController
     {
         var query = new ListContactQuery();
         var result = await Sender.Send(query);
-        return result.Match(contacts => Ok(contacts), Problem);
+
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
     }
 
     [HttpGet("{Id}")]
@@ -28,7 +31,10 @@ public class ContactController : ApiController
     {
         var query = new GetContactByIdQuery(Id);
         var result = await Sender.Send(query);
-        return result.Match(contact => Ok(contact), Problem);
+
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
     }
 
     [HttpPost()]
@@ -36,7 +42,10 @@ public class ContactController : ApiController
     {
         var query = new RegisterContactCommand(contact);
         var result = await Sender.Send(query);
-        return result.Match(Id => Ok(Id), Problem);
+
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok(result.Value);
     }
 
     [HttpPut("{id}")]
@@ -44,7 +53,10 @@ public class ContactController : ApiController
     {
         var query = new UpdateContactByIdCommand(id, contact);
         var result = await Sender.Send(query);
-        return result.Match(_ => Ok(), Problem);
+
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 
     [HttpDelete("{id}")]
@@ -52,6 +64,9 @@ public class ContactController : ApiController
     {
         var query = new DeleteContactByIdCommand(id);
         var result = await Sender.Send(query);
-        return result.Match(_ => Ok(), Problem);
+
+        if (result.IsFailure)
+            return HandleFailure(result);
+        return Ok();
     }
 }

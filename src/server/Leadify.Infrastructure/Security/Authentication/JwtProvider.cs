@@ -8,22 +8,16 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Leadify.Infrastructure.Security.Authentication;
 
-internal sealed class JwtProvider : IJwtProvider
+internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
 {
-    private readonly JwtOptions _options;
-
-    public JwtProvider(IOptions<JwtOptions> options)
-    {
-        _options = options.Value;
-    }
+    private readonly JwtOptions _options = options.Value;
 
     public string Generate(User user)
     {
-        var claims = new Claim[]
-        {
-            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, user.Email)
-        };
+        var claims = new List<Claim> { new(JwtRegisteredClaimNames.Sub, user.Id.ToString()) };
+
+        if (user.Email is not null)
+            claims.Add(new(JwtRegisteredClaimNames.Email, user.Email));
 
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),

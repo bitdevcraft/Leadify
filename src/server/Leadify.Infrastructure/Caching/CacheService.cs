@@ -1,7 +1,9 @@
 ﻿using System.Buffers;
 using System.Text.Json;
+using AutoMapper.Execution;
 using Leadify.Application.Abstraction.Caching;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace Leadify.Infrastructure.Caching;
 
@@ -16,14 +18,23 @@ internal sealed class CacheService : ICacheService
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellation = default)
     {
-        byte[]? bytes = await _cache.GetAsync(key, cancellation);
+        string? bytes = await _cache.GetStringAsync(key, cancellation);
 
         return bytes is null ? default : Deserialize<T>(bytes);
     }
 
-    private T Deserialize<T>(byte[] bytes)
+    private T? Deserialize<T>(string bytes)
     {
-        return JsonSerializer.Deserialize<T>(bytes)!;
+        var result = JsonConvert.DeserializeObject<T>(
+            bytes,
+            new JsonSerializerSettings
+            {
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+                ContractResolver = new PrivateResolver()
+            }
+        );
+
+        return result is null ? default : result;
     }
 
     public Task RemoveAsync(string key, CancellationToken cancellationToken = default)
@@ -38,19 +49,13 @@ internal sealed class CacheService : ICacheService
         CancellationToken cancellationToken = default
     )
     {
-        byte[] bytes = Serialize(value);
+        string bytes = JsonConvert.SerializeObject(value);
 
-        return _cache.SetAsync(key, bytes, CacheOptions.Create(expiration), cancellationToken);
-    }
-
-    private byte[] Serialize<T>(T? value)
-    {
-        var buffer = new ArrayBufferWriter<byte>();
-
-        using var writer = new Utf8JsonWriter(buffer);
-
-        JsonSerializer.Serialize(writer, value);
-
-        return buffer.WrittenSpan.ToArray();
+        return _cache.SetStringAsync(
+            key,
+            bytes,
+            CacheOptions.Create(expiration),
+            cancellationToken
+        );
     }
 }
