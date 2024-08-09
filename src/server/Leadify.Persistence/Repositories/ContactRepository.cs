@@ -18,7 +18,7 @@ public class ContactRepository : IContactRepository
     ) => await _dbContext.Set<Contact>().ToListAsync(cancellationToken);
 
     public async Task<Contact?> GetByIdAsync(
-        Guid Id,
+        Ulid Id,
         CancellationToken cancellationToken = default
     ) =>
         await _dbContext

@@ -5,7 +5,7 @@ using Leadify.Domain.Shared;
 
 namespace Leadify.Application.Contacts.CreateContact;
 
-internal sealed class RegisterContactCommandHandler : ICommandHandler<RegisterContactCommand, Guid>
+internal sealed class RegisterContactCommandHandler : ICommandHandler<RegisterContactCommand, Ulid>
 {
     private readonly IContactRepository _contactRepository;
 
@@ -20,13 +20,13 @@ internal sealed class RegisterContactCommandHandler : ICommandHandler<RegisterCo
         _contactRepository = contactRepository;
     }
 
-    public async Task<Result<Guid>> Handle(
+    public async Task<Result<Ulid>> Handle(
         RegisterContactCommand request,
         CancellationToken cancellationToken
     )
     {
         var contact = Contact.Create(
-            Guid.NewGuid(),
+            Ulid.NewUlid(),
             request.Contact.Name,
             request.Contact.Email,
             request.Contact.Mobile,

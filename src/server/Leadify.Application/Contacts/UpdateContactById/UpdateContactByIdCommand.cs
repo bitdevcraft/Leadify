@@ -4,4 +4,4 @@ using MediatR;
 
 namespace Leadify.Application.Contacts.UpdateContactById;
 
-public sealed record UpdateContactByIdCommand(Guid Id, Contact Contact) : ICommand<Unit>;
+public sealed record UpdateContactByIdCommand(Ulid Id, Contact Contact) : ICommand<Unit>;

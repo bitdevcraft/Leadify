@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,17 +11,19 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240808131835_UseUlid")]
+    partial class UseUlid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
 
             modelBuilder.Entity("Leadify.Domain.Entities.Contact", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("Id")
+                        .HasColumnType("BLOB");
 
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("TEXT");

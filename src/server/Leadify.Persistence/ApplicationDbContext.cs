@@ -1,5 +1,5 @@
-﻿using Leadify.Domain.Repositories;
-using Leadify.Domain.Users;
+﻿using Leadify.Domain.Users;
+using Leadify.Persistence.UlidProperty;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,5 +15,11 @@ public sealed class ApplicationDbContext : IdentityDbContext<User>
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
+    }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder.Properties<Ulid>().HaveConversion<UlidToStringConverter>();
+        //.HaveConversion<UlidToBytesConverter>();
     }
 }

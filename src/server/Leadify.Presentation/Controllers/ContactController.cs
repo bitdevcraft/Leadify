@@ -27,7 +27,7 @@ public class ContactController : ApiController
     }
 
     [HttpGet("{Id}")]
-    public async Task<IActionResult> GetContactById(Guid Id)
+    public async Task<IActionResult> GetContactById(Ulid Id)
     {
         var query = new GetContactByIdQuery(Id);
         var result = await Sender.Send(query);
@@ -49,7 +49,7 @@ public class ContactController : ApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateContact(Guid id, Contact contact)
+    public async Task<IActionResult> UpdateContact(Ulid id, Contact contact)
     {
         var query = new UpdateContactByIdCommand(id, contact);
         var result = await Sender.Send(query);
@@ -60,7 +60,7 @@ public class ContactController : ApiController
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteContact(Guid id)
+    public async Task<IActionResult> DeleteContact(Ulid id)
     {
         var query = new DeleteContactByIdCommand(id);
         var result = await Sender.Send(query);
