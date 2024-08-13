@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Leadify.Domain.Auditable;
 
@@ -13,5 +12,5 @@ public class AuditEntry
 
     [ForeignKey(nameof(Audit))]
     public int AuditId { get; set; }
-    public Audit Audit { get; set; }
+    public Audit? Audit { get; set; }
 }

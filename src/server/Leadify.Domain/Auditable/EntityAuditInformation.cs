@@ -4,12 +4,12 @@ namespace Leadify.Domain.Auditable;
 
 public class EntityAuditInformation
 {
-    public dynamic Entity { get; set; }
-    public string TableName { get; set; }
+    public required dynamic Entity { get; set; }
+    public required string TableName { get; set; }
 
     public EntityState State { get; set; }
 
-    public List<AuditEntry> Changes { get; set; }
+    public List<AuditEntry> Changes { get; set; } = [];
 
     public bool IsDeleteChanged { get; set; }
 
