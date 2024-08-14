@@ -81,7 +81,7 @@ internal sealed class UnitOfWork : IUnitOfWork
 
     private List<EntityAuditInformation> BeforeSaveChanges()
     {
-        List<EntityAuditInformation> entityAuditInformation = new();
+        List<EntityAuditInformation> entityAuditInformation = [];
 
         var entityEntries = _dbContext
             .ChangeTracker.Entries()
@@ -91,7 +91,7 @@ internal sealed class UnitOfWork : IUnitOfWork
         {
             dynamic entity = entityEntry.Entity;
             bool isAdd = entityEntry.State == EntityState.Added;
-            List<AuditEntry> changes = new();
+            List<AuditEntry> changes = [];
 
             foreach (PropertyEntry property in entityEntry.Properties)
             {

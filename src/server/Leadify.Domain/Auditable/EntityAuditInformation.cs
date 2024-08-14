@@ -17,15 +17,12 @@ public class EntityAuditInformation
     {
         get
         {
-            switch (State)
+            return State switch
             {
-                case EntityState.Added:
-                    return "Create";
-                case EntityState.Modified:
-                    return "Update";
-                default:
-                    return string.Empty;
-            }
+                EntityState.Added => "Create",
+                EntityState.Modified => "Update",
+                _ => string.Empty,
+            };
         }
     }
 }

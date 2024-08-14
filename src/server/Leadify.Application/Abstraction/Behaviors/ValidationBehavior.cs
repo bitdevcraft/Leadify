@@ -49,7 +49,7 @@ public class ValidationBehavior<TRequest, TResponse>(IValidator<TRequest>? valid
             .GetGenericTypeDefinition()
             .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
             .GetMethod(nameof(Domain.Shared.ValidationResult.WithErrors))!
-            .Invoke(null, new object?[] { errors })!;
+            .Invoke(null, [errors])!;
 
         return (TResult)validationResult;
     }

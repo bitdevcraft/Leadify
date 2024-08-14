@@ -23,7 +23,7 @@ internal sealed class CacheService : ICacheService
         return bytes is null ? default : Deserialize<T>(bytes);
     }
 
-    private T? Deserialize<T>(string bytes)
+    private static T? Deserialize<T>(string bytes)
     {
         var result = JsonConvert.DeserializeObject<T>(
             bytes,
