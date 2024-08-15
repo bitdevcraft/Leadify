@@ -1,5 +1,4 @@
-﻿using Leadify.Application.Users.Login;
-using Leadify.Domain.Shared;
+﻿using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -25,7 +24,11 @@ internal sealed class RegisterCommandHandler(UserManager<User> userManager)
         if (exist)
             return Result.Failure<Unit>(Error.Validation(description: "Username/Email Taken"));
 
-        var user = new User { Email = request.Email, UserName = request.Username };
+        var user = new User
+        {
+            Email = request.Email,
+            UserName = request.Username
+        };
 
         var result = await _userManager.CreateAsync(user, request.Password);
 

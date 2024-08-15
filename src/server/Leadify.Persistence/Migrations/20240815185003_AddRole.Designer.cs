@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240815185003_AddRole")]
+    partial class AddRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -38,7 +41,7 @@ namespace Leadify.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SysAudits", (string)null);
+                    b.ToTable("Audits", (string)null);
                 });
 
             modelBuilder.Entity("Leadify.Domain.Auditable.AuditEntry", b =>
@@ -62,7 +65,7 @@ namespace Leadify.Persistence.Migrations
 
                     b.HasIndex("AuditId");
 
-                    b.ToTable("SysAuditEntries", (string)null);
+                    b.ToTable("AuditEntries", (string)null);
                 });
 
             modelBuilder.Entity("Leadify.Domain.Entities.Contact", b =>
@@ -93,32 +96,6 @@ namespace Leadify.Persistence.Migrations
                     b.ToTable("Contacts", (string)null);
                 });
 
-            modelBuilder.Entity("Leadify.Domain.Users.Permission", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("PermissionNameIndex");
-
-                    b.ToTable("SysPermissions", (string)null);
-                });
-
             modelBuilder.Entity("Leadify.Domain.Users.Role", b =>
                 {
                     b.Property<string>("Id")
@@ -142,22 +119,7 @@ namespace Leadify.Persistence.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("SysRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.RolePermission", b =>
-                {
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PermissionId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RoleId", "PermissionId");
-
-                    b.HasIndex("PermissionId");
-
-                    b.ToTable("SysRolePermissions", (string)null);
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Leadify.Domain.Users.User", b =>
@@ -221,22 +183,7 @@ namespace Leadify.Persistence.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("SysUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.UserRole", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("SysUserRoles", (string)null);
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Ulid>", b =>
@@ -307,6 +254,21 @@ namespace Leadify.Persistence.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Ulid>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Ulid>", b =>
                 {
                     b.Property<string>("UserId")
@@ -337,44 +299,6 @@ namespace Leadify.Persistence.Migrations
                     b.Navigation("Audit");
                 });
 
-            modelBuilder.Entity("Leadify.Domain.Users.RolePermission", b =>
-                {
-                    b.HasOne("Leadify.Domain.Users.Permission", "Permission")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Leadify.Domain.Users.Role", "Role")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Permission");
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.UserRole", b =>
-                {
-                    b.HasOne("Leadify.Domain.Users.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Leadify.Domain.Users.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Ulid>", b =>
                 {
                     b.HasOne("Leadify.Domain.Users.Role", null)
@@ -402,6 +326,21 @@ namespace Leadify.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Ulid>", b =>
+                {
+                    b.HasOne("Leadify.Domain.Users.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leadify.Domain.Users.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Ulid>", b =>
                 {
                     b.HasOne("Leadify.Domain.Users.User", null)
@@ -414,23 +353,6 @@ namespace Leadify.Persistence.Migrations
             modelBuilder.Entity("Leadify.Domain.Auditable.Audit", b =>
                 {
                     b.Navigation("Changes");
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.Permission", b =>
-                {
-                    b.Navigation("RolePermissions");
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.Role", b =>
-                {
-                    b.Navigation("RolePermissions");
-
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("Leadify.Domain.Users.User", b =>
-                {
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

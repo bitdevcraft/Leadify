@@ -1,6 +1,4 @@
-﻿using Leadify.Domain.Repositories;
-using Leadify.Domain.Users;
-using Microsoft.AspNetCore.Identity;
+﻿using Leadify.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +29,7 @@ public static class DependencyInjection
     {
         services
             .AddIdentityCore<User>()
-            .AddRoles<IdentityRole>()
+            .AddRoles<Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         return services;
