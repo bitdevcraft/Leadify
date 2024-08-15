@@ -1,10 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Leadify.Application.Abstraction.Authentication;
+﻿using Leadify.Application.Abstraction.Authentication;
 using Leadify.Domain.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Leadify.Infrastructure.Security.Authentication;
 
@@ -18,6 +18,9 @@ internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
 
         if (user.Email is not null)
             claims.Add(new(JwtRegisteredClaimNames.Email, user.Email));
+
+        if (user.UserName is not null)
+            claims.Add(new(JwtRegisteredClaimNames.Name, user.UserName));
 
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),

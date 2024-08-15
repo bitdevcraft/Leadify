@@ -13,7 +13,7 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddRepositories();
-
+        services.AddHttpContextAccessor();
         return services;
     }
 
