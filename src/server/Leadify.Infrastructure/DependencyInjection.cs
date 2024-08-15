@@ -27,6 +27,7 @@ public static class DependencyInjection
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
+        services.AddAuthorization();
         return services;
     }
 

@@ -6,6 +6,7 @@ using Leadify.Application.Contacts.UpdateContactById;
 using Leadify.Domain.Entities;
 using Leadify.Presentation.Abstraction;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;
@@ -15,6 +16,7 @@ public class ContactController : ApiController
     public ContactController(ISender sender)
         : base(sender) { }
 
+    [Authorize]
     [HttpGet()]
     public async Task<IActionResult> GetContacts()
     {
