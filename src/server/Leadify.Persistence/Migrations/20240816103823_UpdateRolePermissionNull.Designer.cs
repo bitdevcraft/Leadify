@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240816103823_UpdateRolePermissionNull")]
+    partial class UpdateRolePermissionNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -143,13 +146,6 @@ namespace Leadify.Persistence.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("SysRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "01J5DDXGHTRMBKYBQHX8V9HHGE",
-                            Name = "SystemAdministrator"
-                        });
                 });
 
             modelBuilder.Entity("Leadify.Domain.Users.RolePermission", b =>

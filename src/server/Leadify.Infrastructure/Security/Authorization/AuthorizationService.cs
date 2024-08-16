@@ -5,12 +5,12 @@ namespace Leadify.Infrastructure.Security.Authorization;
 
 public class AuthorizationService : IAuthorizationService
 {
-    public async Task<Result> AuthorizeCurrentUser(
+    public Task<Result> AuthorizeCurrentUser(
         List<string> requiredRoles,
         List<string> requiredPermissions,
         List<string> requiredPolicies
     )
     {
-        return Result.Success();
+        return Task.FromResult(Result.Success());
     }
 }

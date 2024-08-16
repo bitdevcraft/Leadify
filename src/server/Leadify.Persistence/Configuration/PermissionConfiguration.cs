@@ -1,5 +1,4 @@
-﻿
-using Leadify.Domain.Users;
+﻿using Leadify.Domain.Users;
 using Leadify.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,7 +15,7 @@ internal class PermissionConfiguration : IEntityTypeConfiguration<Permission>
         builder.HasKey(r => r.Id);
 
         // Index for "normalized" role name to allow efficient lookups
-        builder.HasIndex(r => r.NormalizedName).HasName("PermissionNameIndex").IsUnique();
+        builder.HasIndex(r => r.NormalizedName).HasDatabaseName("PermissionNameIndex").IsUnique();
 
         // A concurrency token for use with the optimistic concurrency checking
         builder.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
@@ -25,9 +24,9 @@ internal class PermissionConfiguration : IEntityTypeConfiguration<Permission>
         builder.Property(u => u.Name).HasMaxLength(256);
         builder.Property(u => u.NormalizedName).HasMaxLength(256);
 
-
         // Each Role can have many entries in the RolePermission join table
-        builder.HasMany(e => e.RolePermissions)
+        builder
+            .HasMany(e => e.RolePermissions)
             .WithOne(e => e.Permission)
             .HasForeignKey(ur => ur.PermissionId)
             .IsRequired();

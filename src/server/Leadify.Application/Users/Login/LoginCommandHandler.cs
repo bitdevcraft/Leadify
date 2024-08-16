@@ -40,8 +40,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginRes
 
         var token = _jwtProvider.Generate(user);
 
-        var sessionToken = _sessionProvider.Generate();
-
         return new LoginResponse(request.Username, token);
     }
 }

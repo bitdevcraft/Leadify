@@ -1,5 +1,4 @@
-﻿
-
+﻿using Leadify.Domain.Constants;
 using Leadify.Domain.Users;
 using Leadify.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
@@ -14,16 +13,19 @@ internal class RoleConfiguration : IEntityTypeConfiguration<Role>
         builder.ToTable(TableNames.SysRoles);
 
         // Each User can have many entries in the UserRole join table
-        builder.HasMany(e => e.UserRoles)
+        builder
+            .HasMany(e => e.UserRoles)
             .WithOne(e => e.Role)
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
 
         // Each Role can have many entries in the RolePermission join table
-        builder.HasMany(e => e.RolePermissions)
+        builder
+            .HasMany(e => e.RolePermissions)
             .WithOne(e => e.Role)
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
+
+        builder.HasData(new Role(RoleNames.SystemAdministrator));
     }
 }
-

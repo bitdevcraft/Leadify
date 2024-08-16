@@ -10,5 +10,5 @@ public class User : IdentityUser<Ulid>
         SecurityStamp = Guid.NewGuid().ToString();
     }
 
-    public virtual ICollection<UserRole> UserRoles { get; set; }
+    public virtual ICollection<UserRole>? UserRoles { get; set; }
 }

@@ -3,6 +3,7 @@ using Leadify.App.Middlewares;
 using Leadify.Application;
 using Leadify.Infrastructure;
 using Leadify.Persistence;
+using Leadify.Persistence.Seed;
 using Leadify.Presentation;
 using Scrutor;
 
@@ -43,6 +44,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    await app.InitialiseDatabaseAsync();
 }
 
 app.UseHttpsRedirection();

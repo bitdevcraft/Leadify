@@ -1,4 +1,5 @@
 ﻿using Leadify.Domain.Users;
+using Leadify.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ public static class DependencyInjection
         );
 
         services.AddIdentityService(configuration);
+        services.AddScoped<ApplicationDbContextInitialiser>();
 
         return services;
     }
