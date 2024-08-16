@@ -29,6 +29,8 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
+    - name: Install .NET Aspire workload
+      run: dotnet workloads install aspire
     - name: Build
       run: dotnet build --no-restore
     - name: Test
