@@ -23,7 +23,7 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Install .NET Aspire workload
-      run: dotnet workloads install aspire
+      run: dotnet workload install aspire
       
     - uses: shogo82148/actions-setup-redis@v1
       with:
