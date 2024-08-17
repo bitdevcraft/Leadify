@@ -18,4 +18,6 @@ public class Result<TValue> : Result
             );
 
     public static implicit operator Result<TValue>(TValue? value) => Create(value);
+
+    public static new Result<TValue> Failure(Error error) => new(default, false, error);
 }
