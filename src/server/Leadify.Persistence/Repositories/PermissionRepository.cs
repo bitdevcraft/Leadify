@@ -1,26 +1,20 @@
-﻿using Leadify.Domain.Repositories;
+﻿using System.Globalization;
+using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Leadify.Persistence.Repositories;
 
-public class PermissionRepository : IPermissionRepository
+public class PermissionRepository(
+    ApplicationDbContext context,
+    IUnitOfWork unitOfWork,
+    INormalizer normalizer
+) : IPermissionRepository
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly INormalizer _normalizer;
-
-    public PermissionRepository(
-        ApplicationDbContext context,
-        IUnitOfWork unitOfWork,
-        INormalizer normalizer
-    )
-    {
-        _context = context;
-        _unitOfWork = unitOfWork;
-        _normalizer = normalizer;
-    }
+    private readonly ApplicationDbContext _context = context;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly INormalizer _normalizer = normalizer;
 
     public async Task<int> CreateAsync(string name)
     {
@@ -36,36 +30,34 @@ public class PermissionRepository : IPermissionRepository
         return await _unitOfWork.SaveChangesAsync();
     }
 
-    public async Task<Permission?> FindByNameAsync(string name)
-    {
-        return await _context
+    public async Task<Permission?> FindByNameAsync(string name) =>
+        await _context
             .Set<Permission>()
             .FirstOrDefaultAsync(x => x.NormalizedName == _normalizer.NormalizeName(name));
-    }
 
-    public Task<List<string>> GetAllByRoleIdAsync(string Id)
-    {
-        return Task.FromResult(
+    public Task<List<string>> GetAllByRoleIdAsync(string Id) =>
+        Task.FromResult(
             _context
                 .Set<RolePermission>()
                 .Where(x => x.RoleId == Ulid.Parse(Id))
                 .Select(x => x.Permission.ToString())
                 .ToList()
         );
-    }
 
     public async Task<HashSet<string>> GetAllByUserIdAsync(string Id)
     {
-        var userRoles = await _context
+        Ulid[] userRoles = await _context
             .Set<UserRole>()
             .Where(x => x.UserId == Ulid.Parse(Id))
             .Select(x => x.Role.Id)
             .ToArrayAsync();
 
         if (userRoles.Length == 0)
+        {
             return [];
+        }
 
-        var permissions = await _context
+        List<string> permissions = await _context
             .Set<RolePermission>()
             .Where(x => userRoles.Contains(x.RoleId))
             .Select(x => x.Permission.ToString())

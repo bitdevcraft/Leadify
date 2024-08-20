@@ -6,26 +6,17 @@ using Microsoft.Extensions.Logging;
 
 namespace Leadify.Persistence.Seed;
 
-public class ApplicationDbContextInitialiser
+public class ApplicationDbContextInitialiser(
+    ILogger<ApplicationDbContextInitialiser> logger,
+    ApplicationDbContext context,
+    UserManager<User> userManager,
+    RoleManager<Role> roleManager
+)
 {
-    private readonly ILogger<ApplicationDbContextInitialiser> _logger;
-    private readonly ApplicationDbContext _context;
-    private readonly UserManager<User> _userManager;
-    private readonly RoleManager<Role> _roleManager;
-
-    public ApplicationDbContextInitialiser(
-        ILogger<ApplicationDbContextInitialiser> logger,
-        ApplicationDbContext context,
-        UserManager<User> userManager,
-        RoleManager<Role> roleManager
-    )
-    {
-        _context = context;
-        _userManager = userManager;
-
-        _roleManager = roleManager;
-        _logger = logger;
-    }
+    private readonly ILogger<ApplicationDbContextInitialiser> _logger = logger;
+    private readonly ApplicationDbContext _context = context;
+    private readonly UserManager<User> _userManager = userManager;
+    private readonly RoleManager<Role> _roleManager = roleManager;
 
     public async Task InitialiseAsync()
     {
@@ -75,7 +66,8 @@ public class ApplicationDbContextInitialiser
             await _userManager.CreateAsync(administrator, "Administrator1!");
             if (!string.IsNullOrWhiteSpace(sysAdminRole.Name))
             {
-                await _userManager.AddToRolesAsync(administrator, new[] { sysAdminRole.Name });
+                string[] roles = [sysAdminRole.Name];
+                await _userManager.AddToRolesAsync(administrator, roles);
             }
         }
     }

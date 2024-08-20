@@ -42,7 +42,7 @@ public class AuthorizationBehavior<TRequest, TResponse>(IAuthorizationService au
             .SelectMany(authorizationAttribute => authorizationAttribute.Policies?.Split(',') ?? [])
             .ToList();
 
-        var result = await _authorizationService.AuthorizeCurrentUser(
+        Result result = await _authorizationService.AuthorizeCurrentUser(
             requiredRoles,
             requiredPermissions,
             requiredPolicies

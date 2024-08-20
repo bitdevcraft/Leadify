@@ -16,10 +16,12 @@ internal sealed class GetContactByIdQueryHandler(IContactRepository contactRepos
         CancellationToken cancellationToken
     )
     {
-        var contact = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
+        Contact? contact = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (contact is null)
+        {
             return Result.Failure<Contact>(Error.NotFound());
+        }
 
         return contact;
     }

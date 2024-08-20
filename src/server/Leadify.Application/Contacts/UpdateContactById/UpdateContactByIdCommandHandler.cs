@@ -1,5 +1,6 @@
 using AutoMapper;
 using Leadify.Application.Abstraction.Messaging;
+using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using MediatR;
@@ -21,17 +22,21 @@ public class UpdateContactByIdCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        var contact = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
+        Contact? contact = await _contactRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (contact == null)
+        {
             return Result.Failure<Unit>(Error.NotFound());
+        }
 
         _mapper.Map(request.Contact, contact);
 
-        var result = await _unitOfWork.SaveChangesAsync(cancellationToken) > 0;
+        bool result = await _unitOfWork.SaveChangesAsync(cancellationToken) > 0;
 
         if (!result)
-            return Result.Failure<Unit>(Error.Failure("Update Error"));
+        {
+            return Result.Failure<Unit>(Error.Validation("Update Error"));
+        }
 
         return Unit.Value;
     }

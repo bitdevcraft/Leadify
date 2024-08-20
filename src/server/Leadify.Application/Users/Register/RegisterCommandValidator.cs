@@ -2,7 +2,7 @@
 
 namespace Leadify.Application.Users.Register;
 
-internal class RegisterCommandValidator : AbstractValidator<RegisterCommand>
+internal sealed class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
     public RegisterCommandValidator()
     {

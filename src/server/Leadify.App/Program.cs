@@ -7,7 +7,7 @@ using Leadify.Persistence.Seed;
 using Leadify.Presentation;
 using Scrutor;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
@@ -35,7 +35,7 @@ builder.Services.Scan(selector =>
         .WithScopedLifetime()
 );
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapDefaultEndpoints();
 
@@ -57,4 +57,6 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 
+#pragma warning disable CA1849 // Call async methods when in an async method
 app.Run();
+#pragma warning restore CA1849 // Call async methods when in an async method

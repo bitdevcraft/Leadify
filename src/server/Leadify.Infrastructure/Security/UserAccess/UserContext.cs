@@ -10,9 +10,9 @@ public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContex
 
     public Guid UserId =>
         _httpContextAccessor.HttpContext?.User.GetUserId()
-        ?? throw new ApplicationException("User context is unavailable");
+        ?? throw new InvalidOperationException("User context is unavailable");
 
     public string IdentityId =>
         _httpContextAccessor.HttpContext?.User.GetIdentityId()
-        ?? throw new ApplicationException("User context is unavailable");
+        ?? throw new InvalidOperationException("User context is unavailable");
 }

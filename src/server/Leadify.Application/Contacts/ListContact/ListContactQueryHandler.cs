@@ -14,8 +14,5 @@ public class ListContactQueryHandler(IContactRepository contactRepository)
     public async Task<Result<List<Contact>>> Handle(
         ListContactQuery request,
         CancellationToken cancellationToken
-    )
-    {
-        return await _contactRepository.GetAllContactAsync(cancellationToken);
-    }
+    ) => await _contactRepository.GetAllContactAsync(cancellationToken);
 }

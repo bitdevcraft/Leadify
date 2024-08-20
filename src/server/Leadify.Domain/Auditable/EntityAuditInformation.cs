@@ -9,20 +9,15 @@ public class EntityAuditInformation
 
     public EntityState State { get; set; }
 
-    public List<AuditEntry> Changes { get; set; } = [];
+    public ICollection<AuditEntry> Changes { get; set; } = [];
 
     public bool IsDeleteChanged { get; set; }
 
-    public string OperationType
-    {
-        get
+    public string OperationType =>
+        State switch
         {
-            return State switch
-            {
-                EntityState.Added => "Create",
-                EntityState.Modified => "Update",
-                _ => string.Empty,
-            };
-        }
-    }
+            EntityState.Added => "Create",
+            EntityState.Modified => "Update",
+            _ => string.Empty,
+        };
 }

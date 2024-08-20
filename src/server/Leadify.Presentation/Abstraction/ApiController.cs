@@ -10,38 +10,39 @@ namespace Leadify.Presentation.Abstraction;
 [Route("api/[controller]")]
 public class ApiController : ControllerBase
 {
-    protected readonly ISender Sender;
+    internal readonly ISender _sender;
 
-    protected ApiController(ISender sender) => Sender = sender;
+    protected ApiController(ISender sender) => _sender = sender;
 
-    protected ActionResult Problem(List<Error> errors)
-    {
-        if (errors.Count is 0)
-        {
-            return Problem();
-        }
+    /* protected ActionResult Problem(List<Error> errors)
+     {
+         if (errors.Count is 0)
+         {
+             return Problem();
+         }
 
-        if (errors.All(error => error.Type == ErrorType.Validation))
-        {
-            return ValidationProblem(errors);
-        }
+         if (errors.All(error => error.Type == ErrorType.Validation))
+         {
+             return ValidationProblem(errors);
+         }
 
-        return Problem(errors[0]);
-    }
+         return Problem(errors[0]);
+     }
 
-    private ObjectResult Problem(Error error)
-    {
-        var statusCode = error.Type switch
-        {
-            ErrorType.Conflict => StatusCodes.Status409Conflict,
-            ErrorType.Validation => StatusCodes.Status400BadRequest,
-            ErrorType.NotFound => StatusCodes.Status404NotFound,
-            ErrorType.Unauthorized => StatusCodes.Status403Forbidden,
-            _ => StatusCodes.Status500InternalServerError,
-        };
+     private ObjectResult Problem(Error error)
+     {
+         var statusCode = error.Type switch
+         {
+             ErrorType.Conflict => StatusCodes.Status409Conflict,
+             ErrorType.Validation => StatusCodes.Status400BadRequest,
+             ErrorType.NotFound => StatusCodes.Status404NotFound,
+             ErrorType.Unauthorized => StatusCodes.Status403Forbidden,
+             _ => StatusCodes.Status500InternalServerError,
+         };
 
-        return Problem(statusCode: statusCode, title: error.Description);
-    }
+         return Problem(statusCode: statusCode, title: error.Description);
+     }
+    
 
     private ActionResult ValidationProblem(List<Error> errors)
     {
@@ -51,6 +52,7 @@ public class ApiController : ControllerBase
 
         return ValidationProblem(modelStateDictionary);
     }
+     */
 
     protected IActionResult HandleFailure(Result result) =>
         result switch
@@ -65,11 +67,31 @@ public class ApiController : ControllerBase
                         validationResult.Errors
                     )
                 ),
-            _
+            { Error.Type: ErrorType.Conflict }
+                => Conflict(
+                    CreateProblemDetails("Conflict", StatusCodes.Status409Conflict, result.Error)
+                ),
+            { Error.Type: ErrorType.Validation }
                 => BadRequest(
                     CreateProblemDetails(
                         "Bad Request",
                         StatusCodes.Status400BadRequest,
+                        result.Error
+                    )
+                ),
+            { Error.Type: ErrorType.NotFound }
+                => NotFound(
+                    CreateProblemDetails("Not Found", StatusCodes.Status404NotFound, result.Error)
+                ),
+            { Error.Type: ErrorType.Unauthorized }
+                => Unauthorized(
+                    CreateProblemDetails("Forbidden", StatusCodes.Status403Forbidden, result.Error)
+                ),
+            _
+                => BadRequest(
+                    CreateProblemDetails(
+                        "Internal Server Error",
+                        StatusCodes.Status500InternalServerError,
                         result.Error
                     )
                 )

@@ -21,9 +21,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leadify.Presentation", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{4A26BC6B-5C78-4D99-8BED-B0D8A9920643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leadify.AppHost", "src\host\Leadify.AppHost\Leadify.AppHost.csproj", "{84FA2169-A410-4880-A743-606735485C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leadify.AppHost", "src\host\Leadify.AppHost\Leadify.AppHost.csproj", "{84FA2169-A410-4880-A743-606735485C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leadify.ServiceDefaults", "src\host\Leadify.ServiceDefaults\Leadify.ServiceDefaults.csproj", "{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leadify.ServiceDefaults", "src\host\Leadify.ServiceDefaults\Leadify.ServiceDefaults.csproj", "{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8A7E0DE-EF53-4460-98C7-9F0ACD35D89F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

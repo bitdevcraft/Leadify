@@ -196,16 +196,14 @@ public readonly record struct Error
 
     private int ComposeHashCode()
     {
-#pragma warning disable SA1129 // HashCode needs to be instantiated this way
         var hashCode = new HashCode();
-#pragma warning restore SA1129
 
         hashCode.Add(Code);
         hashCode.Add(Description);
         hashCode.Add(Type);
         hashCode.Add(NumericType);
 
-        foreach (var keyValuePair in Metadata!)
+        foreach (KeyValuePair<string, object> keyValuePair in Metadata!)
         {
             hashCode.Add(keyValuePair.Key);
             hashCode.Add(keyValuePair.Value);
@@ -229,10 +227,10 @@ public readonly record struct Error
             return false;
         }
 
-        foreach (var keyValuePair in metadata)
+        foreach (KeyValuePair<string, object> keyValuePair in metadata)
         {
             if (
-                !otherMetadata.TryGetValue(keyValuePair.Key, out var otherValue)
+                !otherMetadata.TryGetValue(keyValuePair.Key, out object? otherValue)
                 || !keyValuePair.Value.Equals(otherValue)
             )
             {

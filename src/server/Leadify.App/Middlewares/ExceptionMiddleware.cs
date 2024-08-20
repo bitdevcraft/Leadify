@@ -22,26 +22,24 @@ public class ExceptionMiddleware(
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "{message}", ex.Message);
+            _logger.LogError(ex, "{Message}", ex.Message);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var response = _env.IsDevelopment()
-                ? new AppException(
+            ServerError response = _env.IsDevelopment()
+                ? new ServerError(
                     context.Response.StatusCode,
                     ex.Message,
                     ex.StackTrace?.ToString()
                 )
-                : new AppException(context.Response.StatusCode, "Internal Server Error");
+                : new ServerError(context.Response.StatusCode, "Internal Server Error");
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
-
-            var json = JsonSerializer.Serialize(response, options);
+            string json = JsonSerializer.Serialize(response, s_writeOptions);
 
             await context.Response.WriteAsync(json);
         }
     }
+
+    private static readonly JsonSerializerOptions s_writeOptions =
+        new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 }

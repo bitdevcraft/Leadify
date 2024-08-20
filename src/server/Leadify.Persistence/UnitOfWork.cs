@@ -6,39 +6,40 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Leadify.Persistence;
 
-internal sealed class UnitOfWork : IUnitOfWork
+internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public UnitOfWork(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+    private readonly ApplicationDbContext _dbContext = dbContext;
 
     async Task<int> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)
     {
         UpdateAuditableEntities();
 
-        var entityAuditInformation = BeforeSaveChanges();
+        List<EntityAuditInformation> entityAuditInformation = BeforeSaveChanges();
         //var userId = await Users.Select(x => x.Id).FirstOrDefaultAsync(cancellationToken);
         int returnValue = await _dbContext.SaveChangesAsync(cancellationToken);
 
-        var success = returnValue > 0;
+        bool success = returnValue > 0;
 
         if (success is not true)
+        {
             return returnValue;
+        }
 
         //if all changes are saved then only create audit
         foreach (EntityAuditInformation item in entityAuditInformation)
         {
             dynamic entity = item.Entity;
-            List<AuditEntry> changes = item.Changes;
+            var changes = (List<AuditEntry>)item.Changes;
 
             if (changes == null)
+            {
                 continue;
+            }
 
             if (changes.Count == 0)
+            {
                 continue;
+            }
 
             Audit audit =
                 new()
@@ -83,7 +84,7 @@ internal sealed class UnitOfWork : IUnitOfWork
     {
         List<EntityAuditInformation> entityAuditInformation = [];
 
-        var entityEntries = _dbContext
+        IEnumerable<EntityEntry> entityEntries = _dbContext
             .ChangeTracker.Entries()
             .Where(x => x.State != EntityState.Unchanged);
 
@@ -96,16 +97,22 @@ internal sealed class UnitOfWork : IUnitOfWork
             foreach (PropertyEntry property in entityEntry.Properties)
             {
                 if (isAdd && property.CurrentValue == null)
+                {
                     continue;
+                }
 
                 if (
                     property.IsModified
                     && Object.Equals(property.CurrentValue, property.OriginalValue)
                 )
+                {
                     continue;
+                }
 
                 if (property.Metadata.Name == "Id")
+                {
                     continue;
+                }
 
                 changes.Add(
                     new AuditEntry()

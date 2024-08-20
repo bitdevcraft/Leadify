@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using System.Globalization;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Leadify.Persistence.UlidProperty;
 
 public class UlidToStringConverter : ValueConverter<Ulid, string>
 {
-    private static readonly ConverterMappingHints _defaultHints = new ConverterMappingHints(
-        size: 26
-    );
+    private static readonly ConverterMappingHints _defaultHints = new(size: 26);
 
     public UlidToStringConverter()
         : this(null) { }

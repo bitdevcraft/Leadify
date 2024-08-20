@@ -1,4 +1,5 @@
-﻿using Leadify.Application.Abstraction.Authorization;
+﻿using System.Globalization;
+using Leadify.Application.Abstraction.Authorization;
 using Leadify.Application.Abstraction.Caching;
 using Leadify.Application.Abstraction.UserAccess;
 using Leadify.Domain.Repositories;
@@ -21,22 +22,22 @@ public class AuthorizationService(
     private readonly IPermissionRepository _permissionRepository = permissionRepository;
 
     public async Task<Result> AuthorizeCurrentUser(
-        List<string> requiredRoles,
-        List<string> requiredPermissions,
-        List<string> requiredPolicies
+        ICollection<string> requiredRoles,
+        ICollection<string> requiredPermissions,
+        ICollection<string> requiredPolicies
     )
     {
-        var identityId = _userContext.IdentityId;
+        string identityId = _userContext.IdentityId;
 
         // Get User Roles
-        var permissions = await GetUserPermission(identityId);
+        HashSet<string> permissions = await GetUserPermission(identityId);
         if (requiredPermissions.Intersect(permissions).Any())
         {
             return Result.Success();
         }
 
         // Get User Permissions
-        var roles = await GetUserRoles(identityId);
+        HashSet<string> roles = await GetUserRoles(identityId);
         if (requiredRoles.Intersect(roles).Any())
         {
             return Result.Success();
@@ -47,9 +48,9 @@ public class AuthorizationService(
 
     private async Task<HashSet<string>> GetUserRoles(string identityId)
     {
-        var cacheKey = $"auth:roles-{identityId}";
+        string cacheKey = $"auth:roles-{identityId}";
 
-        var cacheRoles = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
+        HashSet<string>? cacheRoles = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
         if (cacheRoles is not null)
         {
@@ -69,16 +70,16 @@ public class AuthorizationService(
 
     private async Task<HashSet<string>> GetUserPermission(string identityId)
     {
-        var cacheKey = $"auth:permissions-{identityId}";
+        string cacheKey = $"auth:permissions-{identityId}";
 
-        var cachePermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
+        HashSet<string>? cachePermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
         if (cachePermissions is not null)
         {
             return cachePermissions;
         }
 
-        var permissions = await _permissionRepository.GetAllByUserIdAsync(identityId);
+        HashSet<string> permissions = await _permissionRepository.GetAllByUserIdAsync(identityId);
 
         await _cacheService.SetAsync(cacheKey, permissions);
 

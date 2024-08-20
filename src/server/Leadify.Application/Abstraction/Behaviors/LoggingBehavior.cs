@@ -19,13 +19,13 @@ public class LoggingBehavior<TRequest, TResponse>(
         CancellationToken cancellationToken
     )
     {
-        var requestName = request.GetType().Name;
+        string requestName = request.GetType().Name;
 
         try
         {
             _logger.LogInformation("Executing request {RequestName}", requestName);
 
-            var result = await next();
+            TResponse result = await next();
 
             if (result.IsSuccess)
             {
