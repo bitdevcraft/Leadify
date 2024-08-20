@@ -1,14 +1,8 @@
 ﻿namespace Leadify.Domain.Shared;
 
-public class Result<TValue> : Result
+public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {
-    private readonly TValue? _value;
-
-    public Result(TValue? value, bool isSuccess, Error error)
-        : base(isSuccess, error)
-    {
-        _value = value;
-    }
+    private readonly TValue? _value = value;
 
     public TValue Value =>
         IsSuccess

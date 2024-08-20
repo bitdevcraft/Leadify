@@ -5,19 +5,13 @@ using MediatR;
 
 namespace Leadify.Application.Contacts.DeleteContactById;
 
-public class DeleteContactByIdCommandHandler : ICommandHandler<DeleteContactByIdCommand, Unit>
+public class DeleteContactByIdCommandHandler(
+    IContactRepository contactRepository,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<DeleteContactByIdCommand, Unit>
 {
-    private readonly IContactRepository _contactRepository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public DeleteContactByIdCommandHandler(
-        IContactRepository contactRepository,
-        IUnitOfWork unitOfWork
-    )
-    {
-        _unitOfWork = unitOfWork;
-        _contactRepository = contactRepository;
-    }
+    private readonly IContactRepository _contactRepository = contactRepository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Result<Unit>> Handle(
         DeleteContactByIdCommand request,

@@ -6,22 +6,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Leadify.Application.Users.Login;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginResponse>>
+public class LoginCommandHandler(UserManager<User> userManager, IJwtProvider jwtProvider)
+    : IRequestHandler<LoginCommand, Result<LoginResponse>>
 {
-    private readonly UserManager<User> _userManager;
-    private readonly IJwtProvider _jwtProvider;
-    private readonly ISessionProvider _sessionProvider;
-
-    public LoginCommandHandler(
-        UserManager<User> userManager,
-        IJwtProvider jwtProvider,
-        ISessionProvider sessionProvider
-    )
-    {
-        _userManager = userManager;
-        _jwtProvider = jwtProvider;
-        _sessionProvider = sessionProvider;
-    }
+    private readonly UserManager<User> _userManager = userManager;
+    private readonly IJwtProvider _jwtProvider = jwtProvider;
 
     public async Task<Result<LoginResponse>> Handle(
         LoginCommand request,

@@ -7,14 +7,9 @@ using Newtonsoft.Json;
 
 namespace Leadify.Infrastructure.Caching;
 
-internal sealed class CacheService : ICacheService
+internal sealed class CacheService(IDistributedCache cache) : ICacheService
 {
-    private readonly IDistributedCache _cache;
-
-    public CacheService(IDistributedCache cache)
-    {
-        _cache = cache;
-    }
+    private readonly IDistributedCache _cache = cache;
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellation = default)
     {

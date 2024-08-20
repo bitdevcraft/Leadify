@@ -6,14 +6,10 @@ using Leadify.Domain.Shared;
 
 namespace Leadify.Application.Contacts.ListContact;
 
-public class ListContactQueryHandler : IQueryHandler<ListContactQuery, List<Contact>>
+public class ListContactQueryHandler(IContactRepository contactRepository)
+    : IQueryHandler<ListContactQuery, List<Contact>>
 {
-    private readonly IContactRepository _contactRepository;
-
-    public ListContactQueryHandler(IContactRepository contactRepository)
-    {
-        _contactRepository = contactRepository;
-    }
+    private readonly IContactRepository _contactRepository = contactRepository;
 
     public async Task<Result<List<Contact>>> Handle(
         ListContactQuery request,

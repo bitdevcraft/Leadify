@@ -5,20 +5,14 @@ using Leadify.Domain.Shared;
 
 namespace Leadify.Application.Contacts.CreateContact;
 
-internal sealed class RegisterContactCommandHandler : ICommandHandler<RegisterContactCommand, Ulid>
+internal sealed class RegisterContactCommandHandler(
+    IContactRepository contactRepository,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<RegisterContactCommand, Ulid>
 {
-    private readonly IContactRepository _contactRepository;
+    private readonly IContactRepository _contactRepository = contactRepository;
 
-    private readonly IUnitOfWork _unitOfWork;
-
-    public RegisterContactCommandHandler(
-        IContactRepository contactRepository,
-        IUnitOfWork unitOfWork
-    )
-    {
-        _unitOfWork = unitOfWork;
-        _contactRepository = contactRepository;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Result<Ulid>> Handle(
         RegisterContactCommand request,

@@ -5,16 +5,12 @@ using MediatR;
 
 namespace Leadify.Application.Abstraction.Behaviors;
 
-public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class AuthorizationBehavior<TRequest, TResponse>(IAuthorizationService authorizationService)
+    : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IBaseRequest
     where TResponse : Result
 {
-    private readonly IAuthorizationService _authorizationService;
-
-    public AuthorizationBehavior(IAuthorizationService authorizationService)
-    {
-        _authorizationService = authorizationService;
-    }
+    private readonly IAuthorizationService _authorizationService = authorizationService;
 
     public async Task<TResponse> Handle(
         TRequest request,

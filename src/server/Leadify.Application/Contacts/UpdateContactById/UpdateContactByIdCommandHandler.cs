@@ -6,22 +6,15 @@ using MediatR;
 
 namespace Leadify.Application.Contacts.UpdateContactById;
 
-public class UpdateContactByIdCommandHandler : ICommandHandler<UpdateContactByIdCommand, Unit>
+public class UpdateContactByIdCommandHandler(
+    IContactRepository contactRepository,
+    IMapper mapper,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<UpdateContactByIdCommand, Unit>
 {
-    private readonly IContactRepository _contactRepository;
-    private readonly IMapper _mapper;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UpdateContactByIdCommandHandler(
-        IContactRepository contactRepository,
-        IMapper mapper,
-        IUnitOfWork unitOfWork
-    )
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _contactRepository = contactRepository;
-    }
+    private readonly IContactRepository _contactRepository = contactRepository;
+    private readonly IMapper _mapper = mapper;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Result<Unit>> Handle(
         UpdateContactByIdCommand request,

@@ -8,25 +8,17 @@ using Leadify.Persistence;
 
 namespace Leadify.Infrastructure.Security.Authorization;
 
-public class AuthorizationService : IAuthorizationService
+public class AuthorizationService(
+    IUserContext userContext,
+    ICacheService cacheService,
+    ApplicationDbContext context,
+    IPermissionRepository permissionRepository
+) : IAuthorizationService
 {
-    private readonly IUserContext _userContext;
-    private readonly ICacheService _cacheService;
-    private readonly ApplicationDbContext _context;
-    private readonly IPermissionRepository _permissionRepository;
-
-    public AuthorizationService(
-        IUserContext userContext,
-        ICacheService cacheService,
-        ApplicationDbContext context,
-        IPermissionRepository permissionRepository
-    )
-    {
-        _userContext = userContext;
-        _cacheService = cacheService;
-        _context = context;
-        _permissionRepository = permissionRepository;
-    }
+    private readonly IUserContext _userContext = userContext;
+    private readonly ICacheService _cacheService = cacheService;
+    private readonly ApplicationDbContext _context = context;
+    private readonly IPermissionRepository _permissionRepository = permissionRepository;
 
     public async Task<Result> AuthorizeCurrentUser(
         List<string> requiredRoles,
