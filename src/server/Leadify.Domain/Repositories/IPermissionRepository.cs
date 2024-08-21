@@ -9,4 +9,6 @@ public interface IPermissionRepository
     Task<int> DeleteAsync(Permission permission);
     Task<List<string>> GetAllByRoleIdAsync(string Id);
     Task<HashSet<string>> GetAllByUserIdAsync(string Id);
+    Task<List<string>> GetAllAsync();
+    Task<int> AddRangeAsync(ICollection<string> names);
 }

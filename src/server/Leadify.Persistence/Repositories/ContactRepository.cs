@@ -4,14 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leadify.Persistence.Repositories;
 
-public class ContactRepository : IContactRepository
+public class ContactRepository(ApplicationDbContext dbContext) : IContactRepository
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public ContactRepository(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+    private readonly ApplicationDbContext _dbContext = dbContext;
 
     public async Task<List<Contact>> GetAllContactAsync(
         CancellationToken cancellationToken = default

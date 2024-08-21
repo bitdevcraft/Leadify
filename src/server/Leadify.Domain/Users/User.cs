@@ -12,3 +12,6 @@ public class User : IdentityUser<Ulid>
 
     public virtual ICollection<UserRole>? UserRoles { get; set; }
 }
+
+// TODO : Create a self referencing to have a hierarchy style
+// TODO : Add a IsInternal / IsExternal property to identity the user

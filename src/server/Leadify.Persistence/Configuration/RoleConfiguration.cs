@@ -26,6 +26,11 @@ internal class RoleConfiguration : IEntityTypeConfiguration<Role>
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
 
-        builder.HasData(new Role(RoleNames.SystemAdministrator) { NormalizedName = RoleNames.SystemAdministrator.ToUpperInvariant() });
+        builder.HasData(
+            new Role(RoleNames.SystemAdministrator)
+            {
+                NormalizedName = RoleNames.SystemAdministrator.ToUpperInvariant()
+            }
+        );
     }
 }

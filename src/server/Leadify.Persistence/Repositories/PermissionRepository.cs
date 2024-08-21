@@ -16,6 +16,31 @@ public class PermissionRepository(
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly INormalizer _normalizer = normalizer;
 
+    public async Task<int> AddRangeAsync(ICollection<string> names)
+    {
+        var permissions = new HashSet<Permission>();
+
+        foreach (string name in names)
+        {
+            Permission? existing = await _context
+                .Set<Permission>()
+                .FirstOrDefaultAsync(x => x.Name == name);
+
+            if (existing is null)
+            {
+                continue;
+            }
+
+            permissions.Add(
+                new Permission(name) { NormalizedName = _normalizer.NormalizeName(name) }
+            );
+        }
+
+        await _context.AddRangeAsync(permissions);
+
+        return await _unitOfWork.SaveChangesAsync();
+    }
+
     public async Task<int> CreateAsync(string name)
     {
         var permission = new Permission(name) { NormalizedName = _normalizer.NormalizeName(name) };
@@ -34,6 +59,9 @@ public class PermissionRepository(
         await _context
             .Set<Permission>()
             .FirstOrDefaultAsync(x => x.NormalizedName == _normalizer.NormalizeName(name));
+
+    public async Task<List<string>> GetAllAsync() =>
+        await _context.Set<Permission>().Select(x => x.ToString()).ToListAsync();
 
     public Task<List<string>> GetAllByRoleIdAsync(string Id) =>
         Task.FromResult(
