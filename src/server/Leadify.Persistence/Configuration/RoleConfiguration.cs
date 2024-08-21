@@ -26,11 +26,21 @@ internal class RoleConfiguration : IEntityTypeConfiguration<Role>
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
 
-        builder.HasData(
-            new Role(RoleNames.SystemAdministrator)
-            {
-                NormalizedName = RoleNames.SystemAdministrator.ToUpperInvariant()
-            }
-        );
+        // Default Roles
+        var defaultRoleNames = new List<string>
+        {
+            RoleNames.SystemAdministrator,
+            RoleNames.Administrator,
+            RoleNames.User
+        };
+
+        var roles = new List<Role>();
+        foreach (string item in defaultRoleNames)
+        {
+            roles.Add(new Role(item) { NormalizedName = item.ToUpperInvariant() });
+        }
+
+        //Seed Default Roles Data
+        builder.HasData(roles);
     }
 }

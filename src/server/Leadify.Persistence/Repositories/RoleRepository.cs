@@ -43,4 +43,40 @@ public class RoleRepository(
 
         return await _unitOfWork.SaveChangesAsync();
     }
+
+    public async Task<int> AddUsersAsync(Role role, IEnumerable<string> userIds)
+    {
+        List<User> users = await _context
+            .Set<User>()
+            .Where(x => userIds.Contains(x.Id.ToString()))
+            .ToListAsync();
+
+        List<User> existingUsers = await _context
+            .Set<UserRole>()
+            .Where(x => x.RoleId == role.Id)
+            .Select(x => x.User)
+            .ToListAsync();
+
+        var newUsers = users.Except(existingUsers).ToList();
+
+        if (newUsers is null)
+        {
+            return 0;
+        }
+
+        var userRoles = new List<UserRole>();
+        foreach (User? item in newUsers)
+        {
+            if (item is null)
+            {
+                continue;
+            }
+
+            userRoles.Add(new UserRole { Role = role, User = item });
+        }
+
+        await _context.AddRangeAsync(userRoles);
+
+        return await _unitOfWork.SaveChangesAsync();
+    }
 }

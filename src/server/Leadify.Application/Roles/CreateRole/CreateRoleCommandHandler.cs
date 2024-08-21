@@ -12,7 +12,7 @@ internal sealed class CreateRoleCommandHandler(RoleManager<Role> roleManager)
 
     public async Task<Result> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
     {
-        Task<Role?> exist = _roleManager.FindByNameAsync(request.RoleName);
+        Role? exist = await _roleManager.FindByNameAsync(request.RoleName);
 
         if (exist != null)
         {

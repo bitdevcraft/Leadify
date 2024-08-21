@@ -5,5 +5,5 @@ using Leadify.Domain.Entities;
 
 namespace Leadify.Application.Contacts.ListContact;
 
-[Authorize(Permissions = "Test", Roles = RoleNames.SystemAdministrator)]
+[Authorize(Roles = RoleNames.SystemAdministrator)]
 public sealed record ListContactQuery() : IQuery<List<Contact>>;
