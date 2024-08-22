@@ -9,7 +9,7 @@ namespace Leadify.Presentation.Controllers;
 public class PermissionController(ISender sender) : ApiController(sender)
 {
     [HttpGet()]
-    public async Task<IActionResult> GetContacts()
+    public async Task<IActionResult> GetPermissions()
     {
         var query = new ListPermissionQuery();
         Result<List<string>> result = await _sender.Send(query);
