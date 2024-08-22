@@ -5,6 +5,11 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 
+		<!-- SPA  -->
+		<SpaRoot>..\..\client\Leadify.Client</SpaRoot>
+		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+		<SpaProxyServerUrl>https://localhost:5000</SpaProxyServerUrl>
+
 		<!-- Configure code analysis. -->
 		<AnalysisLevel>latest</AnalysisLevel>
 		<AnalysisMode>All</AnalysisMode>
@@ -14,6 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +29,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\client\Leadify.Client\Leadify.Client.esproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
 		<ProjectReference Include="..\..\host\Leadify.ServiceDefaults\Leadify.ServiceDefaults.csproj" />
 		<ProjectReference Include="..\Leadify.Application\Leadify.Application.csproj" />
 		<ProjectReference Include="..\Leadify.Infrastructure\Leadify.Infrastructure.csproj" />

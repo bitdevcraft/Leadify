@@ -37,6 +37,9 @@ builder.Services.Scan(selector =>
 
 WebApplication app = builder.Build();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
@@ -56,6 +59,8 @@ app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
+
+app.MapFallbackToFile("/index.html");
 
 #pragma warning disable CA1849 // Call async methods when in an async method
 app.Run();

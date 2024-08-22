@@ -30,6 +30,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{E7A28C22-48B9-48A1-B34C-C3907C031DDD}"
+EndProject
+Project("{54a90642-561a-4bb1-a94e-469adee60c69}") = "Leadify.Client", "src\client\Leadify.Client\Leadify.Client.esproj", "{C3DC9292-CC16-4F6B-9F64-2FE473A77A26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +72,10 @@ Global
 		{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DC9292-CC16-4F6B-9F64-2FE473A77A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DC9292-CC16-4F6B-9F64-2FE473A77A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DC9292-CC16-4F6B-9F64-2FE473A77A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DC9292-CC16-4F6B-9F64-2FE473A77A26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +91,8 @@ Global
 		{4A26BC6B-5C78-4D99-8BED-B0D8A9920643} = {B2229819-300D-4B09-A0D8-E6FB11CFD52E}
 		{84FA2169-A410-4880-A743-606735485C45} = {4A26BC6B-5C78-4D99-8BED-B0D8A9920643}
 		{F5B8AD94-4374-47D1-9A18-AE3B76D8BE6A} = {4A26BC6B-5C78-4D99-8BED-B0D8A9920643}
+		{E7A28C22-48B9-48A1-B34C-C3907C031DDD} = {B2229819-300D-4B09-A0D8-E6FB11CFD52E}
+		{C3DC9292-CC16-4F6B-9F64-2FE473A77A26} = {E7A28C22-48B9-48A1-B34C-C3907C031DDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19A147F4-23A4-4E48-B4BC-CB52B0837C4C}
