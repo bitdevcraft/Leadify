@@ -27,23 +27,29 @@ public class AuthorizationService(
         ICollection<string> requiredPolicies
     )
     {
-        string identityId = _userContext.IdentityId;
-
-        // Get User Roles
-        HashSet<string> permissions = await GetUserPermission(identityId);
-        if (requiredPermissions.Intersect(permissions).Any())
+        try
         {
-            return Result.Success();
+            string identityId = _userContext.IdentityId;
+            // Get User Roles
+            HashSet<string> permissions = await GetUserPermission(identityId);
+            if (requiredPermissions.Intersect(permissions).Any())
+            {
+                return Result.Success();
+            }
+
+            // Get User Permissions
+            HashSet<string> roles = await GetUserRoles(identityId);
+            if (requiredRoles.Intersect(roles).Any())
+            {
+                return Result.Success();
+            }
+        }
+        catch
+        {
+            return Result.Failure(Error.Unauthorized("No User Found"));
         }
 
-        // Get User Permissions
-        HashSet<string> roles = await GetUserRoles(identityId);
-        if (requiredRoles.Intersect(roles).Any())
-        {
-            return Result.Success();
-        }
-
-        return Result.Failure(Error.Unauthorized());
+        return Result.Failure(Error.Unauthorized("The User didn't meet the required permission"));
     }
 
     private async Task<HashSet<string>> GetUserRoles(string identityId)

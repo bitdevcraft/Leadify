@@ -15,7 +15,6 @@ namespace Leadify.Presentation.Controllers;
 
 public class ContactController(ISender sender) : ApiController(sender)
 {
-    [Authorize]
     [HttpGet()]
     public async Task<IActionResult> GetContacts()
     {

@@ -44,7 +44,11 @@ public class ApiController : ControllerBase
                 ),
             { Error.Type: ErrorType.Unauthorized }
                 => Unauthorized(
-                    CreateProblemDetails("Forbidden", StatusCodes.Status403Forbidden, result.Error)
+                    CreateProblemDetails(
+                        "Forbidden",
+                        StatusCodes.Status401Unauthorized,
+                        result.Error
+                    )
                 ),
             _
                 => BadRequest(

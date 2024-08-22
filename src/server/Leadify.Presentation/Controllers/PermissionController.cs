@@ -1,4 +1,5 @@
-﻿using Leadify.Application.Permissions.ListPermission;
+﻿using Leadify.Application.Abstraction.Authorization;
+using Leadify.Application.Permissions.ListPermission;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
 using MediatR;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;
 
+[Authorize]
 public class PermissionController(ISender sender) : ApiController(sender)
 {
     [HttpGet()]

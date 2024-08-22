@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;
 
+[Authorize]
 public class RoleController(ISender sender) : ApiController(sender)
 {
     [HttpGet()]
