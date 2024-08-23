@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240823081439_PermissionSeedContact")]
+    partial class PermissionSeedContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -121,75 +124,27 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01J5ZGC7N1H4WQEA4XSGHM231H",
+                            Id = "01J5Z4THYXW2C98QXM3XGXR6Z3",
                             Name = "Permissions.Contacts.Create",
                             NormalizedName = "PERMISSIONS.CONTACTS.CREATE"
                         },
                         new
                         {
-                            Id = "01J5ZGC7N1FRBTNJ81N9AQNMGC",
+                            Id = "01J5Z4THYXBSCEAQDJXT65X3GF",
                             Name = "Permissions.Contacts.View",
                             NormalizedName = "PERMISSIONS.CONTACTS.VIEW"
                         },
                         new
                         {
-                            Id = "01J5ZGC7N14HQ9MFTY3H2B8JWB",
+                            Id = "01J5Z4THYX69GWW0W340NM6D5A",
                             Name = "Permissions.Contacts.Edit",
                             NormalizedName = "PERMISSIONS.CONTACTS.EDIT"
                         },
                         new
                         {
-                            Id = "01J5ZGC7N1CD954PVC7Z2PNQVD",
+                            Id = "01J5Z4THYXQHJY2YXJ8ATABT4P",
                             Name = "Permissions.Contacts.Delete",
                             NormalizedName = "PERMISSIONS.CONTACTS.DELETE"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N1ND92GMFZM32MHZMQ",
-                            Name = "Permissions.Users.Create",
-                            NormalizedName = "PERMISSIONS.USERS.CREATE"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N1S9Q4ZK4BQJ4J3GGZ",
-                            Name = "Permissions.Users.View",
-                            NormalizedName = "PERMISSIONS.USERS.VIEW"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N179EXNQSJBH1TPFX8",
-                            Name = "Permissions.Users.Edit",
-                            NormalizedName = "PERMISSIONS.USERS.EDIT"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N18EE1V9EQ6KTARYBF",
-                            Name = "Permissions.Users.Delete",
-                            NormalizedName = "PERMISSIONS.USERS.DELETE"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N112MHX4Q0YQ8E1QHG",
-                            Name = "Permissions.Roles.Create",
-                            NormalizedName = "PERMISSIONS.ROLES.CREATE"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N1T14G09GDCT93YRCZ",
-                            Name = "Permissions.Roles.View",
-                            NormalizedName = "PERMISSIONS.ROLES.VIEW"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N12DMY6V898RR5406V",
-                            Name = "Permissions.Roles.Edit",
-                            NormalizedName = "PERMISSIONS.ROLES.EDIT"
-                        },
-                        new
-                        {
-                            Id = "01J5ZGC7N1NQ1TEAMX1N8K01YS",
-                            Name = "Permissions.Roles.Delete",
-                            NormalizedName = "PERMISSIONS.ROLES.DELETE"
                         });
                 });
 
@@ -221,19 +176,19 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01J5ZGC7N23FYJ6YZSKDS3D603",
+                            Id = "01J5Z4THYYMH6AP30CP7WXM6C7",
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01J5ZGC7N2TS44F2GJW46N779X",
+                            Id = "01J5Z4THYY0ZE6GR48BZ9WM9QK",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01J5ZGC7N22E1DC6JHS4F73G2N",
+                            Id = "01J5Z4THYY8A49CCEYR1AGV7JS",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -245,10 +200,6 @@ namespace Leadify.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PermissionId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Id")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("RoleId", "PermissionId");

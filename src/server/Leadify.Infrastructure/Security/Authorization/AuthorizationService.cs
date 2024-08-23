@@ -69,7 +69,7 @@ public class AuthorizationService(
             .Select(x => x.Role.ToString())
             .ToHashSet();
 
-        await _cacheService.SetAsync(cacheKey, roles);
+        await _cacheService.SetAsync(cacheKey, roles, TimeSpan.FromMinutes(5));
 
         return roles;
     }
@@ -87,7 +87,7 @@ public class AuthorizationService(
 
         HashSet<string> permissions = await _permissionRepository.GetAllByUserIdAsync(identityId);
 
-        await _cacheService.SetAsync(cacheKey, permissions);
+        await _cacheService.SetAsync(cacheKey, permissions, TimeSpan.FromMinutes(5));
 
         return permissions;
     }

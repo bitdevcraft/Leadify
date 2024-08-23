@@ -30,5 +30,27 @@ internal class PermissionConfiguration : IEntityTypeConfiguration<Permission>
             .WithOne(e => e.Permission)
             .HasForeignKey(ur => ur.PermissionId)
             .IsRequired();
+
+        // Seed Data
+
+        string[] modules = ["Contacts", "Users", "Roles"];
+        var permissions = new HashSet<Permission>();
+
+        foreach (string item in modules)
+        {
+            ICollection<string> tmpPermissions = Permissions.GeneratePermissionsForModule(item);
+
+            foreach (string permissionName in tmpPermissions)
+            {
+                permissions.Add(
+                    new Permission(permissionName)
+                    {
+                        NormalizedName = permissionName.ToUpperInvariant()
+                    }
+                );
+            }
+        }
+
+        builder.HasData(permissions);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Leadify.Domain.Constants;
+﻿namespace Leadify.Persistence.Constants;
 
 public static class Permissions
 {

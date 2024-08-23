@@ -46,6 +46,7 @@ public class ApplicationDbContextInitialiser(
 
     public async Task TrySeedAsync()
     {
+        // System Administrator
         // Default roles
         var sysAdminRole = new Role(RoleNames.SystemAdministrator);
 
@@ -55,19 +56,37 @@ public class ApplicationDbContextInitialiser(
         }
 
         // Default users
-        var administrator = new User
-        {
-            UserName = "sysadmin@localhost",
-            Email = "sysadmin@localhost"
-        };
+        var sysAdmin = new User { UserName = "sysadmin@localhost", Email = "sysadmin@localhost" };
 
-        if (_userManager.Users.All(u => u.UserName != administrator.UserName))
+        if (_userManager.Users.All(u => u.UserName != sysAdmin.UserName))
         {
-            await _userManager.CreateAsync(administrator, "Administrator1!");
+            await _userManager.CreateAsync(sysAdmin, "Administrator1!");
             if (!string.IsNullOrWhiteSpace(sysAdminRole.Name))
             {
                 string[] roles = [sysAdminRole.Name];
-                await _userManager.AddToRolesAsync(administrator, roles);
+                await _userManager.AddToRolesAsync(sysAdmin, roles);
+            }
+        }
+
+        // Administrator
+        // Default roles
+        var adminRole = new Role(RoleNames.Administrator);
+
+        if (_roleManager.Roles.All(r => r.Name != adminRole.Name))
+        {
+            await _roleManager.CreateAsync(adminRole);
+        }
+
+        // Default users
+        var admin = new User { UserName = "admin@localhost", Email = "admin@localhost" };
+
+        if (_userManager.Users.All(u => u.UserName != admin.UserName))
+        {
+            await _userManager.CreateAsync(admin, "Administrator1!");
+            if (!string.IsNullOrWhiteSpace(adminRole.Name))
+            {
+                string[] roles = [adminRole.Name];
+                await _userManager.AddToRolesAsync(admin, roles);
             }
         }
     }

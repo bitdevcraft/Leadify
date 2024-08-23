@@ -1,4 +1,5 @@
-﻿using Leadify.Application.Abstraction.Authorization;
+﻿using System.Collections;
+using Leadify.Application.Abstraction.Authorization;
 using Leadify.Application.Permissions.ListPermission;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
@@ -14,7 +15,7 @@ public class PermissionController(ISender sender) : ApiController(sender)
     public async Task<IActionResult> GetPermissions()
     {
         var query = new ListPermissionQuery();
-        Result<List<string>> result = await _sender.Send(query);
+        Result<Hashtable> result = await _sender.Send(query);
 
         if (result.IsFailure)
         {

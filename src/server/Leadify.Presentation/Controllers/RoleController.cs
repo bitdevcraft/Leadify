@@ -56,13 +56,10 @@ public class RoleController(ISender sender) : ApiController(sender)
         return Ok();
     }
 
-    [HttpPost("permissions")]
-    public async Task<IActionResult> AssignPermissions(
-        string RoleName,
-        IEnumerable<string> PermissionNames
-    )
+    [HttpPost("permissions/{role}")]
+    public async Task<IActionResult> AssignPermissions(string role, IEnumerable<string> permissions)
     {
-        var query = new AssignPermissionCommand(RoleName, PermissionNames);
+        var query = new AssignPermissionCommand(role, permissions);
         Result result = await _sender.Send(query);
 
         if (result.IsFailure)

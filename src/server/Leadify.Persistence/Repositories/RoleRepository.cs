@@ -36,7 +36,7 @@ public class RoleRepository(
         var rolePermissions = new List<RolePermission>();
         foreach (Permission item in permissions)
         {
-            rolePermissions.Add(new RolePermission { Role = role, Permission = item });
+            rolePermissions.Add(new RolePermission() { Role = role, Permission = item });
         }
 
         await _context.AddRangeAsync(rolePermissions);

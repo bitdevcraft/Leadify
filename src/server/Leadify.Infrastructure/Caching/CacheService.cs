@@ -20,7 +20,7 @@ internal sealed class CacheService(IDistributedCache cache) : ICacheService
 
     private static T? Deserialize<T>(string bytes)
     {
-        var result = JsonConvert.DeserializeObject<T>(
+        T? result = JsonConvert.DeserializeObject<T>(
             bytes,
             new JsonSerializerSettings
             {
@@ -32,10 +32,8 @@ internal sealed class CacheService(IDistributedCache cache) : ICacheService
         return result is null ? default : result;
     }
 
-    public Task RemoveAsync(string key, CancellationToken cancellationToken = default)
-    {
-        return _cache.RemoveAsync(key, cancellationToken);
-    }
+    public Task RemoveAsync(string key, CancellationToken cancellationToken = default) =>
+        _cache.RemoveAsync(key, cancellationToken);
 
     public Task SetAsync<T>(
         string key,
