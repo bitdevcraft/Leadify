@@ -2,6 +2,7 @@
 using Leadify.Application.Roles.AssignUsers;
 using Leadify.Application.Roles.CreateRole;
 using Leadify.Application.Roles.DeleteRole;
+using Leadify.Application.Roles.GetRolePermission;
 using Leadify.Application.Roles.ListRole;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
@@ -19,6 +20,20 @@ public class RoleController(ISender sender) : ApiController(sender)
     {
         var query = new ListRoleQuery();
         Result<List<string?>> result = await _sender.Send(query);
+
+        if (result.IsFailure)
+        {
+            return HandleFailure(result);
+        }
+
+        return Ok(result.Value);
+    }
+
+    [HttpGet("permissions/{role}")]
+    public async Task<IActionResult> GetUserRoles(string role)
+    {
+        var query = new GetRolePermissionQuery(role);
+        Result<List<string>> result = await _sender.Send(query);
 
         if (result.IsFailure)
         {
