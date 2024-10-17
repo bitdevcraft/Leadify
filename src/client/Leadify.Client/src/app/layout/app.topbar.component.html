@@ -2,9 +2,7 @@
   <a class="layout-topbar-logo" routerLink="">
     <img
       src="assets/layout/images/{{
-        layoutService.config().colorScheme === 'light'
-          ? 'logo-dark'
-          : 'logo-white'
+        layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'
       }}.svg"
       alt="logo"
     />
@@ -31,8 +29,7 @@
     #topbarmenu
     class="layout-topbar-menu"
     [ngClass]="{
-      'layout-topbar-menu-mobile-active':
-        layoutService.state.profileSidebarVisible
+      'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible,
     }"
   >
     <button class="p-link layout-topbar-button">

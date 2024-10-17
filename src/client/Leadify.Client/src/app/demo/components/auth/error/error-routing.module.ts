@@ -3,9 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ErrorComponent } from './error.component';
 
 @NgModule({
-    imports: [RouterModule.forChild([
-        { path: '', component: ErrorComponent }
-    ])],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild([{ path: '', component: ErrorComponent }])],
+  exports: [RouterModule],
 })
-export class ErrorRoutingModule { }
+export class ErrorRoutingModule {}

@@ -3,9 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FloatLabelDemoComponent } from './floatlabeldemo.component';
 
 @NgModule({
-	imports: [RouterModule.forChild([
-		{ path: '', component: FloatLabelDemoComponent }
-	])],
-	exports: [RouterModule]
+  imports: [RouterModule.forChild([{ path: '', component: FloatLabelDemoComponent }])],
+  exports: [RouterModule],
 })
-export class FloatlabelDemoRoutingModule { }
+export class FloatlabelDemoRoutingModule {}

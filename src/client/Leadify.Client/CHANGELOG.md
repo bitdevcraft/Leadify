@@ -1,22 +1,29 @@
 # Changelog
 
 # 17.0.0
+
 **Implemented New Features and Enhancements:**
+
 - Upgrade to PrimeNG 17
 - Upgrade to Angular 17
 
 ## 16.0.0
+
 **Migration Guide**
+
 - Upgrade to PrimeNG 16
 - Upgrade to Angular 16
 - Update theme files
 
 ## 15.0.0
+
 **Migration Guide**
+
 - Upgrade to PrimeNG 15
 - Upgrade to Angular 15
-  
+
 **Implemented New Features and Enhancements:**
+
 - Update to PrimeNG 15
 - Update to Angular 15
 

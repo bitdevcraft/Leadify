@@ -13,13 +13,18 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 
 @NgModule({
-    declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule],
-    providers: [
-        { provide: LocationStrategy, useClass: PathLocationStrategy },
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
-    ],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent, NotfoundComponent],
+  imports: [AppRoutingModule, AppLayoutModule],
+  providers: [
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    CountryService,
+    CustomerService,
+    EventService,
+    IconService,
+    NodeService,
+    PhotoService,
+    ProductService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

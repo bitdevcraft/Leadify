@@ -3,9 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ChartsDemoComponent } from './chartsdemo.component';
 
 @NgModule({
-	imports: [RouterModule.forChild([
-		{ path: '', component: ChartsDemoComponent }
-	])],
-	exports: [RouterModule]
+  imports: [RouterModule.forChild([{ path: '', component: ChartsDemoComponent }])],
+  exports: [RouterModule],
 })
-export class ChartsDemoRoutingModule { }
+export class ChartsDemoRoutingModule {}

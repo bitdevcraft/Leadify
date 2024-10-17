@@ -4,10 +4,7 @@ import { EmptyDemoRoutingModule } from './emptydemo-routing.module';
 import { EmptyDemoComponent } from './emptydemo.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        EmptyDemoRoutingModule
-    ],
-    declarations: [EmptyDemoComponent]
+  imports: [CommonModule, EmptyDemoRoutingModule],
+  declarations: [EmptyDemoComponent],
 })
-export class EmptyDemoModule { }
+export class EmptyDemoModule {}

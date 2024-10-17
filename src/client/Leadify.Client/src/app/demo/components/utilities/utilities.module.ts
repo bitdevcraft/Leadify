@@ -5,11 +5,7 @@ import { UtilitiesRoutingModule } from './utilities-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        UtilitiesRoutingModule,
-        InputTextModule
-    ],
-    declarations: [IconsComponent]
+  imports: [CommonModule, UtilitiesRoutingModule, InputTextModule],
+  declarations: [IconsComponent],
 })
-export class UtilitiesModule { }
+export class UtilitiesModule {}
