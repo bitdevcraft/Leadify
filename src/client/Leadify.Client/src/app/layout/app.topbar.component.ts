@@ -1,21 +1,20 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { LayoutService } from './service/app.layout.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { MenuItem } from 'primeng/api';
+import { LayoutService } from "./service/app.layout.service";
 
 @Component({
-  selector: 'app-topbar',
-  standalone: true,
-  imports: [CommonModule, RouterModule, NzIconModule],
-  templateUrl: './app.topbar.component.html',
+    selector: 'app-topbar',
+    templateUrl: './app.topbar.component.html'
 })
-export class AppTopbarComponent {
-  @ViewChild('menubutton') menuButton!: ElementRef;
+export class AppTopBarComponent {
 
-  @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
+    items!: MenuItem[];
 
-  @ViewChild('topbarmenu') menu!: ElementRef;
+    @ViewChild('menubutton') menuButton!: ElementRef;
 
-  constructor(public layoutService: LayoutService) {}
+    @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
+
+    @ViewChild('topbarmenu') menu!: ElementRef;
+
+    constructor(public layoutService: LayoutService) { }
 }
