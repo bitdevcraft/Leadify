@@ -3,9 +3,9 @@
 >
   <div class="flex flex-column align-items-center justify-content-center">
     <img
-      src="assets/demo/images/access/logo-orange.svg"
       alt="Sakai logo"
       class="mb-5 w-6rem flex-shrink-0"
+      src="assets/demo/images/access/logo-orange.svg"
     />
     <div
       style="
@@ -27,21 +27,21 @@
           </div>
           <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2">Access Denied</h1>
           <span class="text-600 mb-5"
-            >You do not have the necessary permisions. Please contact admins.</span
+          >You do not have the necessary permisions. Please contact admins.</span
           >
           <img
-            src="assets/demo/images/access/asset-access.svg"
             alt="Access denied"
             class="mb-5"
+            src="assets/demo/images/access/asset-access.svg"
             width="80%"
           />
           <button
-            pButton
-            pRipple
+            [routerLink]="['/']"
+            class="p-button-text"
             icon="pi pi-arrow-left"
             label="Go to Dashboard"
-            class="p-button-text"
-            [routerLink]="['/']"
+            pButton
+            pRipple
           ></button>
         </div>
       </div>

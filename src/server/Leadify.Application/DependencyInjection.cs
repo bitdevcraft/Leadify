@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Leadify.Application.Abstraction.Behaviors;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Leadify.Application;

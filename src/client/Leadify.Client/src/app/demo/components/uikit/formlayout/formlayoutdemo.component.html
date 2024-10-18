@@ -4,15 +4,15 @@
       <h5>Vertical</h5>
       <div class="field">
         <label htmlFor="name1">Name</label>
-        <input pInputText id="name1" type="text" />
+        <input id="name1" pInputText type="text"/>
       </div>
       <div class="field">
         <label htmlFor="email1">Email</label>
-        <input pInputText id="email1" type="text" />
+        <input id="email1" pInputText type="text"/>
       </div>
       <div class="field">
         <label htmlFor="age1">Age</label>
-        <input pInputText id="age1" type="text" />
+        <input id="age1" pInputText type="text"/>
       </div>
     </div>
 
@@ -21,11 +21,11 @@
       <div class="p-formgrid grid">
         <div class="field col">
           <label htmlFor="name2">Name</label>
-          <input pInputText id="name2" type="text" />
+          <input id="name2" pInputText type="text"/>
         </div>
         <div class="field col">
           <label htmlFor="email2">Email</label>
-          <input pInputText id="email2" type="text" />
+          <input id="email2" pInputText type="text"/>
         </div>
       </div>
     </div>
@@ -35,15 +35,15 @@
     <div class="card p-fluid">
       <h5>Horizontal</h5>
       <div class="field grid">
-        <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
+        <label class="col-12 mb-2 md:col-2 md:mb-0" htmlFor="name3">Name</label>
         <div class="col-12 md:col-10">
-          <input pInputText id="name3" type="text" />
+          <input id="name3" pInputText type="text"/>
         </div>
       </div>
       <div class="field grid">
-        <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
+        <label class="col-12 mb-2 md:col-2 md:mb-0" htmlFor="email3">Email</label>
         <div class="col-12 md:col-10">
-          <input pInputText id="email3" type="text" />
+          <input id="email3" pInputText type="text"/>
         </div>
       </div>
     </div>
@@ -52,14 +52,14 @@
       <h5>Inline</h5>
       <div class="formgroup-inline">
         <div class="field">
-          <label htmlFor="firstname1" class="p-sr-only">Firstname</label>
-          <input pInputText id="firstname1" type="text" placeholder="Firstname" />
+          <label class="p-sr-only" htmlFor="firstname1">Firstname</label>
+          <input id="firstname1" pInputText placeholder="Firstname" type="text"/>
         </div>
         <div class="field">
-          <label htmlFor="lastname1" class="p-sr-only">Lastname</label>
-          <input pInputText id="lastname1" type="text" placeholder="Lastname" />
+          <label class="p-sr-only" htmlFor="lastname1">Lastname</label>
+          <input id="lastname1" pInputText placeholder="Lastname" type="text"/>
         </div>
-        <button pButton label="Submit"></button>
+        <button label="Submit" pButton></button>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
       <h5>Help Text</h5>
       <div class="field p-fluid">
         <label htmlFor="username">Username</label>
-        <input pInputText id="username" type="text" />
+        <input id="username" pInputText type="text"/>
         <small>Enter your username to reset your password.</small>
       </div>
     </div>
@@ -79,31 +79,31 @@
       <div class="p-fluid p-formgrid grid">
         <div class="field col-12 md:col-6">
           <label htmlFor="firstname2">Firstname</label>
-          <input pInputText id="firstname2" type="text" />
+          <input id="firstname2" pInputText type="text"/>
         </div>
         <div class="field col-12 md:col-6">
           <label htmlFor="lastname2">Lastname</label>
-          <input pInputText id="lastname2" type="text" />
+          <input id="lastname2" pInputText type="text"/>
         </div>
         <div class="field col-12">
           <label htmlFor="address">Address</label>
-          <input pInputTextarea id="address" rows="4" />
+          <input id="address" pInputTextarea rows="4"/>
         </div>
         <div class="field col-12 md:col-6">
           <label htmlFor="city">City</label>
-          <input pInputText id="city" type="text" />
+          <input id="city" pInputText type="text"/>
         </div>
         <div class="field col-12 md:col-3">
           <label htmlFor="state">State</label>
           <p-dropdown
+            [(ngModel)]="selectedState"
             [options]="dropdownItems"
             optionLabel="name"
-            [(ngModel)]="selectedState"
           ></p-dropdown>
         </div>
         <div class="field col-12 md:col-3">
           <label htmlFor="zip">Zip</label>
-          <input pInputText id="zip" type="text" />
+          <input id="zip" pInputText type="text"/>
         </div>
       </div>
     </div>

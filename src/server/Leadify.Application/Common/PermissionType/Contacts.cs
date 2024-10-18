@@ -1,6 +1,6 @@
 ﻿namespace Leadify.Application.Common.PermissionType;
 
-public static partial class PermissionType
+public static class PermissionType
 {
 #pragma warning disable CA1034 // Nested types should not be visible
     public static class Contacts

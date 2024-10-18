@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Leadify.Application.Contacts.CreateContact;
+﻿using Leadify.Application.Contacts.CreateContact;
 using Leadify.Application.Contacts.DeleteContactById;
 using Leadify.Application.Contacts.GetContactById;
 using Leadify.Application.Contacts.ListContact;
@@ -8,14 +7,13 @@ using Leadify.Domain.Entities;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;
 
 public class ContactController(ISender sender) : ApiController(sender)
 {
-    [HttpGet()]
+    [HttpGet]
     public async Task<IActionResult> GetContacts()
     {
         var query = new ListContactQuery();
@@ -43,7 +41,7 @@ public class ContactController(ISender sender) : ApiController(sender)
         return Ok(result.Value);
     }
 
-    [HttpPost()]
+    [HttpPost]
     public async Task<IActionResult> RegisterContact(Contact contact)
     {
         var query = new RegisterContactCommand(contact);

@@ -5,6 +5,7 @@ pre.app-code {
   border-radius: var(--border-radius);
   overflow: auto;
 }
+
 pre.app-code code {
   color: var(--surface-900);
   padding: 1rem;

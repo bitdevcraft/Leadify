@@ -1,7 +1,4 @@
-﻿using System.Buffers;
-using System.Text.Json;
-using AutoMapper.Execution;
-using Leadify.Application.Abstraction.Caching;
+﻿using Leadify.Application.Abstraction.Caching;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
@@ -16,20 +13,6 @@ internal sealed class CacheService(IDistributedCache cache) : ICacheService
         string? bytes = await _cache.GetStringAsync(key, cancellation);
 
         return bytes is null ? default : Deserialize<T>(bytes);
-    }
-
-    private static T? Deserialize<T>(string bytes)
-    {
-        T? result = JsonConvert.DeserializeObject<T>(
-            bytes,
-            new JsonSerializerSettings
-            {
-                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = new PrivateResolver()
-            }
-        );
-
-        return result is null ? default : result;
     }
 
     public Task RemoveAsync(string key, CancellationToken cancellationToken = default) =>
@@ -50,5 +33,19 @@ internal sealed class CacheService(IDistributedCache cache) : ICacheService
             CacheOptions.Create(expiration),
             cancellationToken
         );
+    }
+
+    private static T? Deserialize<T>(string bytes)
+    {
+        T? result = JsonConvert.DeserializeObject<T>(
+            bytes,
+            new JsonSerializerSettings
+            {
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+                ContractResolver = new PrivateResolver()
+            }
+        );
+
+        return result is null ? default : result;
     }
 }

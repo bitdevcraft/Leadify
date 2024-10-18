@@ -1,24 +1,26 @@
 <div class="card">
   <h5>Float Label</h5>
   <p>
-    All input text components support floating labels by adding (<mark>.p-float-label</mark>) to
+    All input text components support floating labels by adding (
+    <mark>.p-float-label</mark>
+    ) to
     wrapper class.
   </p>
   <div class="grid p-fluid mt-3">
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <input type="text" id="inputtext" pInputText [(ngModel)]="value1" />
+        <input [(ngModel)]="value1" id="inputtext" pInputText type="text"/>
         <label for="inputtext">InputText</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
         <p-autoComplete
-          inputId="autocomplete"
+          (completeMethod)="searchCountry($event)"
           [(ngModel)]="value2"
           [suggestions]="filteredCountries"
-          (completeMethod)="searchCountry($event)"
           field="name"
+          inputId="autocomplete"
         ></p-autoComplete>
         <label for="autocomplete">AutoComplete</label>
       </span>
@@ -26,38 +28,38 @@
     <div class="field col-12 md:col-4">
       <span class="p-float-label p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input type="text" id="lefticon" pInputText [(ngModel)]="value3" />
+        <input [(ngModel)]="value3" id="lefticon" pInputText type="text"/>
         <label for="lefticon">Left Icon</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label p-input-icon-right">
-        <input type="text" id="righticon" pInputText [(ngModel)]="value4" />
+        <input [(ngModel)]="value4" id="righticon" pInputText type="text"/>
         <label for="righticon">Right Icon</label>
         <i class="pi pi-spin pi-spinner"></i>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-calendar inputId="calendar" [(ngModel)]="value5"></p-calendar>
+        <p-calendar [(ngModel)]="value5" inputId="calendar"></p-calendar>
         <label for="calendar">Calendar</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-chips inputId="chips" [(ngModel)]="value6"></p-chips>
+        <p-chips [(ngModel)]="value6" inputId="chips"></p-chips>
         <label for="chips">Chips</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-inputMask inputId="inputmask" mask="99/99/9999" [(ngModel)]="value7"></p-inputMask>
+        <p-inputMask [(ngModel)]="value7" inputId="inputmask" mask="99/99/9999"></p-inputMask>
         <label for="inputmask">InputMask</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-inputNumber inputId="inputnumber" [(ngModel)]="value8"></p-inputNumber>
+        <p-inputNumber [(ngModel)]="value8" inputId="inputnumber"></p-inputNumber>
         <label for="inputnumber">InputNumber</label>
       </span>
     </div>
@@ -67,7 +69,7 @@
           <i class="pi pi-user"></i>
         </p-inputGroupAddon>
         <span class="p-float-label">
-          <input type="text" inputId="inputgroup" pInputText [(ngModel)]="value9" />
+          <input [(ngModel)]="value9" inputId="inputgroup" pInputText type="text"/>
           <label for="inputgroup">InputGroup</label>
         </span>
       </p-inputGroup>
@@ -75,10 +77,10 @@
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
         <p-dropdown
-          inputId="dropdown"
+          [(ngModel)]="value10"
           [autoDisplayFirst]="false"
           [options]="cities"
-          [(ngModel)]="value10"
+          inputId="dropdown"
           optionLabel="name"
         ></p-dropdown>
         <label for="dropdown">Dropdown</label>
@@ -87,11 +89,11 @@
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
         <p-multiSelect
-          inputId="multiselect"
-          [options]="cities"
           [(ngModel)]="value11"
-          optionLabel="name"
           [filter]="false"
+          [options]="cities"
+          inputId="multiselect"
+          optionLabel="name"
         ></p-multiSelect>
         <label for="multiselect">MultiSelect</label>
       </span>
@@ -99,11 +101,11 @@
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
         <textarea
-          inputId="textarea"
-          rows="3"
-          cols="30"
           [(ngModel)]="value12"
+          cols="30"
+          inputId="textarea"
           pInputTextarea
+          rows="3"
         ></textarea>
         <label for="textarea">Textarea</label>
       </span>

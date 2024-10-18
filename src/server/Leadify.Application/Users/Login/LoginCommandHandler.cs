@@ -9,8 +9,8 @@ namespace Leadify.Application.Users.Login;
 public class LoginCommandHandler(UserManager<User> userManager, IJwtProvider jwtProvider)
     : IRequestHandler<LoginCommand, Result<LoginResponse>>
 {
-    private readonly UserManager<User> _userManager = userManager;
     private readonly IJwtProvider _jwtProvider = jwtProvider;
+    private readonly UserManager<User> _userManager = userManager;
 
     public async Task<Result<LoginResponse>> Handle(
         LoginCommand request,

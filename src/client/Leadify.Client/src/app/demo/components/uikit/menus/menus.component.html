@@ -5,7 +5,7 @@
       <p-menubar [model]="tieredItems">
         <ng-template pTemplate="end">
           <span class="p-input-icon-right">
-            <input type="text" pInputText placeholder="Search" />
+            <input pInputText placeholder="Search" type="text"/>
             <i class="pi pi-search"></i>
           </span>
         </ng-template>
@@ -16,7 +16,7 @@
   <div class="col-12">
     <div class="card card-w-title">
       <h5>Breadcrumb</h5>
-      <p-breadcrumb [model]="breadcrumbItems" [home]="{ icon: 'pi pi-home' }"></p-breadcrumb>
+      <p-breadcrumb [home]="{ icon: 'pi pi-home' }" [model]="breadcrumbItems"></p-breadcrumb>
     </div>
   </div>
 
@@ -24,10 +24,10 @@
     <div class="card card-w-title flex flex-wrap">
       <div class="col-12 md:col-8 h-full">
         <h5>TabMenu</h5>
-        <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+        <p-tabMenu [model]="routeItems" styleClass="mb-5"></p-tabMenu>
 
         <h5>Steps</h5>
-        <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
+        <p-steps [model]="routeItems" [readonly]="false" styleClass="mt-5"></p-steps>
       </div>
       <div class="col-12 md:col-4 mt-5 md:mt-0">
         <router-outlet></router-outlet>
@@ -53,21 +53,21 @@
     <div class="card card-w-title">
       <h5>Overlay Menu</h5>
 
-      <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+      <p-menu #menu [model]="menuItems" [popup]="true"></p-menu>
       <button
-        type="button"
-        pButton
+        (click)="menu.toggle($event)"
         icon="pi pi-chevron-down"
         label="Options"
-        (click)="menu.toggle($event)"
+        pButton
         style="width: auto"
+        type="button"
       ></button>
     </div>
 
-    <div class="card card-w-title" #anchor>
+    <div #anchor class="card card-w-title">
       <h5>ContextMenu</h5>
       Right click to display.
-      <p-contextMenu [target]="anchor" [model]="menuItems"></p-contextMenu>
+      <p-contextMenu [model]="menuItems" [target]="anchor"></p-contextMenu>
     </div>
   </div>
 
@@ -79,8 +79,8 @@
       <h5>MegaMenu - Vertical</h5>
       <p-megaMenu
         [model]="megaMenuItems"
-        orientation="vertical"
         [style]="{ width: '200px' }"
+        orientation="vertical"
       ></p-megaMenu>
     </div>
   </div>

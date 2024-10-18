@@ -18,6 +18,6 @@ public class EntityAuditInformation
         {
             EntityState.Added => "Create",
             EntityState.Modified => "Update",
-            _ => string.Empty,
+            _ => string.Empty
         };
 }

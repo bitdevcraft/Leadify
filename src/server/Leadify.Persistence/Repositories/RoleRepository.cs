@@ -36,7 +36,7 @@ public class RoleRepository(
         var rolePermissions = new List<RolePermission>();
         foreach (Permission item in permissions)
         {
-            rolePermissions.Add(new RolePermission() { Role = role, Permission = item });
+            rolePermissions.Add(new RolePermission { Role = role, Permission = item });
         }
 
         await _context.AddRangeAsync(rolePermissions);
@@ -59,21 +59,7 @@ public class RoleRepository(
 
         var newUsers = users.Except(existingUsers).ToList();
 
-        if (newUsers is null)
-        {
-            return 0;
-        }
-
-        var userRoles = new List<UserRole>();
-        foreach (User? item in newUsers)
-        {
-            if (item is null)
-            {
-                continue;
-            }
-
-            userRoles.Add(new UserRole { Role = role, User = item });
-        }
+        var userRoles = newUsers.Select(item => new UserRole { Role = role, User = item }).ToList();
 
         await _context.AddRangeAsync(userRoles);
 

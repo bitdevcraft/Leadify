@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/demo/api/product';
-import { MessageService } from 'primeng/api';
-import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
+import {Component, OnInit} from '@angular/core';
+import {Product} from 'src/app/demo/api/product';
+import {MessageService} from 'primeng/api';
+import {Table} from 'primeng/table';
+import {ProductService} from 'src/app/demo/service/product.service';
 
 @Component({
   templateUrl: './crud.component.html',
@@ -32,23 +32,24 @@ export class CrudComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.productService.getProducts().then((data) => (this.products = data));
 
     this.cols = [
-      { field: 'product', header: 'Product' },
-      { field: 'price', header: 'Price' },
-      { field: 'category', header: 'Category' },
-      { field: 'rating', header: 'Reviews' },
-      { field: 'inventoryStatus', header: 'Status' },
+      {field: 'product', header: 'Product'},
+      {field: 'price', header: 'Price'},
+      {field: 'category', header: 'Category'},
+      {field: 'rating', header: 'Reviews'},
+      {field: 'inventoryStatus', header: 'Status'},
     ];
 
     this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' },
+      {label: 'INSTOCK', value: 'instock'},
+      {label: 'LOWSTOCK', value: 'lowstock'},
+      {label: 'OUTOFSTOCK', value: 'outofstock'},
     ];
   }
 
@@ -63,13 +64,13 @@ export class CrudComponent implements OnInit {
   }
 
   editProduct(product: Product) {
-    this.product = { ...product };
+    this.product = {...product};
     this.productDialog = true;
   }
 
   deleteProduct(product: Product) {
     this.deleteProductDialog = true;
-    this.product = { ...product };
+    this.product = {...product};
   }
 
   confirmDeleteSelected() {

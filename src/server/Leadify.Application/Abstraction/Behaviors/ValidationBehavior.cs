@@ -31,7 +31,7 @@ public class ValidationBehavior<TRequest, TResponse>(IValidator<TRequest>? valid
         }
 
         List<Error> errors = validationResult.Errors.ConvertAll(error =>
-            Error.Validation(code: error.PropertyName, description: error.ErrorMessage)
+            Error.Validation(error.PropertyName, error.ErrorMessage)
         );
 
         return CreateValidationResult<TResponse>([.. errors]);

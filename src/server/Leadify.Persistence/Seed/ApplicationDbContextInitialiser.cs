@@ -13,10 +13,10 @@ public class ApplicationDbContextInitialiser(
     RoleManager<Role> roleManager
 )
 {
-    private readonly ILogger<ApplicationDbContextInitialiser> _logger = logger;
     private readonly ApplicationDbContext _context = context;
-    private readonly UserManager<User> _userManager = userManager;
+    private readonly ILogger<ApplicationDbContextInitialiser> _logger = logger;
     private readonly RoleManager<Role> _roleManager = roleManager;
+    private readonly UserManager<User> _userManager = userManager;
 
     public async Task InitialiseAsync()
     {
@@ -24,7 +24,7 @@ public class ApplicationDbContextInitialiser(
         {
             await _context.Database.MigrateAsync();
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while initialising the database.");
             throw;
@@ -37,7 +37,7 @@ public class ApplicationDbContextInitialiser(
         {
             await TrySeedAsync();
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while seeding the database.");
             throw;

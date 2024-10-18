@@ -5,32 +5,32 @@
       <p-toast key="tst"></p-toast>
       <div class="flex flex-wrap gap-2">
         <button
-          type="button"
-          pButton
           (click)="showSuccessViaToast()"
-          label="Success"
           class="p-button-success"
+          label="Success"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showInfoViaToast()"
-          label="Info"
           class="p-button-info"
+          label="Info"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showWarnViaToast()"
-          label="Warn"
           class="p-button-warning"
+          label="Warn"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showErrorViaToast()"
-          label="Error"
           class="p-button-danger"
+          label="Error"
+          pButton
+          type="button"
         ></button>
       </div>
     </div>
@@ -41,32 +41,32 @@
       <h5>Messages</h5>
       <div class="flex flex-wrap gap-2">
         <button
-          type="button"
-          pButton
           (click)="showSuccessViaMessages()"
-          label="Success"
           class="p-button-success"
+          label="Success"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showInfoViaMessages()"
-          label="Info"
           class="p-button-info"
+          label="Info"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showWarnViaMessages()"
-          label="Warn"
           class="p-button-warning"
+          label="Warn"
+          pButton
+          type="button"
         ></button>
         <button
-          type="button"
-          pButton
           (click)="showErrorViaMessages()"
-          label="Error"
           class="p-button-danger"
+          label="Error"
+          pButton
+          type="button"
         ></button>
       </div>
 
@@ -78,27 +78,27 @@
     <div class="card">
       <h5>Inline</h5>
       <div class="flex align-items-center flex-wrap gap-2 mb-3">
-        <label for="username" class="w-9rem">Username</label>
+        <label class="w-9rem" for="username">Username</label>
         <input
-          id="username"
-          type="text"
           #username
+          class="ng-dirty ng-invalid"
+          id="username"
           pInputText
           placeholder="Username"
-          class="ng-dirty ng-invalid"
+          type="text"
         />
         <p-message severity="error" text="Field is required"></p-message>
       </div>
 
       <div class="flex align-items-center flex-wrap gap-2">
-        <label for="email" class="w-9rem">Email</label>
+        <label class="w-9rem" for="email">Email</label>
         <input
-          type="text"
           #email
+          class="ng-dirty ng-invalid"
+          label="email"
           pInputText
           placeholder="Email"
-          label="email"
-          class="ng-dirty ng-invalid"
+          type="text"
         />
         <p-message severity="error"></p-message>
       </div>
@@ -111,14 +111,14 @@
       <div class="field p-fluid">
         <label for="username2">Username</label>
         <input
-          id="username2"
-          type="username"
           aria-describedby="username-help"
           class="ng-dirty ng-invalid"
+          id="username2"
           pInputText
+          type="username"
         />
-        <small id="username-help" class="p-error"
-          >Enter your username to reset your password.</small
+        <small class="p-error" id="username-help"
+        >Enter your username to reset your password.</small
         >
       </div>
     </div>

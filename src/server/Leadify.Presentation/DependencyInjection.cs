@@ -8,7 +8,7 @@ public static class DependencyInjection
     {
         services
             .AddControllers()
-            .AddApplicationPart(Leadify.Presentation.AssemblyReference.Assembly);
+            .AddApplicationPart(AssemblyReference.Assembly);
         return services;
     }
 }

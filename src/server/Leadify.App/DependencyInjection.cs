@@ -1,6 +1,4 @@
-﻿using Leadify.Application.Abstraction;
-using Leadify.Domain.Repositories;
-using Leadify.Infrastructure.Security.Authentication;
+﻿using Leadify.Domain.Repositories;
 using Leadify.Persistence.Repositories;
 
 namespace Leadify.App;
@@ -17,9 +15,6 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddRepositories(this IServiceCollection services)
-    {
+    private static void AddRepositories(this IServiceCollection services) =>
         services.AddScoped<IContactRepository, ContactRepository>();
-        return services;
-    }
 }

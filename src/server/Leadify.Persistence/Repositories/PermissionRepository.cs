@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Leadify.Domain.Repositories;
+﻿using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +12,8 @@ public class PermissionRepository(
 ) : IPermissionRepository
 {
     private readonly ApplicationDbContext _context = context;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly INormalizer _normalizer = normalizer;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<int> AddRangeAsync(ICollection<string> names)
     {

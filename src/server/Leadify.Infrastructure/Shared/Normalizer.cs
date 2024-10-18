@@ -10,6 +10,7 @@ public class Normalizer : INormalizer
         {
             return null;
         }
+
         return name.Normalize().ToUpperInvariant();
     }
 }

@@ -7,8 +7,8 @@
           <div class="text-900 font-medium text-xl">152</div>
         </div>
         <div
-          class="flex align-items-center justify-content-center bg-blue-100 border-round"
           [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+          class="flex align-items-center justify-content-center bg-blue-100 border-round"
         >
           <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
         </div>
@@ -25,8 +25,8 @@
           <div class="text-900 font-medium text-xl">$2.100</div>
         </div>
         <div
-          class="flex align-items-center justify-content-center bg-orange-100 border-round"
           [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+          class="flex align-items-center justify-content-center bg-orange-100 border-round"
         >
           <i class="pi pi-map-marker text-orange-500 text-xl"></i>
         </div>
@@ -43,8 +43,8 @@
           <div class="text-900 font-medium text-xl">28441</div>
         </div>
         <div
-          class="flex align-items-center justify-content-center bg-cyan-100 border-round"
           [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+          class="flex align-items-center justify-content-center bg-cyan-100 border-round"
         >
           <i class="pi pi-inbox text-cyan-500 text-xl"></i>
         </div>
@@ -61,8 +61,8 @@
           <div class="text-900 font-medium text-xl">152 Unread</div>
         </div>
         <div
-          class="flex align-items-center justify-content-center bg-purple-100 border-round"
           [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+          class="flex align-items-center justify-content-center bg-purple-100 border-round"
         >
           <i class="pi pi-comment text-purple-500 text-xl"></i>
         </div>
@@ -75,22 +75,26 @@
   <div class="col-12 xl:col-6">
     <div class="card">
       <h5>Recent Sales</h5>
-      <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+      <p-table [paginator]="true" [rows]="5" [value]="products" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
             <th>Image</th>
-            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-            <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+            <th pSortableColumn="name">Name
+              <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">Price
+              <p-sortIcon field="price"></p-sortIcon>
+            </th>
             <th>View</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template let-product pTemplate="body">
           <tr>
             <td style="width: 15%; min-width: 5rem">
               <img
-                src="assets/demo/images/product/{{ product.image }}"
-                class="shadow-4"
                 alt="{{ product.name }}"
+                class="shadow-4"
+                src="assets/demo/images/product/{{ product.image }}"
                 width="50"
               />
             </td>
@@ -98,11 +102,11 @@
             <td style="width: 35%; min-width: 8rem">{{ product.price | currency: "USD" }}</td>
             <td style="width: 15%">
               <button
+                class="p-button p-component p-button-text p-button-icon-only"
+                icon="pi pi-search"
                 pButton
                 pRipple
                 type="button"
-                icon="pi pi-search"
-                class="p-button p-component p-button-text p-button-icon-only"
               ></button>
             </td>
           </tr>
@@ -114,13 +118,13 @@
         <h5>Best Selling Products</h5>
         <div>
           <button
+            (click)="menu.toggle($event)"
+            class="p-button-rounded p-button-text p-button-plain"
+            icon="pi pi-ellipsis-v"
             pButton
             type="button"
-            icon="pi pi-ellipsis-v"
-            class="p-button-rounded p-button-text p-button-plain"
-            (click)="menu.toggle($event)"
           ></button>
-          <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
         </div>
       </div>
       <ul class="list-none p-0 m-0">
@@ -133,10 +137,10 @@
           </div>
           <div class="mt-2 md:mt-0 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-orange-500 h-full" [ngStyle]="{ width: '50%' }"></div>
+              <div [ngStyle]="{ width: '50%' }" class="bg-orange-500 h-full"></div>
             </div>
             <span class="text-orange-500 ml-3 font-medium">%50</span>
           </div>
@@ -150,10 +154,10 @@
           </div>
           <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-cyan-500 h-full" [ngStyle]="{ width: '16%' }"></div>
+              <div [ngStyle]="{ width: '16%' }" class="bg-cyan-500 h-full"></div>
             </div>
             <span class="text-cyan-500 ml-3 font-medium">%16</span>
           </div>
@@ -167,10 +171,10 @@
           </div>
           <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-pink-500 h-full" [ngStyle]="{ width: '67%' }"></div>
+              <div [ngStyle]="{ width: '67%' }" class="bg-pink-500 h-full"></div>
             </div>
             <span class="text-pink-500 ml-3 font-medium">%67</span>
           </div>
@@ -184,10 +188,10 @@
           </div>
           <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-green-500 h-full" [ngStyle]="{ width: '35%' }"></div>
+              <div [ngStyle]="{ width: '35%' }" class="bg-green-500 h-full"></div>
             </div>
             <span class="text-green-500 ml-3 font-medium">%35</span>
           </div>
@@ -201,10 +205,10 @@
           </div>
           <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-purple-500 h-full" [ngStyle]="{ width: '75%' }"></div>
+              <div [ngStyle]="{ width: '75%' }" class="bg-purple-500 h-full"></div>
             </div>
             <span class="text-purple-500 ml-3 font-medium">%75</span>
           </div>
@@ -218,10 +222,10 @@
           </div>
           <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
             <div
-              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
               [ngStyle]="{ height: '8px' }"
+              class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem"
             >
-              <div class="bg-teal-500 h-full" [ngStyle]="{ width: '40%' }"></div>
+              <div [ngStyle]="{ width: '40%' }" class="bg-teal-500 h-full"></div>
             </div>
             <span class="text-teal-500 ml-3 font-medium">%40</span>
           </div>
@@ -233,7 +237,7 @@
   <div class="col-12 xl:col-6">
     <div class="card">
       <h5>Sales Overview</h5>
-      <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+      <p-chart [data]="chartData" [options]="chartOptions" type="line"></p-chart>
     </div>
 
     <div class="card">
@@ -241,13 +245,13 @@
         <h5>Notifications</h5>
         <div>
           <button
+            (click)="menu.toggle($event)"
+            class="p-button-rounded p-button-text p-button-plain"
+            icon="pi pi-ellipsis-v"
             pButton
             type="button"
-            icon="pi pi-ellipsis-v"
-            class="p-button-rounded p-button-text p-button-plain"
-            (click)="menu.toggle($event)"
           ></button>
-          <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
         </div>
       </div>
 
@@ -260,7 +264,7 @@
             <i class="pi pi-dollar text-xl text-blue-500"></i>
           </div>
           <span class="text-900 line-height-3"
-            >Richard Jones
+          >Richard Jones
             <span class="text-700">
               has purchased a blue t-shirt for <span class="text-blue-500">79$</span></span
             >
@@ -273,7 +277,7 @@
             <i class="pi pi-download text-xl text-orange-500"></i>
           </div>
           <span class="text-700 line-height-3"
-            >Your request for withdrawal of <span class="text-blue-500 font-medium">2500$</span> has
+          >Your request for withdrawal of <span class="text-blue-500 font-medium">2500$</span> has
             been initiated.</span
           >
         </li>
@@ -288,7 +292,7 @@
             <i class="pi pi-dollar text-xl text-blue-500"></i>
           </div>
           <span class="text-900 line-height-3"
-            >Keyser Wick
+          >Keyser Wick
             <span class="text-700">
               has purchased a black jacket for <span class="text-blue-500">59$</span></span
             >
@@ -301,21 +305,21 @@
             <i class="pi pi-question text-xl text-pink-500"></i>
           </div>
           <span class="text-900 line-height-3"
-            >Jane Davis<span class="text-700">
+          >Jane Davis<span class="text-700">
               has posted a new questions about your product.</span
-            ></span
+          ></span
           >
         </li>
       </ul>
     </div>
 
     <div
-      class="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3"
       [ngStyle]="{
         borderRadius: '1rem',
         background:
           'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)',
       }"
+      class="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3"
     >
       <div>
         <div class="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>
@@ -323,9 +327,9 @@
       </div>
       <div class="mt-4 mr-auto md:mt-0 md:mr-0">
         <a
-          target="_blank"
-          href="https://www.primefaces.org/primeblocks-ng"
           class="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised"
+          href="https://www.primefaces.org/primeblocks-ng"
+          target="_blank"
         >
           Get Started
         </a>
