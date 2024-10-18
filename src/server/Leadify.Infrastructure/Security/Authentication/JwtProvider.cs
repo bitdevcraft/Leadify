@@ -17,10 +17,14 @@ internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
         var claims = new List<Claim> { new(JwtRegisteredClaimNames.Sub, user.Id.ToString()) };
 
         if (user.Email is not null)
-            claims.Add(new(JwtRegisteredClaimNames.Email, user.Email));
+        {
+            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+        }
 
         if (user.UserName is not null)
-            claims.Add(new(JwtRegisteredClaimNames.Name, user.UserName));
+        {
+            claims.Add(new Claim(JwtRegisteredClaimNames.Name, user.UserName));
+        }
 
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),

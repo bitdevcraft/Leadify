@@ -20,7 +20,7 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
+    private static void AddAuthenticationServices(this IServiceCollection services)
     {
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<JwtBearerOptionsSetup>();
@@ -28,22 +28,17 @@ public static class DependencyInjection
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
         services.AddAuthorization();
-        return services;
     }
 
-    private static IServiceCollection AddCaching(
-        this IServiceCollection services,
-        IConfiguration configuration
-    )
+    private static void AddCaching(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        var connectionString =
+        string connectionString =
             configuration.GetConnectionString("Cache")
             ?? throw new ArgumentNullException(nameof(configuration));
 
         services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
 
         services.AddSingleton<ICacheService, CacheService>();
-
-        return services;
     }
 }

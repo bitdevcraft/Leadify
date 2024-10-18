@@ -1,6 +1,6 @@
-var builder = DistributedApplication.CreateBuilder(args);
+IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache");
+IResourceBuilder<RedisResource> cache = builder.AddRedis("cache");
 
 builder.AddProject<Projects.Leadify_App>("leadify-app").WithReference(cache);
 

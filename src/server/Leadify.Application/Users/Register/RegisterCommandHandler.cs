@@ -16,13 +16,15 @@ internal sealed class RegisterCommandHandler(UserManager<User> userManager)
         CancellationToken cancellationToken
     )
     {
-        var exist = await _userManager.Users.AnyAsync(
+        bool exist = await _userManager.Users.AnyAsync(
             x => x.UserName == request.Username || x.Email == request.Email,
             cancellationToken: cancellationToken
         );
 
         if (exist)
+        {
             return Result.Failure<Unit>(Error.Validation(description: "Username/Email Taken"));
+        }
 
         var user = new User
         {
@@ -30,10 +32,12 @@ internal sealed class RegisterCommandHandler(UserManager<User> userManager)
             UserName = request.Username
         };
 
-        var result = await _userManager.CreateAsync(user, request.Password);
+        IdentityResult result = await _userManager.CreateAsync(user, request.Password);
 
         if (!result.Succeeded)
+        {
             return Result.Failure<Unit>(Error.Validation(description: "Problem registering User"));
+        }
 
         return Unit.Value;
     }

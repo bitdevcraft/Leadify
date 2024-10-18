@@ -31,11 +31,6 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
             dynamic entity = item.Entity;
             var changes = (List<AuditEntry>)item.Changes;
 
-            if (changes == null)
-            {
-                continue;
-            }
-
             if (changes.Count == 0)
             {
                 continue;
@@ -103,7 +98,7 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 
                 if (
                     property.IsModified
-                    && Object.Equals(property.CurrentValue, property.OriginalValue)
+                    && Equals(property.CurrentValue, property.OriginalValue)
                 )
                 {
                     continue;
@@ -133,7 +128,7 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
                 new EntityAuditInformation()
                 {
                     Entity = entity,
-                    TableName = entityEntry.Metadata?.GetTableName() ?? entity.GetType().Name,
+                    TableName = entityEntry.Metadata.GetTableName() ?? entity.GetType().Name,
                     State = entityEntry.State,
                     IsDeleteChanged = false,
                     Changes = changes

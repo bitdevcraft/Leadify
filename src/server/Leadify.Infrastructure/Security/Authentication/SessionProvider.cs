@@ -7,7 +7,7 @@ public class SessionProvider : ISessionProvider
 {
     public string Generate()
     {
-        var randomNumber = new byte[32];
+        byte[] randomNumber = new byte[32];
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);

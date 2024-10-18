@@ -17,17 +17,21 @@ public class LoginCommandHandler(UserManager<User> userManager, IJwtProvider jwt
         CancellationToken cancellationToken
     )
     {
-        var user = await _userManager.FindByNameAsync(request.Username);
+        User? user = await _userManager.FindByNameAsync(request.Username);
 
         if (user == null)
+        {
             return Result.Failure<LoginResponse>(Error.Unauthorized());
+        }
 
-        var result = await _userManager.CheckPasswordAsync(user, request.Password);
+        bool result = await _userManager.CheckPasswordAsync(user, request.Password);
 
         if (!result)
+        {
             return Result.Failure<LoginResponse>(Error.Unauthorized());
+        }
 
-        var token = _jwtProvider.Generate(user);
+        string token = _jwtProvider.Generate(user);
 
         return new LoginResponse(request.Username, token);
     }

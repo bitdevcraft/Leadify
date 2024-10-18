@@ -5,6 +5,7 @@ using Leadify.Infrastructure;
 using Leadify.Persistence;
 using Leadify.Persistence.Seed;
 using Leadify.Presentation;
+using Leadify.ServiceDefaults;
 using Scrutor;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
