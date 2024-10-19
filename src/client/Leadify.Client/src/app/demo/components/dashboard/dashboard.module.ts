@@ -11,17 +11,17 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ChartModule,
-    MenuModule,
-    TableModule,
-    StyleClassModule,
-    PanelMenuModule,
-    ButtonModule,
-    DashboardsRoutingModule,
-  ],
-  declarations: [DashboardComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ChartModule,
+        MenuModule,
+        TableModule,
+        StyleClassModule,
+        PanelMenuModule,
+        ButtonModule,
+        DashboardsRoutingModule,
+        DashboardComponent,
+    ],
 })
 export class DashboardModule {}

@@ -13,18 +13,18 @@ import { PasswordModule } from 'primeng/password';
 import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ButtonModule,
-    RippleModule,
-    ChipModule,
-    CheckboxModule,
-    FormsModule,
-    InputTextModule,
-    PasswordModule,
-    TooltipModule,
-    PrimeBlocksRoutingModule,
-  ],
-  declarations: [BlocksComponent, BlockViewerComponent],
+    imports: [
+        CommonModule,
+        ButtonModule,
+        RippleModule,
+        ChipModule,
+        CheckboxModule,
+        FormsModule,
+        InputTextModule,
+        PasswordModule,
+        TooltipModule,
+        PrimeBlocksRoutingModule,
+        BlocksComponent, BlockViewerComponent,
+    ],
 })
 export class PrimeBlocksModule {}

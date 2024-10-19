@@ -6,7 +6,6 @@ import { FileDemoRoutingModule } from './filedemo-routing.module';
 import { FileDemoComponent } from './filedemo.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, FileDemoRoutingModule, FileUploadModule],
-  declarations: [FileDemoComponent],
+    imports: [CommonModule, FormsModule, FileDemoRoutingModule, FileUploadModule, FileDemoComponent],
 })
 export class FileDemoModule {}
