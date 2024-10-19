@@ -15,15 +15,15 @@ public class Contact : Entity, IAuditableEntity
     }
 
     public Contact() { }
-
-    [MaxLength(100)] public string? Name { get; set; }
-
-    [MaxLength(50)] public string? Email { get; set; }
-
-    [MaxLength(50)] public string? Mobile { get; set; }
-
-    [MaxLength(50)] public string? Phone { get; set; }
-
+    
+    [MaxLength(100)]
+    public string? Name { get; set; }
+    [MaxLength(50)]
+    public string? Email { get; set; }
+    [MaxLength(50)]
+    public string? Mobile { get; set; }
+    [MaxLength(50)]
+    public string? Phone { get; set; }
     public DateTime CreatedOnUtc { get; set; }
     public DateTime? ModifiedOnUtc { get; set; }
 

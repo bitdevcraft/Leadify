@@ -3,6 +3,7 @@ using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Leadify.Application.Roles.AssignUsers;
 
@@ -11,8 +12,8 @@ internal sealed class AssignUsersCommandHandler(
     RoleManager<Role> roleManager
 ) : ICommandHandler<AssignUsersCommand>
 {
-    private readonly RoleManager<Role> _roleManager = roleManager;
     private readonly IRoleRepository _roleRepository = roleRepository;
+    private readonly RoleManager<Role> _roleManager = roleManager;
 
     public async Task<Result> Handle(
         AssignUsersCommand request,

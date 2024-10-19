@@ -8,31 +8,31 @@
     <div class="col-12 md:col-6">
       <div class="field mt-3">
         <label for="inputtext">InputText</label>
-        <input class="ng-invalid ng-dirty" id="inputtext" pInputText type="text"/>
+        <input type="text" id="inputtext" pInputText class="ng-invalid ng-dirty" />
       </div>
       <div class="field">
         <label for="autocomplete">AutoComplete</label>
         <p-autoComplete
-          (completeMethod)="searchCountry($event)"
+          inputId="autocomplete"
           [(ngModel)]="value1"
           [suggestions]="filteredCountries"
-          class="ng-invalid ng-dirty"
+          (completeMethod)="searchCountry($event)"
           field="name"
-          inputId="autocomplete"
+          class="ng-invalid ng-dirty"
         ></p-autoComplete>
       </div>
       <div class="field">
         <label for="calendar">Calendar</label>
         <p-calendar
-          [(ngModel)]="value2"
-          [showIcon]="true"
-          class="ng-invalid ng-dirty"
           inputId="calendar"
+          [(ngModel)]="value2"
+          class="ng-invalid ng-dirty"
+          [showIcon]="true"
         ></p-calendar>
       </div>
       <div class="field">
         <label for="chips">Chips</label>
-        <p-chips [(ngModel)]="value3" class="ng-invalid ng-dirty" inputId="chips"></p-chips>
+        <p-chips inputId="chips" [(ngModel)]="value3" class="ng-invalid ng-dirty"></p-chips>
       </div>
       <div class="field">
         <label for="password">Password</label>
@@ -44,51 +44,51 @@
       <div class="field mt-3">
         <label for="inputmask">InputMask</label>
         <p-inputMask
-          [(ngModel)]="value5"
-          class="ng-invalid ng-dirty"
           inputId="inputmask"
           mask="99/99/9999"
+          [(ngModel)]="value5"
+          class="ng-invalid ng-dirty"
         ></p-inputMask>
       </div>
       <div class="field">
         <label for="inputnumber">InputNumber</label>
         <p-inputNumber
+          inputId="inputnumber"
           [(ngModel)]="value6"
           class="ng-invalid ng-dirty"
-          inputId="inputnumber"
         ></p-inputNumber>
       </div>
       <div class="field">
         <label for="dropdown">Dropdown</label>
         <p-dropdown
-          [(ngModel)]="value9"
+          inputId="dropdown"
           [autoDisplayFirst]="false"
           [options]="cities"
-          class="ng-invalid ng-dirty"
-          inputId="dropdown"
+          [(ngModel)]="value9"
           optionLabel="name"
+          class="ng-invalid ng-dirty"
         ></p-dropdown>
       </div>
       <div class="field">
         <label for="multiselect">MultiSelect</label>
         <p-multiSelect
-          [(ngModel)]="value10"
-          [filter]="false"
-          [options]="cities"
-          class="ng-invalid ng-dirty"
           inputId="multiselect"
+          [options]="cities"
+          [(ngModel)]="value10"
           optionLabel="name"
+          [filter]="false"
+          class="ng-invalid ng-dirty"
         ></p-multiSelect>
       </div>
       <div class="field">
         <label for="textarea">Textarea</label>
         <textarea
-          [(ngModel)]="value4"
-          class="ng-invalid ng-dirty"
-          cols="30"
           inputId="textarea"
-          pInputTextarea
           rows="3"
+          cols="30"
+          [(ngModel)]="value4"
+          pInputTextarea
+          class="ng-invalid ng-dirty"
         ></textarea>
       </div>
     </div>

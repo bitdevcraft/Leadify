@@ -7,7 +7,6 @@ using Leadify.Persistence.Seed;
 using Leadify.Presentation;
 using Leadify.ServiceDefaults;
 using Scrutor;
-using AssemblyReference = Leadify.Infrastructure.AssemblyReference;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +27,7 @@ builder.AddServiceDefaults();
 builder.Services.Scan(selector =>
     selector
         .FromAssemblies(
-            AssemblyReference.Assembly,
+            Leadify.Infrastructure.AssemblyReference.Assembly,
             Leadify.Persistence.AssemblyReference.Assembly
         )
         .AddClasses(false)

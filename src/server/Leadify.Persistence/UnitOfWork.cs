@@ -43,7 +43,7 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
                     RecordId = entity.Id,
                     ChangeDate = DateTime.UtcNow,
                     Operation = item.OperationType,
-                    Changes = changes
+                    Changes = changes,
                     //ChangedById = userId // LoggedIn user Id
                 };
 
@@ -110,7 +110,7 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
                 }
 
                 changes.Add(
-                    new AuditEntry
+                    new AuditEntry()
                     {
                         Id = Ulid.NewUlid(),
                         FieldName = property.Metadata.Name,
@@ -125,7 +125,7 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
             //);
 
             entityAuditInformation.Add(
-                new EntityAuditInformation
+                new EntityAuditInformation()
                 {
                     Entity = entity,
                     TableName = entityEntry.Metadata.GetTableName() ?? entity.GetType().Name,
@@ -135,7 +135,6 @@ internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
                 }
             );
         }
-
         return entityAuditInformation;
     }
 }

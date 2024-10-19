@@ -4,24 +4,24 @@
       <h5>Toolbar</h5>
       <p-toolbar>
         <div class="p-toolbar-group-left flex flex-wrap">
-          <button class="mr-2" icon="pi pi-plus" label="New" pButton type="button"></button>
+          <button pButton type="button" label="New" icon="pi pi-plus" class="mr-2"></button>
           <button
-            class="p-button-secondary mr-2"
-            icon="pi pi-folder-open"
-            label="Open"
             pButton
             type="button"
+            label="Open"
+            icon="pi pi-folder-open"
+            class="p-button-secondary mr-2"
           ></button>
 
           <i class="pi pi-bars p-toolbar-separator"></i>
 
-          <button class="p-button-success mr-2" icon="pi pi-check" pButton type="button"></button>
-          <button class="p-button-warning mr-2" icon="pi pi-trash" pButton type="button"></button>
-          <button class="p-button-danger" icon="pi pi-print" pButton type="button"></button>
+          <button pButton type="button" icon="pi pi-check" class="p-button-success mr-2"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-warning mr-2"></button>
+          <button pButton type="button" icon="pi pi-print" class="p-button-danger"></button>
         </div>
 
         <div class="p-toolbar-group-right">
-          <p-splitButton [model]="items" icon="pi pi-check" label="Options"></p-splitButton>
+          <p-splitButton label="Options" icon="pi pi-check" [model]="items"></p-splitButton>
         </div>
       </p-toolbar>
     </div>
@@ -31,7 +31,7 @@
     <div class="card">
       <h5>AccordionPanel</h5>
       <p-accordion>
-        <p-accordionTab [selected]="true" class="line-height-3 m-0" header="Header I">
+        <p-accordionTab header="Header I" [selected]="true" class="line-height-3 m-0">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -39,14 +39,14 @@
           sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
         </p-accordionTab>
-        <p-accordionTab class="line-height-3 m-0" header="Header II">
+        <p-accordionTab header="Header II" class="line-height-3 m-0">
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
           laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
           architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
           aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
           voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
         </p-accordionTab>
-        <p-accordionTab class="line-height-3 m-0" header="Header III">
+        <p-accordionTab header="Header III" class="line-height-3 m-0">
           At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
           voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
           cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id
@@ -59,7 +59,7 @@
     <div class="card">
       <h5>TabView</h5>
       <p-tabView orientation="left">
-        <p-tabPanel class="line-height-3 m-0" header="Header I">
+        <p-tabPanel header="Header I" class="line-height-3 m-0">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -67,14 +67,14 @@
           sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
         </p-tabPanel>
-        <p-tabPanel class="line-height-3 m-0" header="Header II">
+        <p-tabPanel header="Header II" class="line-height-3 m-0">
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
           laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
           architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
           aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
           voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
         </p-tabPanel>
-        <p-tabPanel class="line-height-3 m-0" header="Header III">
+        <p-tabPanel header="Header III" class="line-height-3 m-0">
           At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
           voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
           cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id
@@ -88,7 +88,7 @@
   <div class="col-12 md:col-6">
     <div class="card">
       <h5>Panel</h5>
-      <p-panel [toggleable]="true" class="line-height-3 m-0" header="Header">
+      <p-panel header="Header" [toggleable]="true" class="line-height-3 m-0">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -99,7 +99,7 @@
 
     <div class="card">
       <h5>Fieldset</h5>
-      <p-fieldset [toggleable]="true" class="line-height-3 m-0" legend="Legend">
+      <p-fieldset legend="Legend" [toggleable]="true" class="line-height-3 m-0">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -111,13 +111,13 @@
     <div class="card">
       <div class="flex align-items-center justify-content-between mb-0">
         <h5>Card</h5>
-        <p-menu #menu [model]="cardMenu" [popup]="true"></p-menu>
+        <p-menu #menu [popup]="true" [model]="cardMenu"></p-menu>
         <button
-          (click)="menu.toggle($event)"
-          class="p-button-text"
-          icon="pi pi-plus"
           pButton
           type="button"
+          icon="pi pi-plus"
+          class="p-button-text"
+          (click)="menu.toggle($event)"
         ></button>
       </div>
       <p>
@@ -138,13 +138,13 @@
           <div class="p-fluid">
             <div class="field">
               <label for="username">Username</label>
-              <input id="username" pInputText type="text"/>
+              <input pInputText id="username" type="text" />
             </div>
             <div class="field">
               <label for="password">Password</label>
-              <input id="password" pInputText type="password"/>
+              <input pInputText id="password" type="password" />
             </div>
-            <p-button class="mt-2" label="Login"></p-button>
+            <p-button label="Login" class="mt-2"></p-button>
           </div>
         </div>
         <div class="col-2">
@@ -161,7 +161,7 @@
             voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
           </p>
 
-          <p-divider align="center" layout="horizontal">
+          <p-divider layout="horizontal" align="center">
             <span class="p-tag">Badge</span>
           </p-divider>
 
@@ -175,7 +175,7 @@
           </p>
 
           <p-divider align="right">
-            <p-button icon="pi pi-search" label="Button" styleClass="p-button-outlined"></p-button>
+            <p-button label="Button" icon="pi pi-search" styleClass="p-button-outlined"></p-button>
           </p-divider>
 
           <p class="line-height-3 m-0">
@@ -194,12 +194,12 @@
   <div class="col-12">
     <div class="card">
       <h5>Splitter</h5>
-      <p-splitter [panelSizes]="[30, 70]" [style]="{ height: '300px' }">
+      <p-splitter [style]="{ height: '300px' }" [panelSizes]="[30, 70]">
         <ng-template pTemplate>
           <div class="col flex align-items-center justify-content-center">Panel 1</div>
         </ng-template>
         <ng-template pTemplate>
-          <p-splitter [minSizes]="[10, 10]" [panelSizes]="[50, 50]" layout="vertical">
+          <p-splitter layout="vertical" [panelSizes]="[50, 50]" [minSizes]="[10, 10]">
             <ng-template pTemplate>
               <div class="col flex align-items-center justify-content-center">Panel 2</div>
             </ng-template>

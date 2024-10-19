@@ -10,12 +10,9 @@ public class ExceptionMiddleware(
     IHostEnvironment env
 )
 {
-    private static readonly JsonSerializerOptions s_writeOptions =
-        new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-    private readonly IHostEnvironment _env = env;
-    private readonly ILogger<ExceptionMiddleware> _logger = logger;
     private readonly RequestDelegate _next = next;
+    private readonly ILogger<ExceptionMiddleware> _logger = logger;
+    private readonly IHostEnvironment _env = env;
 
     public async Task InvokeAsync(HttpContext context)
     {
@@ -33,7 +30,7 @@ public class ExceptionMiddleware(
                 ? new ServerError(
                     context.Response.StatusCode,
                     ex.Message,
-                    ex.StackTrace
+                    ex.StackTrace?.ToString()
                 )
                 : new ServerError(context.Response.StatusCode, "Internal Server Error");
 
@@ -42,4 +39,7 @@ public class ExceptionMiddleware(
             await context.Response.WriteAsync(json);
         }
     }
+
+    private static readonly JsonSerializerOptions s_writeOptions =
+        new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 }

@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {LayoutService} from 'src/app/layout/service/app.layout.service';
+import { Component } from '@angular/core';
+import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,5 @@ export class LoginComponent {
 
   password!: string;
 
-  constructor(public layoutService: LayoutService) {
-  }
+  constructor(public layoutService: LayoutService) {}
 }

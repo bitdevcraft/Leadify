@@ -3,9 +3,9 @@
 >
   <div class="flex flex-column align-items-center justify-content-center">
     <img
+      src="assets/demo/images/error/logo-error.svg"
       alt="Sakai logo"
       class="mb-5 w-6rem flex-shrink-0"
-      src="assets/demo/images/error/logo-error.svg"
     />
     <div
       style="
@@ -28,18 +28,18 @@
           <h1 class="text-900 font-bold text-5xl mb-2">Error Occured</h1>
           <span class="text-600 mb-5">Requested resource is not available.</span>
           <img
+            src="assets/demo/images/error/asset-error.svg"
             alt="Error"
             class="mb-5"
-            src="assets/demo/images/error/asset-error.svg"
             width="80%"
           />
           <button
-            [routerLink]="['/']"
-            class="p-button-text"
-            icon="pi pi-arrow-left"
-            label="Go to Dashboard"
             pButton
             pRipple
+            icon="pi pi-arrow-left"
+            label="Go to Dashboard"
+            class="p-button-text"
+            [routerLink]="['/']"
           ></button>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {IconService} from 'src/app/demo/service/icon.service';
+import { Component, OnInit } from '@angular/core';
+import { IconService } from 'src/app/demo/service/icon.service';
 
 @Component({
   templateUrl: './icons.component.html',
@@ -11,8 +11,7 @@ export class IconsComponent implements OnInit {
 
   selectedIcon: any;
 
-  constructor(private iconService: IconService) {
-  }
+  constructor(private iconService: IconService) {}
 
   ngOnInit() {
     this.iconService.getIcons().subscribe((data) => {

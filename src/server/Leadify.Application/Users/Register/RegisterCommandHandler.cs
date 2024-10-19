@@ -18,7 +18,7 @@ internal sealed class RegisterCommandHandler(UserManager<User> userManager)
     {
         bool exist = await _userManager.Users.AnyAsync(
             x => x.UserName == request.Username || x.Email == request.Email,
-            cancellationToken
+            cancellationToken: cancellationToken
         );
 
         if (exist)

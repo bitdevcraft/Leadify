@@ -1,11 +1,10 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Image} from '../api/image';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Image } from '../api/image';
 
 @Injectable()
 export class PhotoService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getImages() {
     return this.http

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductService} from 'src/app/demo/service/product.service';
-import {PhotoService} from 'src/app/demo/service/photo.service';
-import {Product} from 'src/app/demo/api/product';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/demo/service/product.service';
+import { PhotoService } from 'src/app/demo/service/photo.service';
+import { Product } from 'src/app/demo/api/product';
 
 @Component({
   templateUrl: './mediademo.component.html',
@@ -51,8 +51,7 @@ export class MediaDemoComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private photoService: PhotoService,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.productService.getProductsSmall().then((products) => {

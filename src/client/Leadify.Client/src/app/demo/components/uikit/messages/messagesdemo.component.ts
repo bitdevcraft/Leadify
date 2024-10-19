@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Message, MessageService} from 'primeng/api';
+import { Component } from '@angular/core';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   templateUrl: './messagesdemo.component.html',
@@ -8,8 +8,7 @@ import {Message, MessageService} from 'primeng/api';
 export class MessagesDemoComponent {
   msgs: Message[] = [];
 
-  constructor(private service: MessageService) {
-  }
+  constructor(private service: MessageService) {}
 
   showInfoViaToast() {
     this.service.add({
@@ -49,7 +48,7 @@ export class MessagesDemoComponent {
 
   showInfoViaMessages() {
     this.msgs = [];
-    this.msgs.push({severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks'});
+    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
   }
 
   showWarnViaMessages() {
@@ -63,11 +62,11 @@ export class MessagesDemoComponent {
 
   showErrorViaMessages() {
     this.msgs = [];
-    this.msgs.push({severity: 'error', summary: 'Error Message', detail: 'Validation failed'});
+    this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
   }
 
   showSuccessViaMessages() {
     this.msgs = [];
-    this.msgs.push({severity: 'success', summary: 'Success Message', detail: 'Message sent'});
+    this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
   }
 }

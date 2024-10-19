@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   template: `
@@ -9,6 +9,5 @@ import {Component} from '@angular/core';
   `,
 })
 export class PaymentComponent {
-  constructor() {
-  }
+  constructor() {}
 }

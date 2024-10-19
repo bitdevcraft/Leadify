@@ -15,7 +15,7 @@ namespace Leadify.Presentation.Controllers;
 [Authorize]
 public class RoleController(ISender sender) : ApiController(sender)
 {
-    [HttpGet]
+    [HttpGet()]
     public async Task<IActionResult> GetRoles()
     {
         var query = new ListRoleQuery();
@@ -43,7 +43,7 @@ public class RoleController(ISender sender) : ApiController(sender)
         return Ok(result.Value);
     }
 
-    [HttpPost]
+    [HttpPost()]
     public async Task<IActionResult> CreateRole(string RoleName)
     {
         var query = new CreateRoleCommand(RoleName);
@@ -57,7 +57,7 @@ public class RoleController(ISender sender) : ApiController(sender)
         return Ok();
     }
 
-    [HttpDelete]
+    [HttpDelete()]
     public async Task<IActionResult> DeleteRole(string RoleName)
     {
         var query = new DeleteRoleCommand(RoleName);

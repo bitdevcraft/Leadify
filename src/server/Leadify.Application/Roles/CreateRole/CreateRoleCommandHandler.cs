@@ -18,7 +18,6 @@ internal sealed class CreateRoleCommandHandler(RoleManager<Role> roleManager)
         {
             return Result.Failure(Error.Validation("Role already Exists"));
         }
-
         var role = new Role(request.RoleName);
         await _roleManager.CreateAsync(role);
 

@@ -12,13 +12,16 @@ internal sealed class QueryCachingBehavior<TRequest, TResponse>(
     where TRequest : ICachedQuery
     where TResponse : Result
 {
+    private readonly ICacheService _cacheService = cacheService;
+    private readonly ILogger<QueryCachingBehavior<TRequest, TResponse>> _logger = logger;
+
     public async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken
     )
     {
-        TResponse? cachedResult = await cacheService.GetAsync<TResponse>(
+        TResponse? cachedResult = await _cacheService.GetAsync<TResponse>(
             request.CacheKey,
             cancellationToken
         );
@@ -26,18 +29,18 @@ internal sealed class QueryCachingBehavior<TRequest, TResponse>(
         string name = typeof(TRequest).Name;
         if (cachedResult is not null)
         {
-            logger.LogInformation("Cache hit for {Query}", name);
+            _logger.LogInformation("Cache hit for {Query}", name);
 
             return cachedResult;
         }
 
-        logger.LogInformation("Cache miss for {Query}", name);
+        _logger.LogInformation("Cache miss for {Query}", name);
 
         TResponse result = await next();
 
         if (result.IsSuccess)
         {
-            await cacheService.SetAsync(
+            await _cacheService.SetAsync(
                 request.CacheKey,
                 result,
                 request.Expiration,

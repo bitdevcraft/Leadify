@@ -1,4 +1,5 @@
 ﻿using Leadify.Application.Abstraction.Messaging;
+using Leadify.Application.Abstraction.UserAccess;
 using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;

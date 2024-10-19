@@ -1,4 +1,4 @@
-<block-viewer [code]="block1" header="Hero">
+<block-viewer header="Hero" [code]="block1">
   <div class="grid grid-nogutter surface-section text-800">
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
       <section>
@@ -10,27 +10,27 @@
         </p>
 
         <button
-          class="mr-3 p-button-raised"
-          label="Learn More"
           pButton
           pRipple
+          label="Learn More"
           type="button"
+          class="mr-3 p-button-raised"
         ></button>
-        <button class="p-button-outlined" label="Live Demo" pButton pRipple type="button"></button>
+        <button pButton pRipple label="Live Demo" type="button" class="p-button-outlined"></button>
       </section>
     </div>
     <div class="col-12 md:col-6 overflow-hidden">
       <img
+        src="assets/demo/images/blocks/hero/hero-1.png"
         alt="Image"
         class="md:ml-auto block md:h-full"
-        src="assets/demo/images/blocks/hero/hero-1.png"
         style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"
       />
     </div>
   </div>
 </block-viewer>
 
-<block-viewer [code]="block2" header="Feature">
+<block-viewer header="Feature" [code]="block2">
   <div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
     <div class="mb-3 font-bold text-2xl">
       <span class="text-900">One Product, </span>
@@ -46,7 +46,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">Built for Developers</div>
         <span class="text-700 text-sm line-height-3"
-        >Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          >Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
           nulla pariatur.</span
         >
       </div>
@@ -56,7 +56,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">End-to-End Encryption</div>
         <span class="text-700 text-sm line-height-3"
-        >Risus nec feugiat in fermentum posuere urna nec. Posuere sollicitudin aliquam ultrices
+          >Risus nec feugiat in fermentum posuere urna nec. Posuere sollicitudin aliquam ultrices
           sagittis.</span
         >
       </div>
@@ -66,7 +66,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">Easy to Use</div>
         <span class="text-700 text-sm line-height-3"
-        >Ornare suspendisse sed nisi lacus sed viverra tellus. Neque volutpat ac tincidunt vitae
+          >Ornare suspendisse sed nisi lacus sed viverra tellus. Neque volutpat ac tincidunt vitae
           semper.</span
         >
       </div>
@@ -76,7 +76,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">Fast & Global Support</div>
         <span class="text-700 text-sm line-height-3"
-        >Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus.</span
+          >Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus.</span
         >
       </div>
       <div class="col-12 md:col-4 mb-4 px-5">
@@ -85,7 +85,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">Open Source</div>
         <span class="text-700 text-sm line-height-3"
-        >Nec tincidunt praesent semper feugiat. Sed adipiscing diam donec adipiscing tristique
+          >Nec tincidunt praesent semper feugiat. Sed adipiscing diam donec adipiscing tristique
           risus nec feugiat.
         </span>
       </div>
@@ -95,7 +95,7 @@
         </span>
         <div class="text-900 mb-3 font-medium">Trusted Securitty</div>
         <span class="text-700 text-sm line-height-3"
-        >Mattis rhoncus urna neque viverra justo nec ultrices. Id cursus metus aliquam
+          >Mattis rhoncus urna neque viverra justo nec ultrices. Id cursus metus aliquam
           eleifend.</span
         >
       </div>
@@ -103,7 +103,7 @@
   </div>
 </block-viewer>
 
-<block-viewer [code]="block3" header="Pricing">
+<block-viewer header="Pricing" [code]="block3">
   <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
     <div class="text-900 font-bold text-6xl mb-4 text-center">Pricing Plans</div>
     <div class="text-700 text-xl mb-6 text-center line-height-3">
@@ -116,12 +116,12 @@
           <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
             <div class="text-900 font-medium text-xl mb-2">Basic</div>
             <div class="text-600">Plan description</div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <div class="flex align-items-center">
               <span class="font-bold text-2xl text-900">$9</span>
               <span class="ml-2 font-medium text-600">per month</span>
             </div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <ul class="list-none p-0 m-0 flex-grow-1">
               <li class="flex align-items-center mb-3">
                 <i class="pi pi-check-circle text-green-500 mr-2"></i>
@@ -136,8 +136,8 @@
                 <span>Morbi tincidunt augue</span>
               </li>
             </ul>
-            <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
-            <button class="p-3 w-full mt-auto" label="Buy Now" pButton pRipple></button>
+            <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+            <button pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>
           </div>
         </div>
       </div>
@@ -147,12 +147,12 @@
           <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
             <div class="text-900 font-medium text-xl mb-2">Premium</div>
             <div class="text-600">Plan description</div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <div class="flex align-items-center">
               <span class="font-bold text-2xl text-900">$29</span>
               <span class="ml-2 font-medium text-600">per month</span>
             </div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <ul class="list-none p-0 m-0 flex-grow-1">
               <li class="flex align-items-center mb-3">
                 <i class="pi pi-check-circle text-green-500 mr-2"></i>
@@ -171,8 +171,8 @@
                 <span>Duis ultricies lacus sed</span>
               </li>
             </ul>
-            <hr class="mb-3 mx-0 border-top-1 border-none surface-border"/>
-            <button class="p-3 w-full" label="Buy Now" pButton pRipple></button>
+            <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+            <button pButton pRipple label="Buy Now" class="p-3 w-full"></button>
           </div>
         </div>
       </div>
@@ -182,12 +182,12 @@
           <div class="shadow-2 p-3 flex flex-column surface-card" style="border-radius: 6px">
             <div class="text-900 font-medium text-xl mb-2">Enterprise</div>
             <div class="text-600">Plan description</div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <div class="flex align-items-center">
               <span class="font-bold text-2xl text-900">$49</span>
               <span class="ml-2 font-medium text-600">per month</span>
             </div>
-            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
             <ul class="list-none p-0 m-0 flex-grow-1">
               <li class="flex align-items-center mb-3">
                 <i class="pi pi-check-circle text-green-500 mr-2"></i>
@@ -214,8 +214,8 @@
                 <span>Nisi scelerisque</span>
               </li>
             </ul>
-            <hr class="mb-3 mx-0 border-top-1 border-none surface-border"/>
-            <button class="p-3 w-full p-button-outlined" label="Buy Now" pButton pRipple></button>
+            <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+            <button pButton pRipple label="Buy Now" class="p-3 w-full p-button-outlined"></button>
           </div>
         </div>
       </div>
@@ -223,7 +223,7 @@
   </div>
 </block-viewer>
 
-<block-viewer [code]="block4" header="Call to Action">
+<block-viewer header="Call to Action" [code]="block4">
   <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
     <div class="text-700 text-center">
       <div class="text-blue-600 font-bold mb-3">
@@ -234,32 +234,32 @@
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.
       </div>
       <button
-        class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
-        icon="pi pi-discord"
-        label="Join Now"
         pButton
         pRipple
+        label="Join Now"
+        icon="pi pi-discord"
+        class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
       ></button>
     </div>
   </div>
 </block-viewer>
 
-<block-viewer [code]="block5" containerClass="surface-section py-8" header="Banner">
+<block-viewer header="Banner" [code]="block5" containerClass="surface-section py-8">
   <div
     class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap"
   >
     <div class="font-bold mr-8">🔥 Hot Deals!</div>
     <div class="align-items-center hidden lg:flex">
       <span class="line-height-3"
-      >Libero voluptatum atque exercitationem praesentium provident odit.</span
+        >Libero voluptatum atque exercitationem praesentium provident odit.</span
       >
     </div>
     <a class="flex align-items-center ml-2 mr-8">
       <a class="text-white" href="#"><span class="underline font-bold">Learn More</span></a>
     </a>
     <a
-      class="flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150"
       pRipple
+      class="flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150"
       style="width: 2rem; height: 2rem"
     >
       <i class="pi pi-times"></i>
@@ -267,7 +267,7 @@
   </div>
 </block-viewer>
 
-<block-viewer [code]="block6" header="Page Heading">
+<block-viewer header="Page Heading" [code]="block6">
   <div class="surface-section px-4 py-5 md:px-6 lg:px-8">
     <ul class="list-none p-0 m-0 flex align-items-center font-medium mb-3">
       <li>
@@ -300,19 +300,19 @@
       </div>
       <div class="mt-3 lg:mt-0">
         <button
-          class="p-button-outlined mr-2"
-          icon="pi pi-user-plus"
-          label="Add"
           pButton
           pRipple
+          label="Add"
+          class="p-button-outlined mr-2"
+          icon="pi pi-user-plus"
         ></button>
-        <button icon="pi pi-check" label="Save" pButton pRipple></button>
+        <button pButton pRipple label="Save" icon="pi pi-check"></button>
       </div>
     </div>
   </div>
 </block-viewer>
 
-<block-viewer [code]="block7" header="Stats">
+<block-viewer header="Stats" [code]="block7">
   <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-3">
@@ -392,44 +392,44 @@
 </block-viewer>
 
 <block-viewer
+  header="Sign-In"
   [code]="block8"
   containerClass="surface-ground px-4 py-8 md:px-6 lg:px-8 flex align-items-center justify-content-center"
-  header="Sign-In"
 >
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
     <div class="text-center mb-5">
-      <img alt="Image" class="mb-3" height="50" src="assets/demo/images/blocks/logos/hyper.svg"/>
+      <img src="assets/demo/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3" />
       <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
       <span class="text-600 font-medium line-height-3">Don't have an account?</span>
       <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
     </div>
 
     <div>
-      <label class="block text-900 font-medium mb-2" for="email1">Email</label>
-      <input class="w-full mb-3" id="email1" pInputText type="text"/>
+      <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+      <input id="email1" type="text" pInputText class="w-full mb-3" />
 
-      <label class="block text-900 font-medium mb-2" for="password1">Password</label>
-      <input class="w-full mb-3" id="password1" pInputText type="password"/>
+      <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+      <input id="password1" type="password" pInputText class="w-full mb-3" />
 
       <div class="flex align-items-center justify-content-between mb-6">
         <div class="flex align-items-center">
-          <p-checkbox [binary]="true" id="rememberme1" styleClass="mr-2"></p-checkbox>
+          <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
           <label for="rememberme1">Remember me</label>
         </div>
         <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
-        >Forgot password?</a
+          >Forgot password?</a
         >
       </div>
 
-      <button class="w-full" icon="pi pi-user" label="Sign In" pButton pRipple></button>
+      <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
     </div>
   </div>
 </block-viewer>
 
 <block-viewer
+  header="Description List"
   [code]="block9"
   containerClass="surface-section px-4 py-8 md:px-6 lg:px-8"
-  header="Description List"
 >
   <div class="surface-section">
     <div class="font-medium text-3xl text-900 mb-3">Movie Information</div>
@@ -441,25 +441,25 @@
         <div class="text-500 w-6 md:w-2 font-medium">Title</div>
         <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">Heat</div>
         <div class="w-6 md:w-2 flex justify-content-end">
-          <button class="p-button-text" icon="pi pi-pencil" label="Edit" pButton pRipple></button>
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
         </div>
       </li>
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Genre</div>
         <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-          <p-chip class="mr-2" label="Crime"></p-chip>
-          <p-chip class="mr-2" label="Drama"></p-chip>
+          <p-chip label="Crime" class="mr-2"></p-chip>
+          <p-chip label="Drama" class="mr-2"></p-chip>
           <p-chip label="Thriller"></p-chip>
         </div>
         <div class="w-6 md:w-2 flex justify-content-end">
-          <button class="p-button-text" icon="pi pi-pencil" label="Edit" pButton pRipple></button>
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
         </div>
       </li>
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Director</div>
         <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">Michael Mann</div>
         <div class="w-6 md:w-2 flex justify-content-end">
-          <button class="p-button-text" icon="pi pi-pencil" label="Edit" pButton pRipple></button>
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
         </div>
       </li>
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
@@ -468,7 +468,7 @@
           Robert De Niro, Al Pacino
         </div>
         <div class="w-6 md:w-2 flex justify-content-end">
-          <button class="p-button-text" icon="pi pi-pencil" label="Edit" pButton pRipple></button>
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
         </div>
       </li>
       <li
@@ -480,19 +480,19 @@
           unknowingly leave a clue at their latest heist.
         </div>
         <div class="w-6 md:w-2 flex justify-content-end">
-          <button class="p-button-text" icon="pi pi-pencil" label="Edit" pButton pRipple></button>
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
         </div>
       </li>
     </ul>
   </div>
 </block-viewer>
 
-<block-viewer [code]="block10" containerClass="px-4 py-8 md:px-6 lg:px-8" header="Card">
+<block-viewer header="Card" [code]="block10" containerClass="px-4 py-8 md:px-6 lg:px-8">
   <div class="surface-card p-4 shadow-2 border-round">
     <div class="text-3xl font-medium text-900 mb-3">Card Title</div>
     <div class="font-medium text-500 mb-3">
       Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.
     </div>
-    <div class="border-2 border-dashed surface-border" style="height: 150px"></div>
+    <div style="height: 150px" class="border-2 border-dashed surface-border"></div>
   </div>
 </block-viewer>

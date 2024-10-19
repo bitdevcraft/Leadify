@@ -4,12 +4,12 @@
     <div class="card">
       <h5>Dialog</h5>
       <p-dialog
-        [(visible)]="display"
-        [breakpoints]="{ '960px': '75vw' }"
-        [modal]="true"
-        [style]="{ width: '30vw' }"
         header="Dialog"
+        [(visible)]="display"
+        [modal]="true"
         showEffect="fade"
+        [style]="{ width: '30vw' }"
+        [breakpoints]="{ '960px': '75vw' }"
       >
         <p class="line-height-3 m-0">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -21,17 +21,17 @@
         </p>
         <ng-template pTemplate="footer">
           <button
-            (click)="display = false"
-            class="p-button-outlined"
-            icon="pi pi-check"
-            label="Ok"
             pButton
+            icon="pi pi-check"
+            (click)="display = false"
+            label="Ok"
+            class="p-button-outlined"
           ></button>
         </ng-template>
       </p-dialog>
       <div class="grid">
         <div class="col-12">
-          <button (click)="display = true" icon="pi pi-external-link" label="Show" pButton></button>
+          <button (click)="display = true" pButton icon="pi pi-external-link" label="Show"></button>
         </div>
       </div>
     </div>
@@ -41,57 +41,55 @@
       <div class="flex flex-wrap gap-2">
         <div>
           <button
+            type="button"
+            pButton
+            label="Image"
             (click)="op1.toggle($event)"
             class="p-button-success"
-            label="Image"
-            pButton
-            type="button"
           ></button>
           <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{ width: '450px' }">
-            <img alt="Nature 1" src="assets/demo/images/nature/nature1.jpg" style="width: 100%"/>
+            <img src="assets/demo/images/nature/nature1.jpg" alt="Nature 1" style="width: 100%" />
           </p-overlayPanel>
         </div>
         <div>
           <button
+            type="button"
+            pButton
+            label="DataTable"
             (click)="op2.toggle($event)"
             class="p-button-success"
-            label="DataTable"
-            pButton
-            type="button"
           ></button>
           <p-overlayPanel #op2 [showCloseIcon]="true" [style]="{ width: '450px' }">
             <ng-template pTemplate>
               <p-table
-                (onRowSelect)="op2.hide()"
+                [value]="products"
+                selectionMode="single"
                 [(selection)]="selectedProduct"
                 [paginator]="true"
                 [rows]="5"
-                [value]="products"
+                (onRowSelect)="op2.hide()"
                 responsiveLayout="scroll"
-                selectionMode="single"
               >
                 <ng-template pTemplate="header">
                   <tr>
-                    <th pSortableColumn="name" style="min-width: 12rem">
-                      Name
-                      <p-sortIcon field="name"></p-sortIcon>
+                    <th style="min-width: 12rem" pSortableColumn="name">
+                      Name<p-sortIcon field="name"></p-sortIcon>
                     </th>
                     <th style="min-width: 5rem">Image</th>
-                    <th pSortableColumn="price" style="min-width: 8rem">
-                      Price
-                      <p-sortIcon field="price"></p-sortIcon>
+                    <th style="min-width: 8rem" pSortableColumn="price">
+                      Price <p-sortIcon field="price"></p-sortIcon>
                     </th>
                   </tr>
                 </ng-template>
-                <ng-template let-product let-rowData pTemplate="body">
+                <ng-template pTemplate="body" let-rowData let-product>
                   <tr [pSelectableRow]="rowData">
                     <td>{{ product.name }}</td>
                     <td>
                       <img
-                        [alt]="product.image"
-                        class="shadow-2"
                         src="assets/demo/images/product/{{ product.image }}"
+                        [alt]="product.image"
                         width="50"
+                        class="shadow-2"
                       />
                     </td>
                     <td>{{ formatCurrency(product.price) }}</td>
@@ -109,24 +107,24 @@
     <div class="card p-fluid">
       <h5>Confirmation</h5>
       <p-confirmDialog
+        header="Confirmation"
+        key="confirm1"
+        icon="pi pi-exclamation-triangle"
+        message="Are you sure you want to proceed?"
         [style]="{ width: '350px' }"
         acceptButtonStyleClass="p-button-text"
-        header="Confirmation"
-        icon="pi pi-exclamation-triangle"
-        key="confirm1"
-        message="Are you sure you want to proceed?"
         rejectButtonStyleClass="p-button-text"
       ></p-confirmDialog>
       <div class="grid">
         <div class="col-12">
           <button
+            type="text"
             (click)="confirm1()"
-            class="p-button-danger"
+            pButton
             icon="pi pi-trash"
             label="Delete"
-            pButton
+            class="p-button-danger"
             style="width: auto"
-            type="text"
           ></button>
         </div>
       </div>
@@ -138,57 +136,57 @@
         <h3 style="font-weight: normal">Left Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar2" [baseZIndex]="10000" position="right">
+      <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
         <h3 style="font-weight: normal">Right Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar3" [baseZIndex]="10000" position="top">
+      <p-sidebar [(visible)]="visibleSidebar3" position="top" [baseZIndex]="10000">
         <h3 style="font-weight: normal">Top Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar4" [baseZIndex]="10000" position="bottom">
+      <p-sidebar [(visible)]="visibleSidebar4" position="bottom" [baseZIndex]="10000">
         <h3 style="font-weight: normal">Bottom Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar5" [baseZIndex]="10000" [fullScreen]="true">
+      <p-sidebar [(visible)]="visibleSidebar5" [fullScreen]="true" [baseZIndex]="10000">
         <h3 style="font-weight: normal">Full Screen Sidebar</h3>
       </p-sidebar>
 
       <div class="flex flex-wrap gap-2">
         <button
+          pButton
+          type="button"
           (click)="visibleSidebar1 = true"
-          class="p-button-warning"
           icon="pi pi-arrow-right"
-          pButton
-          type="button"
+          class="p-button-warning"
         ></button>
         <button
+          pButton
+          type="button"
           (click)="visibleSidebar2 = true"
-          class="p-button-warning"
           icon="pi pi-arrow-left"
-          pButton
-          type="button"
+          class="p-button-warning"
         ></button>
         <button
+          pButton
+          type="button"
           (click)="visibleSidebar3 = true"
-          class="p-button-warning"
           icon="pi pi-arrow-down"
-          pButton
-          type="button"
+          class="p-button-warning"
         ></button>
         <button
+          pButton
+          type="button"
           (click)="visibleSidebar4 = true"
-          class="p-button-warning"
           icon="pi pi-arrow-up"
-          pButton
-          type="button"
+          class="p-button-warning"
         ></button>
         <button
-          (click)="visibleSidebar5 = true"
-          class="p-button-warning"
-          icon="pi pi-external-link"
           pButton
           type="button"
+          (click)="visibleSidebar5 = true"
+          icon="pi pi-external-link"
+          class="p-button-warning"
         ></button>
       </div>
     </div>
@@ -199,22 +197,22 @@
       <h5>Tooltip</h5>
       <div class="flex align-items-center gap-2">
         <span>
-          <label class="p-sr-only" for="firstname5">Username</label>
+          <label for="firstname5" class="p-sr-only">Username</label>
           <input
             id="firstname5"
-            pInputText
-            pTooltip="Enter your username"
-            placeholder="Username"
             type="text"
+            pInputText
+            placeholder="Username"
+            pTooltip="Enter your username"
           />
         </span>
         <button
-          icon="pi pi-check"
-          label="Save"
           pButton
           pRipple
-          pTooltip="Click to proceed"
           type="button"
+          label="Save"
+          icon="pi pi-check"
+          pTooltip="Click to proceed"
         ></button>
       </div>
     </div>
@@ -225,7 +223,7 @@
       <h5>ConfirmPopup</h5>
 
       <p-toast></p-toast>
-      <button (click)="confirm2($event)" icon="pi pi-check" label="Confirm" pButton></button>
+      <button (click)="confirm2($event)" pButton icon="pi pi-check" label="Confirm"></button>
       <p-confirmPopup key="confirm2"></p-confirmPopup>
     </div>
   </div>

@@ -7,4 +7,4 @@ using Leadify.Domain.Entities;
 namespace Leadify.Application.Contacts.ListContact;
 
 [Authorize(Permissions = PermissionType.Contacts.View, Roles = RoleNames.SystemAdministrator)]
-public sealed record ListContactQuery : IQuery<List<Contact>>;
+public sealed record ListContactQuery() : IQuery<List<Contact>>;

@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MessageService} from 'primeng/api';
+import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   templateUrl: './filedemo.component.html',
@@ -8,15 +8,14 @@ import {MessageService} from 'primeng/api';
 export class FileDemoComponent {
   uploadedFiles: any[] = [];
 
-  constructor(private messageService: MessageService) {
-  }
+  constructor(private messageService: MessageService) {}
 
   onUpload(event: any) {
     for (const file of event.files) {
       this.uploadedFiles.push(file);
     }
 
-    this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
+    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
   }
 
   onBasicUpload() {

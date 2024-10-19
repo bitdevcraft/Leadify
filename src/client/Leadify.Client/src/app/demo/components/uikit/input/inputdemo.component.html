@@ -4,13 +4,13 @@
       <h5>InputText</h5>
       <div class="grid formgrid">
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-          <input pInputText placeholder="Default" type="text"/>
+          <input type="text" pInputText placeholder="Default" />
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-          <input [disabled]="true" pInputText placeholder="Disabled" type="text"/>
+          <input type="text" pInputText placeholder="Disabled" [disabled]="true" />
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-          <input class="ng-dirty ng-invalid" pInputText placeholder="Invalid" type="text"/>
+          <input type="text" pInputText placeholder="Invalid" class="ng-dirty ng-invalid" />
         </div>
       </div>
 
@@ -19,19 +19,19 @@
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
           <span class="p-input-icon-left">
             <i class="pi pi-user"></i>
-            <input pInputText placeholder="Username" type="text"/>
+            <input type="text" pInputText placeholder="Username" />
           </span>
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
           <span class="p-input-icon-right">
-            <input pInputText placeholder="Search" type="text"/>
+            <input type="text" pInputText placeholder="Search" />
             <i class="pi pi-search"></i>
           </span>
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
           <span class="p-input-icon-left p-input-icon-right">
             <i class="pi pi-user"></i>
-            <input pInputText placeholder="Search" type="text"/>
+            <input type="text" pInputText placeholder="Search" />
             <i class="pi pi-search"></i>
           </span>
         </div>
@@ -39,20 +39,20 @@
 
       <h5>Float Label</h5>
       <span class="p-float-label">
-        <input id="float-input" pInputText type="text"/>
+        <input id="float-input" type="text" pInputText />
         <label for="float-input">Username</label>
       </span>
 
       <h5>Textarea</h5>
-      <textarea cols="30" pInputTextarea placeholder="Your Message" rows="5"></textarea>
+      <textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
 
       <h5>AutoComplete</h5>
       <p-autoComplete
-        (completeMethod)="filterCountry($event)"
         [(ngModel)]="selectedCountryAdvanced"
-        [dropdown]="true"
         [suggestions]="filteredCountries"
+        (completeMethod)="filterCountry($event)"
         field="name"
+        [dropdown]="true"
       >
       </p-autoComplete>
 
@@ -60,7 +60,7 @@
       <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
 
       <h5>InputNumber</h5>
-      <p-inputNumber [max]="100" [min]="0" [showButtons]="true" mode="decimal"></p-inputNumber>
+      <p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100"> </p-inputNumber>
 
       <h5>Chips</h5>
       <p-chips></p-chips>
@@ -70,7 +70,7 @@
       <div class="grid">
         <div class="col-12">
           <h5>Slider</h5>
-          <input [(ngModel)]="valSlider" pInputText readonly type="text"/>
+          <input type="text" pInputText [(ngModel)]="valSlider" readonly />
           <p-slider [(ngModel)]="valSlider"></p-slider>
         </div>
         <div class="col-12 md:col-6">
@@ -85,10 +85,10 @@
           <h5>Knob</h5>
           <p-knob
             [(ngModel)]="valueKnob"
-            [max]="50"
-            [min]="-50"
-            [step]="10"
             valueTemplate="{value}%"
+            [step]="10"
+            [min]="-50"
+            [max]="50"
           ></p-knob>
         </div>
       </div>
@@ -102,10 +102,10 @@
         <div class="col-12 md:col-4">
           <div class="field-radiobutton">
             <p-radioButton
-              [(ngModel)]="valRadio"
-              id="city1"
               name="city"
               value="Chicago"
+              [(ngModel)]="valRadio"
+              id="city1"
             ></p-radioButton>
             <label for="city1">Chicago</label>
           </div>
@@ -113,10 +113,10 @@
         <div class="col-12 md:col-4">
           <div class="field-radiobutton">
             <p-radioButton
-              [(ngModel)]="valRadio"
-              id="city2"
               name="city"
               value="Los Angeles"
+              [(ngModel)]="valRadio"
+              id="city2"
             ></p-radioButton>
             <label for="city2">Los Angeles</label>
           </div>
@@ -124,10 +124,10 @@
         <div class="col-12 md:col-4">
           <div class="field-radiobutton">
             <p-radioButton
-              [(ngModel)]="valRadio"
-              id="city3"
               name="city"
               value="New York"
+              [(ngModel)]="valRadio"
+              id="city3"
             ></p-radioButton>
             <label for="city3">New York</label>
           </div>
@@ -138,17 +138,17 @@
       <div class="grid formgrid">
         <div class="col-12 md:col-4">
           <div class="field-checkbox">
-            <p-checkbox [(ngModel)]="valCheck" id="ny" name="group1" value="New York"></p-checkbox>
+            <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
             <label for="ny">New York</label>
           </div>
         </div>
         <div class="col-12 md:col-4">
           <div class="field-checkbox">
             <p-checkbox
-              [(ngModel)]="valCheck"
-              id="sf"
               name="group1"
               value="San Francisco"
+              [(ngModel)]="valCheck"
+              id="sf"
             ></p-checkbox>
             <label for="sf">San Francisco</label>
           </div>
@@ -156,10 +156,10 @@
         <div class="col-12 md:col-4">
           <div class="field-checkbox">
             <p-checkbox
-              [(ngModel)]="valCheck"
-              id="la"
               name="group1"
               value="Los Angeles"
+              [(ngModel)]="valCheck"
+              id="la"
             ></p-checkbox>
             <label for="la">Los Angeles</label>
           </div>
@@ -172,30 +172,30 @@
 
     <div class="card">
       <h5>Listbox</h5>
-      <p-listbox [(ngModel)]="selectedList" [filter]="true" [options]="cities"></p-listbox>
+      <p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true"></p-listbox>
 
       <h5>Dropdown</h5>
       <p-dropdown
-        [(ngModel)]="selectedDrop"
         [options]="cities"
-        [showClear]="true"
+        [(ngModel)]="selectedDrop"
         placeholder="Select a City"
+        [showClear]="true"
       ></p-dropdown>
 
       <h5>Multiselect</h5>
       <p-multiSelect
-        [(ngModel)]="selectedMulti"
         [options]="countries"
+        [(ngModel)]="selectedMulti"
+        placeholder="Select a Country"
+        optionLabel="name"
         class="multiselect-custom"
         display="chip"
-        optionLabel="name"
-        placeholder="Select a Country"
       >
         <ng-template let-country pTemplate="item">
           <div class="flex align-items-center">
             <img
-              [class]="'flag flag-' + country.code.toLowerCase()"
               src="assets/demo/images/flag/flag_placeholder.png"
+              [class]="'flag flag-' + country.code.toLowerCase()"
               style="width: 21px"
             />
             <span class="ml-2">{{ country.name }}</span>
@@ -208,23 +208,23 @@
       <h5>ToggleButton</h5>
       <p-toggleButton
         [(ngModel)]="valToggle"
-        [style]="{ width: '10em' }"
-        offLabel="No"
         onLabel="Yes"
+        offLabel="No"
+        [style]="{ width: '10em' }"
       ></p-toggleButton>
 
       <h5>SelectOneButton</h5>
       <p-selectButton
-        [(ngModel)]="valSelect1"
         [options]="paymentOptions"
+        [(ngModel)]="valSelect1"
         optionLabel="name"
       ></p-selectButton>
 
       <h5>SelectManyButton</h5>
       <p-selectButton
+        [options]="paymentOptions"
         [(ngModel)]="valSelect2"
         [multiple]="true"
-        [options]="paymentOptions"
         optionLabel="name"
       ></p-selectButton>
     </div>
@@ -239,7 +239,7 @@
             <p-inputGroupAddon>
               <i class="pi pi-user"></i>
             </p-inputGroupAddon>
-            <input pInputText placeholder="Username" type="text"/>
+            <input pInputText type="text" placeholder="Username" />
           </p-inputGroup>
         </div>
         <div class="col-12 md:col-6">
@@ -252,25 +252,23 @@
               <i class="pi pi-shopping-cart" style="line-height: 1.25"></i>
             </p-inputGroupAddon>
 
-            <input pInputText placeholder="Price" type="text"/>
+            <input type="text" pInputText placeholder="Price" />
             <p-inputGroupAddon>$</p-inputGroupAddon>
             <p-inputGroupAddon>.00</p-inputGroupAddon>
           </p-inputGroup>
         </div>
         <div class="col-12 md:col-6">
           <p-inputGroup>
-            <button label="Search" pButton type="button"></button>
-            <input pInputText placeholder="Keyword" type="text"/>
+            <button type="button" pButton label="Search"></button>
+            <input type="text" pInputText placeholder="Keyword" />
           </p-inputGroup>
         </div>
         <div class="col-12 md:col-6">
           <p-inputGroup>
             <p-inputGroupAddon
-            >
-              <p-checkbox [(ngModel)]="valCheck2" [binary]="true"></p-checkbox
-              >
-            </p-inputGroupAddon>
-            <input pInputText placeholder="Username" type="text"/>
+              ><p-checkbox [(ngModel)]="valCheck2" [binary]="true"></p-checkbox
+            ></p-inputGroupAddon>
+            <input type="text" pInputText placeholder="Username" />
           </p-inputGroup>
         </div>
       </div>

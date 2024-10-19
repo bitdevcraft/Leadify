@@ -1,7 +1,7 @@
-import {RouterModule} from '@angular/router';
-import {NgModule} from '@angular/core';
-import {NotfoundComponent} from './demo/components/notfound/notfound.component';
-import {AppLayoutComponent} from './layout/app.layout.component';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { AppLayoutComponent } from './layout/app.layout.component';
 
 @NgModule({
   imports: [
@@ -61,8 +61,8 @@ import {AppLayoutComponent} from './layout/app.layout.component';
           loadChildren: () =>
             import('./demo/components/landing/landing.module').then((m) => m.LandingModule),
         },
-        {path: 'notfound', component: NotfoundComponent},
-        {path: '**', redirectTo: '/notfound'},
+        { path: 'notfound', component: NotfoundComponent },
+        { path: '**', redirectTo: '/notfound' },
       ],
       {
         scrollPositionRestoration: 'enabled',
@@ -73,5 +73,4 @@ import {AppLayoutComponent} from './layout/app.layout.component';
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

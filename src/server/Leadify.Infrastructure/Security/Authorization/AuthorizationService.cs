@@ -1,4 +1,5 @@
-﻿using Leadify.Application.Abstraction.Authorization;
+﻿using System.Globalization;
+using Leadify.Application.Abstraction.Authorization;
 using Leadify.Application.Abstraction.Caching;
 using Leadify.Application.Abstraction.UserAccess;
 using Leadify.Domain.Repositories;
@@ -15,10 +16,10 @@ public class AuthorizationService(
     IPermissionRepository permissionRepository
 ) : IAuthorizationService
 {
+    private readonly IUserContext _userContext = userContext;
     private readonly ICacheService _cacheService = cacheService;
     private readonly ApplicationDbContext _context = context;
     private readonly IPermissionRepository _permissionRepository = permissionRepository;
-    private readonly IUserContext _userContext = userContext;
 
     public async Task<Result> AuthorizeCurrentUser(
         ICollection<string> requiredRoles,

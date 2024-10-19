@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -16,10 +16,9 @@ import {RouterModule} from '@angular/router';
         path: 'login',
         loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
       },
-      {path: '**', redirectTo: '/notfound'},
+      { path: '**', redirectTo: '/notfound' },
     ]),
   ],
   exports: [RouterModule],
 })
-export class AuthRoutingModule {
-}
+export class AuthRoutingModule {}

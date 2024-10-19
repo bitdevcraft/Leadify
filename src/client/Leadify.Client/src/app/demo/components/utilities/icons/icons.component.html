@@ -42,22 +42,22 @@
   <p>
     Here is the current list of PrimeIcons, more icons will be added periodically. You may also
     <a class="text-primary hover:underline" href="https://github.com/primefaces/primeicons/issues"
-    >request new icons</a
+      >request new icons</a
     >
     at the issue tracker.
   </p>
   <div>
     <input
-      (input)="onFilter($event)"
       class="icon-filter"
-      class="w-full p-3 mt-3 mb-5 w-full p-3 mt-3 mb-5"
+      (input)="onFilter($event)"
       pInputText
       placeholder="Search an icon"
+      class="w-full p-3 mt-3 mb-5 w-full p-3 mt-3 mb-5"
     />
   </div>
 
   <div class="grid text-center">
-    <div *ngFor="let icon of filteredIcons" class="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5">
+    <div class="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5" *ngFor="let icon of filteredIcons">
       <i class="text-2xl pi pi-{{ icon.properties.name }}"></i>
       <div>pi-{{ icon.properties.name }}</div>
     </div>
