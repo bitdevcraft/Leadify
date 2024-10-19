@@ -13,20 +13,20 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
-    templateUrl: './listdemo.component.html',
-    standalone: true,
-    imports: [
-        DataViewModule,
-        SharedModule,
-        DropdownModule,
-        InputTextModule,
-        NgFor,
-        RatingModule,
-        FormsModule,
-        ButtonModule,
-        PickListModule,
-        OrderListModule,
-    ],
+  templateUrl: './listdemo.component.html',
+  standalone: true,
+  imports: [
+    DataViewModule,
+    SharedModule,
+    DropdownModule,
+    InputTextModule,
+    NgFor,
+    RatingModule,
+    FormsModule,
+    ButtonModule,
+    PickListModule,
+    OrderListModule,
+  ],
 })
 export class ListDemoComponent implements OnInit {
   products: Product[] = [];

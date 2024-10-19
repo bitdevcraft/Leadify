@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import { MessageService, SharedModule } from 'primeng/api';
-import { NgIf, NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FileUploadModule } from 'primeng/fileupload';
 
 @Component({
-    templateUrl: './filedemo.component.html',
-    providers: [MessageService],
-    standalone: true,
-    imports: [
-        FileUploadModule,
-        SharedModule,
-        NgIf,
-        NgFor,
-    ],
+  templateUrl: './filedemo.component.html',
+  providers: [MessageService],
+  standalone: true,
+  imports: [FileUploadModule, SharedModule, NgIf, NgFor],
 })
 export class FileDemoComponent {
   uploadedFiles: any[] = [];

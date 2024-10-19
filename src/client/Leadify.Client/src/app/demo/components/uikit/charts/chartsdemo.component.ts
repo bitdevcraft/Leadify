@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ChartModule } from 'primeng/chart';
 
 @Component({
-    templateUrl: './chartsdemo.component.html',
-    standalone: true,
-    imports: [ChartModule],
+  templateUrl: './chartsdemo.component.html',
+  standalone: true,
+  imports: [ChartModule],
 })
 export class ChartsDemoComponent implements OnInit, OnDestroy {
   lineData: any;

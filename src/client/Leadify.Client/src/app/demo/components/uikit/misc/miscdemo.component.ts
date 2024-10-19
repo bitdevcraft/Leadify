@@ -11,20 +11,20 @@ import { BadgeModule } from 'primeng/badge';
 import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
-    templateUrl: './miscdemo.component.html',
-    standalone: true,
-    imports: [
-        ProgressBarModule,
-        BadgeModule,
-        ButtonModule,
-        AvatarGroupModule,
-        AvatarModule,
-        ScrollPanelModule,
-        ScrollTopModule,
-        TagModule,
-        ChipModule,
-        SkeletonModule,
-    ],
+  templateUrl: './miscdemo.component.html',
+  standalone: true,
+  imports: [
+    ProgressBarModule,
+    BadgeModule,
+    ButtonModule,
+    AvatarGroupModule,
+    AvatarModule,
+    ScrollPanelModule,
+    ScrollTopModule,
+    TagModule,
+    ChipModule,
+    SkeletonModule,
+  ],
 })
 export class MiscDemoComponent implements OnInit, OnDestroy {
   value = 0;

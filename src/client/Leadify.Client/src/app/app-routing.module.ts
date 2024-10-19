@@ -3,11 +3,12 @@ import {
   InMemoryScrollingFeature,
   provideRouter,
   RouterModule,
-  withInMemoryScrolling
-} from "@angular/router";
+  withInMemoryScrolling,
+} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
+
 export const routes = [
   {
     path: '',
@@ -16,9 +17,7 @@ export const routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./demo/components/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule,
-          ),
+          import('./demo/components/dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
         path: 'uikit',
@@ -28,9 +27,7 @@ export const routes = [
       {
         path: 'utilities',
         loadChildren: () =>
-          import('./demo/components/utilities/utilities.module').then(
-            (m) => m.UtilitiesModule,
-          ),
+          import('./demo/components/utilities/utilities.module').then((m) => m.UtilitiesModule),
       },
       {
         path: 'documentation',
@@ -55,8 +52,7 @@ export const routes = [
   },
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./demo/components/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./demo/components/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'landing',
@@ -65,26 +61,23 @@ export const routes = [
   },
   { path: 'notfound', component: NotfoundComponent },
   { path: '**', redirectTo: '/notfound' },
-]
+];
 @NgModule({
   imports: [
-    RouterModule.forRoot( routes
-      ,
-      {
-        scrollPositionRestoration: 'enabled',
-        anchorScrolling: 'enabled',
-        onSameUrlNavigation: 'reload',
-      },
-    ),
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      onSameUrlNavigation: 'reload',
+    }),
   ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
 
 const scrollConfig: ExtraOptions = {
-  scrollPositionRestoration: "enabled",
-  anchorScrolling: "enabled",
-  onSameUrlNavigation: "reload"
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  onSameUrlNavigation: 'reload',
 };
 
 const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling(scrollConfig);

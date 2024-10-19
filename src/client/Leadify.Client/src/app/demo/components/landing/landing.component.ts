@@ -6,14 +6,10 @@ import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 
 @Component({
-    selector: 'app-landing',
-    templateUrl: './landing.component.html',
-    standalone: true,
-    imports: [
-        StyleClassModule,
-        ButtonModule,
-        DividerModule,
-    ],
+  selector: 'app-landing',
+  templateUrl: './landing.component.html',
+  standalone: true,
+  imports: [StyleClassModule, ButtonModule, DividerModule],
 })
 export class LandingComponent {
   constructor(

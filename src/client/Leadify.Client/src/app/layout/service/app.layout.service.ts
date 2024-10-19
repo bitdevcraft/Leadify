@@ -1,4 +1,4 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface AppConfig {

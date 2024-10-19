@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TooltipModule } from 'primeng/tooltip';
-import { NgIf, NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgIf, NgStyle } from '@angular/common';
 
 enum BlockView {
   PREVIEW,
@@ -8,9 +8,9 @@ enum BlockView {
 }
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'block-viewer',
-    template: `
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'block-viewer',
+  template: `
     <div class="block-section">
       <div class="block-header">
         <span class="block-title">
@@ -57,14 +57,9 @@ enum BlockView {
       </div>
     </div>
   `,
-    styleUrls: ['./blockviewer.component.scss'],
-    standalone: true,
-    imports: [
-        NgIf,
-        NgClass,
-        TooltipModule,
-        NgStyle,
-    ],
+  styleUrls: ['./blockviewer.component.scss'],
+  standalone: true,
+  imports: [NgIf, NgClass, TooltipModule, NgStyle],
 })
 export class BlockViewerComponent {
   @Input() header!: string;

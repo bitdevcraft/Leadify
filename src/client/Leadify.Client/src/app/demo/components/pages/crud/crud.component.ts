@@ -7,7 +7,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { NgIf, NgClass, CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgClass, NgIf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
@@ -19,29 +19,29 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-    templateUrl: './crud.component.html',
-    providers: [MessageService],
-    standalone: true,
-    imports: [
-        ToastModule,
-        ToolbarModule,
-        SharedModule,
-        ButtonModule,
-        RippleModule,
-        FileUploadModule,
-        TableModule,
-        InputTextModule,
-        RatingModule,
-        FormsModule,
-        DialogModule,
-        NgIf,
-        NgClass,
-        InputTextareaModule,
-        DropdownModule,
-        RadioButtonModule,
-        InputNumberModule,
-        CurrencyPipe,
-    ],
+  templateUrl: './crud.component.html',
+  providers: [MessageService],
+  standalone: true,
+  imports: [
+    ToastModule,
+    ToolbarModule,
+    SharedModule,
+    ButtonModule,
+    RippleModule,
+    FileUploadModule,
+    TableModule,
+    InputTextModule,
+    RatingModule,
+    FormsModule,
+    DialogModule,
+    NgIf,
+    NgClass,
+    InputTextareaModule,
+    DropdownModule,
+    RadioButtonModule,
+    InputNumberModule,
+    CurrencyPipe,
+  ],
 })
 export class CrudComponent implements OnInit {
   productDialog: boolean = false;

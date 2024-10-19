@@ -7,16 +7,16 @@ import { ButtonModule } from 'primeng/button';
 import { BlockViewerComponent } from '../blockviewer/blockviewer.component';
 
 @Component({
-    templateUrl: './blocks.component.html',
-    standalone: true,
-    imports: [
-        BlockViewerComponent,
-        ButtonModule,
-        RippleModule,
-        InputTextModule,
-        CheckboxModule,
-        ChipModule,
-    ],
+  templateUrl: './blocks.component.html',
+  standalone: true,
+  imports: [
+    BlockViewerComponent,
+    ButtonModule,
+    RippleModule,
+    InputTextModule,
+    CheckboxModule,
+    ChipModule,
+  ],
 })
 export class BlocksComponent {
   block1: string = `

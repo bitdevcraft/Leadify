@@ -5,10 +5,10 @@ import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html',
-    standalone: true,
-    imports: [RouterLink, NgClass],
+  selector: 'app-topbar',
+  templateUrl: './app.topbar.component.html',
+  standalone: true,
+  imports: [RouterLink, NgClass],
 })
 export class AppTopBarComponent {
   items!: MenuItem[];

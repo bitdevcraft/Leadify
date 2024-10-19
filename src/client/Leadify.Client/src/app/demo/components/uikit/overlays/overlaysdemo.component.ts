@@ -15,23 +15,23 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-    templateUrl: './overlaysdemo.component.html',
-    providers: [ConfirmationService, MessageService],
-    standalone: true,
-    imports: [
-        ToastModule,
-        DialogModule,
-        SharedModule,
-        ButtonModule,
-        OverlayPanelModule,
-        TableModule,
-        ConfirmDialogModule,
-        SidebarModule,
-        InputTextModule,
-        TooltipModule,
-        RippleModule,
-        ConfirmPopupModule,
-    ],
+  templateUrl: './overlaysdemo.component.html',
+  providers: [ConfirmationService, MessageService],
+  standalone: true,
+  imports: [
+    ToastModule,
+    DialogModule,
+    SharedModule,
+    ButtonModule,
+    OverlayPanelModule,
+    TableModule,
+    ConfirmDialogModule,
+    SidebarModule,
+    InputTextModule,
+    TooltipModule,
+    RippleModule,
+    ConfirmPopupModule,
+  ],
 })
 export class OverlaysDemoComponent implements OnInit {
   images: any[] = [];

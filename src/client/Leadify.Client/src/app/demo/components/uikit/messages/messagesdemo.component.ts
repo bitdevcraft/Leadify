@@ -7,16 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-    templateUrl: './messagesdemo.component.html',
-    providers: [MessageService],
-    standalone: true,
-    imports: [
-        ToastModule,
-        ButtonModule,
-        MessagesModule,
-        InputTextModule,
-        MessageModule,
-    ],
+  templateUrl: './messagesdemo.component.html',
+  providers: [MessageService],
+  standalone: true,
+  imports: [ToastModule, ButtonModule, MessagesModule, InputTextModule, MessageModule],
 })
 export class MessagesDemoComponent {
   msgs: Message[] = [];

@@ -13,21 +13,21 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-    templateUrl: './invalidstatedemo.component.html',
-    standalone: true,
-    imports: [
-        InputTextModule,
-        AutoCompleteModule,
-        FormsModule,
-        CalendarModule,
-        ChipsModule,
-        PasswordModule,
-        InputMaskModule,
-        InputNumberModule,
-        DropdownModule,
-        MultiSelectModule,
-        InputTextareaModule,
-    ],
+  templateUrl: './invalidstatedemo.component.html',
+  standalone: true,
+  imports: [
+    InputTextModule,
+    AutoCompleteModule,
+    FormsModule,
+    CalendarModule,
+    ChipsModule,
+    PasswordModule,
+    InputMaskModule,
+    InputNumberModule,
+    DropdownModule,
+    MultiSelectModule,
+    InputTextareaModule,
+  ],
 })
 export class InvalidStateDemoComponent implements OnInit {
   countries: any[] = [];

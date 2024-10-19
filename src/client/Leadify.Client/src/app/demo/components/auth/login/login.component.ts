@@ -8,10 +8,10 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styles: [
-        `
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styles: [
+    `
       :host ::ng-deep .pi-eye,
       :host ::ng-deep .pi-eye-slash {
         transform: scale(1.6);
@@ -19,16 +19,9 @@ import { InputTextModule } from 'primeng/inputtext';
         color: var(--primary-color) !important;
       }
     `,
-    ],
-    standalone: true,
-    imports: [
-        InputTextModule,
-        PasswordModule,
-        FormsModule,
-        CheckboxModule,
-        ButtonModule,
-        RouterLink,
-    ],
+  ],
+  standalone: true,
+  imports: [InputTextModule, PasswordModule, FormsModule, CheckboxModule, ButtonModule, RouterLink],
 })
 export class LoginComponent {
   valCheck: string[] = ['remember'];

@@ -4,9 +4,9 @@ import { NgFor } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-    templateUrl: './icons.component.html',
-    standalone: true,
-    imports: [InputTextModule, NgFor],
+  templateUrl: './icons.component.html',
+  standalone: true,
+  imports: [InputTextModule, NgFor],
 })
 export class IconsComponent implements OnInit {
   icons: any[] = [];

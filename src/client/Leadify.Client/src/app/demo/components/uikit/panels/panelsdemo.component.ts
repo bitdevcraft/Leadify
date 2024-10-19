@@ -13,22 +13,22 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
-    templateUrl: './panelsdemo.component.html',
-    standalone: true,
-    imports: [
-        ToolbarModule,
-        ButtonModule,
-        SplitButtonModule,
-        AccordionModule,
-        TabViewModule,
-        PanelModule,
-        FieldsetModule,
-        MenuModule,
-        InputTextModule,
-        DividerModule,
-        SplitterModule,
-        SharedModule,
-    ],
+  templateUrl: './panelsdemo.component.html',
+  standalone: true,
+  imports: [
+    ToolbarModule,
+    ButtonModule,
+    SplitButtonModule,
+    AccordionModule,
+    TabViewModule,
+    PanelModule,
+    FieldsetModule,
+    MenuModule,
+    InputTextModule,
+    DividerModule,
+    SplitterModule,
+    SharedModule,
+  ],
 })
 export class PanelsDemoComponent implements OnInit {
   items: MenuItem[] = [];

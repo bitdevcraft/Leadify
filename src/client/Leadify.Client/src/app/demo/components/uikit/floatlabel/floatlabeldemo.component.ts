@@ -14,22 +14,22 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    templateUrl: './floatlabeldemo.component.html',
-    standalone: true,
-    imports: [
-        FormsModule,
-        InputTextModule,
-        AutoCompleteModule,
-        CalendarModule,
-        ChipsModule,
-        InputMaskModule,
-        InputNumberModule,
-        InputGroupModule,
-        InputGroupAddonModule,
-        DropdownModule,
-        MultiSelectModule,
-        InputTextareaModule,
-    ],
+  templateUrl: './floatlabeldemo.component.html',
+  standalone: true,
+  imports: [
+    FormsModule,
+    InputTextModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    InputMaskModule,
+    InputNumberModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    DropdownModule,
+    MultiSelectModule,
+    InputTextareaModule,
+  ],
 })
 export class FloatLabelDemoComponent implements OnInit {
   countries: any[] = [];

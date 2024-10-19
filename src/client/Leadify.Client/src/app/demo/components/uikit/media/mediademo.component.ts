@@ -9,15 +9,9 @@ import { SharedModule } from 'primeng/api';
 import { CarouselModule } from 'primeng/carousel';
 
 @Component({
-    templateUrl: './mediademo.component.html',
-    standalone: true,
-    imports: [
-        CarouselModule,
-        SharedModule,
-        ButtonModule,
-        ImageModule,
-        GalleriaModule,
-    ],
+  templateUrl: './mediademo.component.html',
+  standalone: true,
+  imports: [CarouselModule, SharedModule, ButtonModule, ImageModule, GalleriaModule],
 })
 export class MediaDemoComponent implements OnInit {
   products!: Product[];

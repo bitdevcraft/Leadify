@@ -14,23 +14,24 @@ import { RippleModule } from 'primeng/ripple';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
+
 @NgModule({
-    imports: [
-        CommonModule,
-        OverlaysDemoRoutingModule,
-        ToastModule,
-        DialogModule,
-        FormsModule,
-        TooltipModule,
-        InputTextModule,
-        ButtonModule,
-        OverlayPanelModule,
-        TableModule,
-        ConfirmDialogModule,
-        SidebarModule,
-        RippleModule,
-        ConfirmPopupModule,
-        OverlaysDemoComponent,
-    ],
+  imports: [
+    CommonModule,
+    OverlaysDemoRoutingModule,
+    ToastModule,
+    DialogModule,
+    FormsModule,
+    TooltipModule,
+    InputTextModule,
+    ButtonModule,
+    OverlayPanelModule,
+    TableModule,
+    ConfirmDialogModule,
+    SidebarModule,
+    RippleModule,
+    ConfirmPopupModule,
+    OverlaysDemoComponent,
+  ],
 })
 export class OverlaysDemoModule {}

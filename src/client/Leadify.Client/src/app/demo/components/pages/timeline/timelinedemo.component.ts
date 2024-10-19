@@ -6,17 +6,10 @@ import { NgClass, NgIf } from '@angular/common';
 import { TimelineModule } from 'primeng/timeline';
 
 @Component({
-    templateUrl: './timelinedemo.component.html',
-    styleUrls: ['./timelinedemo.scss'],
-    standalone: true,
-    imports: [
-        TimelineModule,
-        SharedModule,
-        NgClass,
-        CardModule,
-        NgIf,
-        ButtonModule,
-    ],
+  templateUrl: './timelinedemo.component.html',
+  styleUrls: ['./timelinedemo.scss'],
+  standalone: true,
+  imports: [TimelineModule, SharedModule, NgClass, CardModule, NgIf, ButtonModule],
 })
 export class TimelineDemoComponent implements OnInit {
   events1: any[] = [];
