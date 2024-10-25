@@ -1,4 +1,4 @@
-@Leadify.App_HostAddress = http://localhost:5051
+@Leadify.App_HostAddress = https://localhost:7197
 
 GET {{Leadify.App_HostAddress}}/weatherforecast/
 Accept: application/json

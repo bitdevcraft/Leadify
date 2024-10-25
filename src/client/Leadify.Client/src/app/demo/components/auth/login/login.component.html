@@ -27,6 +27,7 @@
           <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
           <input
             id="email1"
+            [(ngModel)]="username"
             type="text"
             placeholder="Email address"
             pInputText
@@ -60,10 +61,14 @@
             pRipple
             label="Sign In"
             class="w-full p-3 text-xl"
-            [routerLink]="['/']"
+            (click)="login()"
           ></button>
         </div>
+
+
       </div>
     </div>
   </div>
+
+
 </div>

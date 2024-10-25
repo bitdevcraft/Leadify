@@ -8,8 +8,15 @@ import { ChartModule } from 'primeng/chart';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { CurrencyPipe, NgStyle } from '@angular/common';
+import { CommonModule, CurrencyPipe, NgStyle } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
+interface WeatherForecast {
+  date: string;
+  temperatureC: number;
+  temperatureF: number;
+  summary: string;
+}
 @Component({
   templateUrl: './dashboard.component.html',
   standalone: true,
@@ -21,6 +28,7 @@ import { CurrencyPipe, NgStyle } from '@angular/common';
     MenuModule,
     ChartModule,
     CurrencyPipe,
+    CommonModule
   ],
   providers: [ProductService],
 })
@@ -35,9 +43,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   subscription!: Subscription;
 
+  public forecasts: WeatherForecast[] = [];
+
   constructor(
     private productService: ProductService,
     public layoutService: LayoutService,
+    private http: HttpClient,
   ) {
     this.subscription = this.layoutService.configUpdate$
       .pipe(debounceTime(25))
@@ -54,6 +65,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
       { label: 'Add New', icon: 'pi pi-fw pi-plus' },
       { label: 'Remove', icon: 'pi pi-fw pi-minus' },
     ];
+
+    this.getForecasts();
+
+  }
+
+
+  getForecasts() {
+    this.http.get<WeatherForecast[]>('/api/WeatherForecast').subscribe(
+      (result) => {
+        this.forecasts = result;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   initChart() {

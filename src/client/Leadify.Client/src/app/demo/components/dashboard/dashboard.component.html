@@ -309,7 +309,7 @@
       </ul>
     </div>
 
-<!--    <div
+    <div
       class="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3"
       [ngStyle]="{
         borderRadius: '1rem',
@@ -318,18 +318,31 @@
       }"
     >
       <div>
-        <div class="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>
-        <div class="text-white font-medium text-5xl">Try PrimeBlocks</div>
+        <h1 id="tableLabel">Weather forecast</h1>
+
+        <p>This component demonstrates fetching data from the server.</p>
+
+        <p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+        <table *ngIf="forecasts">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let forecast of forecasts">
+            <td>{{ forecast.date }}</td>
+            <td>{{ forecast.temperatureC }}</td>
+            <td>{{ forecast.temperatureF }}</td>
+            <td>{{ forecast.summary }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="mt-4 mr-auto md:mt-0 md:mr-0">
-        <a
-          target="_blank"
-          href="https://www.primefaces.org/primeblocks-ng"
-          class="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised"
-        >
-          Get Started
-        </a>
-      </div>
-    </div>-->
+    </div>
   </div>
 </div>

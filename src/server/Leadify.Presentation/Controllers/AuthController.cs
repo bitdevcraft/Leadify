@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;
 
-public class UserController(ISender sender) : ApiController(sender)
+public class AuthController(ISender sender) : ApiController(sender)
 {
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)

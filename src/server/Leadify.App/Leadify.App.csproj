@@ -8,7 +8,7 @@
 		<!-- SPA  -->
 		<SpaRoot>..\..\client\Leadify.Client</SpaRoot>
 		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
-		<SpaProxyServerUrl>https://localhost:5000</SpaProxyServerUrl>
+		<SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
 
 		<!-- Configure code analysis. -->
 		<AnalysisLevel>latest</AnalysisLevel>

@@ -1,11 +1,12 @@
+using Leadify.Presentation.Abstraction;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Leadify.Presentation.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+
+public class WeatherForecastController(ISender sender) : ApiController(sender)
 {
     private static readonly string[] Summaries = new[]
     {
@@ -21,14 +22,13 @@ public class WeatherForecastController : ControllerBase
         "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger) => _logger = logger;
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet()]
 #pragma warning disable CA5394 // Do not use insecure randomness
-    public static IEnumerable<WeatherForecast> Get() =>
-        Enumerable
+    public Task<IActionResult> Get ()
+    {
+       WeatherForecast[] result =  Enumerable
             .Range(1, 5)
             .Select(index => new WeatherForecast
             {
@@ -37,5 +37,9 @@ public class WeatherForecastController : ControllerBase
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+       
+       return Task.FromResult<IActionResult>(Ok(result));
+    } 
+        
 #pragma warning restore CA5394 // Do not use insecure randomness
 }
