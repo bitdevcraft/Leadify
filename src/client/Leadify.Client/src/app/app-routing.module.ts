@@ -5,14 +5,16 @@ import {
   RouterModule,
   withInMemoryScrolling,
 } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
-import { AppLayoutComponent } from './layout/app.layout.component';
+import {NgModule} from '@angular/core';
+import {NotfoundComponent} from './demo/components/notfound/notfound.component';
+import {AppLayoutComponent} from './layout/app.layout.component';
+import {authGuard} from "./crm/components/auth/auth.guard";
 
 export const routes = [
   {
     path: '',
     component: AppLayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -51,17 +53,21 @@ export const routes = [
     ],
   },
   {
-    path: 'auth',
+    path: 'demo-auth',
     loadChildren: () => import('./demo/components/auth/auth.module').then((m) => m.AuthModule),
+  }, {
+    path: 'auth',
+    loadChildren: () => import('./crm/components/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'landing',
     loadChildren: () =>
       import('./demo/components/landing/landing.module').then((m) => m.LandingModule),
   },
-  { path: 'notfound', component: NotfoundComponent },
-  { path: '**', redirectTo: '/notfound' },
+  {path: 'notfound', component: NotfoundComponent},
+  {path: '**', redirectTo: '/notfound'},
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
@@ -72,7 +78,8 @@ export const routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
 
 const scrollConfig: ExtraOptions = {
   scrollPositionRestoration: 'enabled',

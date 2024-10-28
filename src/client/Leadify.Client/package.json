@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start" : "run-script-os",
+    "start": "run-script-os",
     "http": "ng serve --host=127.0.0.1",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -31,7 +31,10 @@
     "@fullcalendar/daygrid": "^6.0.3",
     "@fullcalendar/interaction": "^6.0.3",
     "@fullcalendar/timegrid": "^6.0.3",
+    "@ng-idle/core": "^16.0.0",
+    "@ng-idle/keepalive": "^16.0.0",
     "chart.js": "^3.3.2",
+    "jest-editor-support": "*",
     "primeflex": "^3.3.1",
     "primeicons": "6.0.1",
     "primeng": "17.2.0",
@@ -40,8 +43,7 @@
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "jest-editor-support": "*"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.10",

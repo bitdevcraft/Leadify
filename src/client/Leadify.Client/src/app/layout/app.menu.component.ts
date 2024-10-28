@@ -21,6 +21,14 @@ export class AppMenuComponent implements OnInit {
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }],
       },
       {
+        label: 'Auth',
+        items: [
+          {
+            label: 'Login', icon: 'pi pi-fw pi-login', routerLink: ['/auth/login']
+          }
+        ]
+      },
+      {
         label: 'UI Components',
         items: [
           { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
@@ -95,17 +103,17 @@ export class AppMenuComponent implements OnInit {
               {
                 label: 'Login',
                 icon: 'pi pi-fw pi-sign-in',
-                routerLink: ['/auth/login'],
+                routerLink: ['/demo-auth/login'],
               },
               {
                 label: 'Error',
                 icon: 'pi pi-fw pi-times-circle',
-                routerLink: ['/auth/error'],
+                routerLink: ['/demo-auth/error'],
               },
               {
                 label: 'Access Denied',
                 icon: 'pi pi-fw pi-lock',
-                routerLink: ['/auth/access'],
+                routerLink: ['/demo-auth/access'],
               },
             ],
           },
