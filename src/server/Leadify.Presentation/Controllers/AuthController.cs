@@ -14,12 +14,7 @@ public class AuthController(ISender sender) : ApiController(sender)
         var query = new RegisterCommand(request.Email, request.Username, request.Password);
         Domain.Shared.Result<Unit> result = await _sender.Send(query);
 
-        if (result.IsFailure)
-        {
-            return HandleFailure(result);
-        }
-
-        return Ok();
+        return result.IsFailure ? HandleFailure(result) : Ok();
     }
 
     [HttpPost("login")]
@@ -28,11 +23,6 @@ public class AuthController(ISender sender) : ApiController(sender)
         var query = new LoginCommand(request.Username, request.Password);
         Domain.Shared.Result<LoginResponse> result = await _sender.Send(query);
 
-        if (result.IsFailure)
-        {
-            return HandleFailure(result);
-        }
-
-        return Ok(result.Value);
+        return result.IsFailure ? HandleFailure(result) : Ok(result.Value);
     }
 }
