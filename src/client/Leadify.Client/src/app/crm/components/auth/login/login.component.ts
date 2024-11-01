@@ -1,12 +1,11 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {LayoutService} from 'src/app/layout/service/app.layout.service';
-import {Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {CheckboxModule} from 'primeng/checkbox';
 import {FormsModule} from '@angular/forms';
 import {PasswordModule} from 'primeng/password';
 import {InputTextModule} from 'primeng/inputtext';
-import {HttpClient} from '@angular/common/http';
 import {CommonModule, NgIf} from '@angular/common';
 import {AuthService} from "../auth.service";
 
@@ -26,19 +25,29 @@ import {AuthService} from "../auth.service";
   ],
   standalone: true,
   imports: [InputTextModule, PasswordModule, FormsModule, CheckboxModule, ButtonModule, RouterLink, CommonModule],
-})
-export class LoginComponent {
-  valCheck: string[] = ['remember'];
 
+})
+export class LoginComponent implements OnInit {
+  valCheck: string[] = ['remember'];
   password!: string;
   username!: string;
+  returnUrl: string;
 
-  constructor(public layoutService: LayoutService, private authService: AuthService) {
+  constructor(public layoutService: LayoutService,
+              private authService: AuthService,
+              private route: ActivatedRoute
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+    if (this.returnUrl === '/') {
+      this.authService.logout();
+    }
   }
 
   login() {
-    this.authService.login({username: this.username, password: this.password});
+    this.authService.login({username: this.username, password: this.password}, this.returnUrl);
   }
-
-
 }
