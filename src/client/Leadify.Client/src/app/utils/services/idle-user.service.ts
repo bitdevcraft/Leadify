@@ -19,7 +19,6 @@ export class IdleUserService {
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     this._idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    console.log(this._idle);
 
     window.addEventListener('storage', (event) => {
       if (event.key === 'idleState' && event.newValue === 'Started') {

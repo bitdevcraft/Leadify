@@ -13,8 +13,11 @@ import {CustomerService} from './app/demo/service/customer.service';
 import {CountryService} from './app/demo/service/country.service';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors} from '@angular/common/http';
 import {IdleUserService} from "./app/utils/services/idle-user.service";
+import {headerInterceptor} from "./app/crm/api/interceptor/header.interceptor";
+import {errorInterceptor} from "./app/crm/api/interceptor/error.interceptor";
+import {loggingInterceptor} from "./app/crm/api/interceptor/logging.interceptor";
 
 if (environment.production) {
   enableProdMode();
@@ -32,6 +35,10 @@ bootstrapApplication(AppComponent, {
     NodeService,
     PhotoService,
     ProductService,
-    IdleUserService
+    IdleUserService,
+    provideHttpClient(
+      // registering interceptors
+      withInterceptors([headerInterceptor, loggingInterceptor, errorInterceptor]),
+    ),
   ],
 }).catch((err) => console.error(err));

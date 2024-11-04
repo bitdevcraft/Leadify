@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MenuItem, SharedModule } from 'primeng/api';
-import { Product } from '../../api/product';
-import { ProductService } from '../../service/product.service';
-import { debounceTime, Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { ChartModule } from 'primeng/chart';
-import { MenuModule } from 'primeng/menu';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
-import { CommonModule, CurrencyPipe, NgStyle } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MenuItem, SharedModule} from 'primeng/api';
+import {Product} from '../../api/product';
+import {ProductService} from '../../service/product.service';
+import {debounceTime, Subscription} from 'rxjs';
+import {LayoutService} from 'src/app/layout/service/app.layout.service';
+import {ChartModule} from 'primeng/chart';
+import {MenuModule} from 'primeng/menu';
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+import {CommonModule, CurrencyPipe, NgStyle} from '@angular/common';
+import {HttpClient} from '@angular/common/http';
 
 interface WeatherForecast {
   date: string;
@@ -17,6 +17,7 @@ interface WeatherForecast {
   temperatureF: number;
   summary: string;
 }
+
 @Component({
   templateUrl: './dashboard.component.html',
   standalone: true,
@@ -54,6 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(25))
       .subscribe((config) => {
         this.initChart();
+        this.getForecasts();
       });
   }
 
@@ -62,8 +64,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.productService.getProductsSmall().then((data) => (this.products = data));
 
     this.items = [
-      { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-      { label: 'Remove', icon: 'pi pi-fw pi-minus' },
+      {label: 'Add New', icon: 'pi pi-fw pi-plus'},
+      {label: 'Remove', icon: 'pi pi-fw pi-minus'},
     ];
 
     this.getForecasts();

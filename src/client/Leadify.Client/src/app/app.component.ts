@@ -40,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.primengConfig.ripple = true;
 
     this.subscription.push(this.idleUserService.idleStatus$.subscribe(status => {
       console.log('@@@', status)
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.authService.logout();
       }
     }));
+
     this.subscription.push(this.authService.isLoggedIn$.subscribe(status => {
       if (status) {
         console.log('@@@ User has Logged In')
@@ -57,64 +59,8 @@ export class AppComponent implements OnInit, OnDestroy {
         window.localStorage.setItem('loggedIn', 'true');
       }
     }));
-
-    this.primengConfig.ripple = true;
-
-    // //It will call when user is idle, and it shows the message 'Timeout!'
-    // this.idleUserService.idle.onTimeout.subscribe(() => {
-    //   this.idleUserService.updateIdleStatus(IdleMessages.IDLE_TIMEOUT);
-    // });
-    //
-    // this.idleUserService.idle.onIdleStart.subscribe(() => {
-    //   this.idleUserService.updateIdleStatus(IdleMessages.IDLE_ENDED);
-    //
-    // });
-    //
-    // this.idleUserService.idle.onInterrupt.subscribe(() => {
-    //   const message = IdleMessages.IDLE_INTERRUPTED;
-    //   this.idleUserService.updateIdleStatus(IdleMessages.IDLE_INTERRUPTED);
-    //
-    //   this.cd.detectChanges();
-    //   localStorage.setItem('idleState', IdleStatus.IDLE_INTERRUPTED);
-    // });
-    //
-    // this.idleUserService.idle.onIdleEnd.subscribe(() => {
-    //   const message = IdleMessages.IDLE_END;
-    //   this.idleUserService.updateIdleStatus(IdleMessages.IDLE_END);
-    //
-    //   localStorage.setItem('idleState', IdleStatus.IDLE_USER_ACTIVE);
-    //   this.cd.detectChanges();
-    // });
-    //
-    // this.idleUserService.idle.onTimeoutWarning.subscribe((countdown) => {
-    //   const message = IdleMessages.IDLE_TIMEOUT_WARNING.replace(
-    //     '%time%',
-    //     countdown.toString()
-    //   );
-    //
-    //   this.idleUserService.updateIdleStatus(message);
-    //   //'You will time out in ' + countdown + ' seconds!';
-    //   localStorage.setItem('idleState', IdleStatus.IDLE_TIMEOUT_STARTED);
-    //   this.cd.detectChanges();
-    // });
-
-    // Set keepalive interval to 15 seconds
+    
     this.keepalive.interval(10); //15
-
-    // Start watching for idle user
-    // this.idleUserService.startWatching();
-
-    // // Handle idle user
-    // this.idleUserService.idle.onTimeout.subscribe(() => {
-    //   this.idleUserService.idle.clearInterrupts();
-    //   const message = IdleMessages.IDLE_TIMEOUTPUT_MESSAGE;
-    //
-    //   this.idleUserService.updateIdleStatus(IdleMessages.IDLE_TIMEOUTPUT_MESSAGE);
-    //
-    //   // Perform necessary actions, such as logging the user out
-    //   this.authService.logout();
-    //   this.cd.detectChanges();
-    // });
   }
 
   reset() {
