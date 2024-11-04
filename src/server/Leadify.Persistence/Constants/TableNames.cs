@@ -1,4 +1,6 @@
-﻿namespace Leadify.Persistence.Constants;
+﻿// ReSharper disable InconsistentNaming
+
+namespace Leadify.Persistence.Constants;
 
 internal static class TableNames
 {
@@ -10,4 +12,5 @@ internal static class TableNames
     internal const string SysUserRoles = nameof(SysUserRoles);
     internal const string SysPermissions = nameof(SysPermissions);
     internal const string SysRolePermissions = nameof(SysRolePermissions);
+    internal const string SysRefreshToken = nameof(SysRefreshToken);
 }

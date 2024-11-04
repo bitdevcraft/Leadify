@@ -11,6 +11,7 @@ public class User : IdentityUser<Ulid>
     }
 
     public virtual ICollection<UserRole>? UserRoles { get; set; }
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = [];
 }
 
 // TODO : Create a self referencing to have a hierarchy style
