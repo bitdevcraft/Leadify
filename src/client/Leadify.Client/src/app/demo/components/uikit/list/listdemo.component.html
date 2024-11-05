@@ -58,7 +58,7 @@
                 class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0"
               >
                 <span class="text-2xl font-semibold mb-2 align-self-center md:align-self-end"
-                  >${{ product.price }}</span
+                >${{ product.price }}</span
                 >
                 <p-button
                   icon="pi pi-shopping-cart"
@@ -67,8 +67,8 @@
                   styleClass="mb-2 p-button-sm"
                 ></p-button>
                 <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{
-                  product.inventoryStatus
-                }}</span>
+                    product.inventoryStatus
+                  }}</span>
               </div>
             </div>
           </div>
@@ -84,8 +84,8 @@
                     <span class="font-semibold">{{ product.category }}</span>
                   </div>
                   <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{
-                    product.inventoryStatus
-                  }}</span>
+                      product.inventoryStatus
+                    }}</span>
                 </div>
                 <div class="flex flex-column align-items-center text-center mb-3">
                   <img
@@ -131,6 +131,26 @@
       >
         <ng-template let-city pTemplate="item">
           <div>{{ city.name }}</div>
+        </ng-template>
+      </p-pickList>
+    </div>
+  </div>
+
+  <div class="col-12 xl:col-8">
+    <div class="card">
+      <h5>PickList</h5>
+      <p-pickList
+        [source]="sourceRoles"
+        [target]="targetRoles"
+        sourceHeader="From"
+        targetHeader="To"
+        [dragdrop]="true"
+        [responsive]="true"
+        [sourceStyle]="{ height: '250px' }"
+        [targetStyle]="{ height: '250px' }"
+      >
+        <ng-template let-role pTemplate="item">
+          <div>{{ role.name }}</div>
         </ng-template>
       </p-pickList>
     </div>

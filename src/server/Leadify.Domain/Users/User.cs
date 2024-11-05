@@ -10,8 +10,9 @@ public class User : IdentityUser<Ulid>
         SecurityStamp = Guid.NewGuid().ToString();
     }
 
-    public virtual ICollection<UserRole>? UserRoles { get; set; }
+    public virtual ICollection<UserRole> UserRoles { get; set; } = [];
     public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = [];
+    public virtual ICollection<UserActivity> UserActivities { get; set; } = [];
 }
 
 // TODO : Create a self referencing to have a hierarchy style

@@ -1,8 +1,8 @@
 export enum IdleUserTimes {
   //idle/Inactive Time in seconds
-  IDLE_TIME = 1800, //1800,
+  IDLE_TIME = 900, //1800,
   //Amount of time (in seconds) that idle dialog is shown until logout the user if not response is made.
-  TIMEOUT = 60, //60,
+  TIMEOUT = 15, //60,
 }
 
 export enum IdleMessages {

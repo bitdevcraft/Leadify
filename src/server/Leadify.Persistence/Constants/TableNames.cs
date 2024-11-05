@@ -12,5 +12,6 @@ internal static class TableNames
     internal const string SysUserRoles = nameof(SysUserRoles);
     internal const string SysPermissions = nameof(SysPermissions);
     internal const string SysRolePermissions = nameof(SysRolePermissions);
-    internal const string SysRefreshToken = nameof(SysRefreshToken);
+    internal const string SysRefreshTokens = nameof(SysRefreshTokens);
+    internal const string SysUserActivities = nameof(SysUserActivities);
 }

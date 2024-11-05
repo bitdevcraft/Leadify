@@ -39,7 +39,7 @@ public class LoginCommandHandler(
         string refreshToken = _refreshTokenProvider.GenerateRefreshToken();
         string token = _jwtProvider.Generate(user);
 
-        user.RefreshTokens.Add(new Domain.Users.RefreshToken { Token = refreshToken });
+        user.RefreshTokens.Add(new Domain.Users.RefreshToken { User = user, Token = refreshToken });
 
         await _userManager.UpdateAsync(user);
 

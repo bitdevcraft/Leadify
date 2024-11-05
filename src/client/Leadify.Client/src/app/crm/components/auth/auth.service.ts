@@ -27,22 +27,24 @@ export class AuthService {
   login(credentials: { username: string; password: string }, returnUrl: string) {
     this.http.post<userToken>('/api/auth/login', credentials).pipe(
       switchMap((response) => {
-        console.log('Pipe', response);
         this.token = response.token;
         localStorage.setItem('authToken', this.token);
         this.isAuthenticated.next(true);
-        this.router.navigateByUrl(returnUrl);
 
         return this.getIpAddress().pipe(map(response => {
-          console.log(response);
           return response;
-
-
         }));
-      })
+      }),
+      switchMap((response) => {
+        console.log("IP Address", response);
+        return this.loginActivity(response, "").pipe(response => {
+          return response;
+        })
+      }),
     ).subscribe(
       (data) => {
-        console.log("IP Address", data);
+        this.router.navigateByUrl(returnUrl);
+        console.log('Final', data)
       })
   }
 
@@ -50,7 +52,12 @@ export class AuthService {
     this.token = null;
     localStorage.removeItem('authToken');
     this.isAuthenticated.next(false);
-    this.router.navigate(['/auth/login'], {queryParams: {returnUrl: returnUrl}});
+    this.router.navigate(['/auth/login'], {
+      queryParams: {
+        returnUrl:
+          returnUrl === '/auth/login' ? '/' : returnUrl
+      }
+    });
   }
 
   getIpAddress(): Observable<string> {
@@ -60,5 +67,20 @@ export class AuthService {
         return response.ip
       })
     );
+  }
+
+  loginActivity(
+    ipAddress: string,
+    deviceInfo: string
+  ): Observable<any> {
+    return this.http.post('/api/auth/loginActivity', {ipAddress: ipAddress, deviceInfo: deviceInfo}).pipe(
+      map((response: any) => {
+        return response;
+      })
+    )
+  }
+
+  refreshAccessToken(): Observable<any> {
+    return this.http.post<any>(`/api/auth/refreshToken`, {});
   }
 }

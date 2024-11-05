@@ -16,5 +16,15 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .WithOne(e => e.User)
             .HasForeignKey(ur => ur.UserId)
             .IsRequired();
+
+        builder.HasMany(e => e.UserActivities)
+            .WithOne(e => e.User)
+            .HasForeignKey(ur => ur.UserId)
+            .IsRequired();
+
+        builder.HasMany(e => e.RefreshTokens)
+            .WithOne(e => e.User)
+            .HasForeignKey(ur => ur.UserId)
+            .IsRequired();
     }
 }

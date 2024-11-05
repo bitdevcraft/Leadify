@@ -5,14 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Leadify.Persistence.Configuration;
 
-internal sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
+public class UserActivityConfiguration : IEntityTypeConfiguration<UserActivity>
 {
-    public void Configure(EntityTypeBuilder<RefreshToken> builder)
+    public void Configure(EntityTypeBuilder<UserActivity> builder)
     {
-        builder.ToTable(TableNames.SysRefreshTokens);
-
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Expires);
+        builder.ToTable(TableNames.SysUserActivities);
     }
 }

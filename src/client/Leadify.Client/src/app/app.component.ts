@@ -46,20 +46,20 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log('@@@', status)
       if (status === IdleMessages.IDLE_TIMEOUT) {
         this.authService.logout();
+      } else if (status !== IdleMessages.IDLE_STARTED) {
+        this.cd.detectChanges();
       }
     }));
 
     this.subscription.push(this.authService.isLoggedIn$.subscribe(status => {
       if (status) {
         console.log('@@@ User has Logged In')
-        this.idleUserService.setInterrupts();
-        this.idleUserService.startWatching();
-        this.idleStatus = IdleMessages.IDLE_STARTED;
-        this.cd.detectChanges();
-        window.localStorage.setItem('loggedIn', 'true');
+        this.reset();
+      } else {
+        this.idleUserService.stopWatching();
       }
     }));
-    
+
     this.keepalive.interval(10); //15
   }
 

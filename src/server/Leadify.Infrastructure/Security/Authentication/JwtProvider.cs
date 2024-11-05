@@ -36,7 +36,7 @@ internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
             _options.Audience,
             claims,
             null,
-            DateTime.UtcNow.AddMinutes(10),
+            DateTime.UtcNow.AddMinutes(2),
             signingCredentials
         );
 

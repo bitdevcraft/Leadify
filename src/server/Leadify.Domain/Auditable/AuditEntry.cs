@@ -4,13 +4,12 @@ namespace Leadify.Domain.Auditable;
 
 public class AuditEntry
 {
-    public Ulid Id { get; set; }
-    public string? FieldName { get; set; }
+    public Ulid Id { get; init; }
+    public string? FieldName { get; init; }
 
-    public string? OldValue { get; set; }
-    public string? NewValue { get; set; }
+    public string? OldValue { get; init; }
+    public string? NewValue { get; init; }
 
-    [ForeignKey(nameof(Audit))]
-    public int AuditId { get; set; }
-    public Audit? Audit { get; set; }
+    [ForeignKey(nameof(Audit))] public int AuditId { get; init; }
+    public Audit? Audit { get; init; }
 }
