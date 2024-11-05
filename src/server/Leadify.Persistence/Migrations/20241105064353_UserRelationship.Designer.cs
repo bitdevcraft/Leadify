@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241105064353_UserRelationship")]
+    partial class UserRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -125,73 +128,73 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01JBY126ZJT15R33G9D1X35T1F",
+                            Id = "01JBXH1GWM2PJG4BD0X590MJRJ",
                             Name = "Permissions.Contacts.Create",
                             NormalizedName = "PERMISSIONS.CONTACTS.CREATE"
                         },
                         new
                         {
-                            Id = "01JBY126ZJCTMPQK5QM6JY1V8N",
+                            Id = "01JBXH1GWMAHVVM5FE1R6M8PEX",
                             Name = "Permissions.Contacts.View",
                             NormalizedName = "PERMISSIONS.CONTACTS.VIEW"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ2Z8VM64ZE2WX6P2N",
+                            Id = "01JBXH1GWMVRX78DVD1AG28N4G",
                             Name = "Permissions.Contacts.Edit",
                             NormalizedName = "PERMISSIONS.CONTACTS.EDIT"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ3367GDAP2QSSFAAZ",
+                            Id = "01JBXH1GWM6BVCBSHY9SJ41TXQ",
                             Name = "Permissions.Contacts.Delete",
                             NormalizedName = "PERMISSIONS.CONTACTS.DELETE"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ7JQJ94X1SGSHSH0R",
+                            Id = "01JBXH1GWMGWH3EPVNCCBGMYKQ",
                             Name = "Permissions.Users.Create",
                             NormalizedName = "PERMISSIONS.USERS.CREATE"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ4GTQEYDEJFMTGHR1",
+                            Id = "01JBXH1GWMTWP785GAR6TTYSP7",
                             Name = "Permissions.Users.View",
                             NormalizedName = "PERMISSIONS.USERS.VIEW"
                         },
                         new
                         {
-                            Id = "01JBY126ZJJT5KCEQKFVEVDTE3",
+                            Id = "01JBXH1GWMW8P4SHVAPFAM91BH",
                             Name = "Permissions.Users.Edit",
                             NormalizedName = "PERMISSIONS.USERS.EDIT"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ4TB69NH61BV05P53",
+                            Id = "01JBXH1GWMZHJV21XT10HP09GC",
                             Name = "Permissions.Users.Delete",
                             NormalizedName = "PERMISSIONS.USERS.DELETE"
                         },
                         new
                         {
-                            Id = "01JBY126ZJJS194ED0VYK6HV5G",
+                            Id = "01JBXH1GWMVR1TG9EN4434FBCK",
                             Name = "Permissions.Roles.Create",
                             NormalizedName = "PERMISSIONS.ROLES.CREATE"
                         },
                         new
                         {
-                            Id = "01JBY126ZJX8QCE38QMVZKAQCV",
+                            Id = "01JBXH1GWMA19EVZV3BFM7YS6K",
                             Name = "Permissions.Roles.View",
                             NormalizedName = "PERMISSIONS.ROLES.VIEW"
                         },
                         new
                         {
-                            Id = "01JBY126ZJP0K8YN3RTBS6J96V",
+                            Id = "01JBXH1GWMD53S15PM7RBNN4PM",
                             Name = "Permissions.Roles.Edit",
                             NormalizedName = "PERMISSIONS.ROLES.EDIT"
                         },
                         new
                         {
-                            Id = "01JBY126ZJ0RX1N980Y0XETMEK",
+                            Id = "01JBXH1GWMFY8PG40RZRKGA135",
                             Name = "Permissions.Roles.Delete",
                             NormalizedName = "PERMISSIONS.ROLES.DELETE"
                         });
@@ -204,9 +207,6 @@ namespace Leadify.Persistence.Migrations
 
                     b.Property<DateTime>("Expires")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("Revoked")
                         .HasColumnType("TEXT");
@@ -254,19 +254,19 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01JBY126ZK1R0MV4R81MYKQ45P",
+                            Id = "01JBXH1GWPF8PF4VNAGJS27MAX",
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01JBY126ZKAYAMG6E4YXM9DG47",
+                            Id = "01JBXH1GWPF7CMQTDGFZBGEASR",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01JBY126ZK2SCQYSBGBC7M7NNV",
+                            Id = "01JBXH1GWPXPQ03Y7CYD66DPZJ",
                             Name = "User",
                             NormalizedName = "USER"
                         });
