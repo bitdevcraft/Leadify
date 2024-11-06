@@ -14,4 +14,9 @@ internal static class TableNames
     internal const string SysRolePermissions = nameof(SysRolePermissions);
     internal const string SysRefreshTokens = nameof(SysRefreshTokens);
     internal const string SysUserActivities = nameof(SysUserActivities);
+
+
+    // Ng
+    internal const string NgFormLayouts = nameof(NgFormLayouts);
+    internal const string NgMenus = nameof(NgMenus);
 }

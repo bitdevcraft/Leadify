@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Leadify.Domain.ClientAppLayout;
@@ -11,22 +12,24 @@ public class NgMenu
 
     public string? RouterLinkArray { get; set; }
 
-    public string[] RouterLink
+    [NotMapped]
+    public string[]? RouterLink
     {
-        get => RouterLinkArray is null ? [] : RouterLinkArray.Split(';');
-        set => RouterLinkArray = string.Join(";", value.Select(p => p.ToString()).ToArray());
+        get => RouterLinkArray?.Split(';');
+        set => RouterLinkArray = value != null ? string.Join(";", value.Select(p => p.ToString()).ToArray()) : null;
     }
 
     public string? UrlArray { get; set; }
 
-    public string[] Url
+    [NotMapped]
+    public string[]? Url
     {
-        get => UrlArray is null ? [] : UrlArray.Split(';');
-        set => UrlArray = string.Join(";", value.Select(p => p.ToString()).ToArray());
+        get => UrlArray?.Split(';');
+        set => UrlArray = value != null ? string.Join(";", value.Select(p => p.ToString()).ToArray()) : null;
     }
 
     public NgMenu? Parent { get; set; }
     public Ulid? ParentId { get; set; }
 
-    public ICollection<NgMenu> Items { get; } = [];
+    public ICollection<NgMenu> Items { get; set; } = [];
 }
