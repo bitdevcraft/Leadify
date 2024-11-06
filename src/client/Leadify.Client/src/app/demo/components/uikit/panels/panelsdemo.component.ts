@@ -37,7 +37,11 @@ export class PanelsDemoComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Angular.io', icon: 'pi pi-external-link', url: 'http://angular.io' },
+      {
+        label: 'Angular.io',
+        icon: 'pi pi-external-link',
+        url: 'http://angular.io',
+      },
       { label: 'Theming', icon: 'pi pi-bookmark', routerLink: ['/theming'] },
     ];
 

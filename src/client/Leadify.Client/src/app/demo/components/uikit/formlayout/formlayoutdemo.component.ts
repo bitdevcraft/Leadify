@@ -8,7 +8,13 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   templateUrl: './formlayoutdemo.component.html',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, InputTextareaModule, DropdownModule, FormsModule],
+  imports: [
+    InputTextModule,
+    ButtonModule,
+    InputTextareaModule,
+    DropdownModule,
+    FormsModule,
+  ],
 })
 export class FormLayoutDemoComponent {
   selectedState: any = null;

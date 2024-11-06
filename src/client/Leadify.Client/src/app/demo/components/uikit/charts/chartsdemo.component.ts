@@ -45,7 +45,9 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
   initCharts() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const textColorSecondary = documentStyle.getPropertyValue(
+      '--text-color-secondary',
+    );
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.barData = {
@@ -215,7 +217,15 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
     };
 
     this.radarData = {
-      labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+      labels: [
+        'Eating',
+        'Drinking',
+        'Sleeping',
+        'Designing',
+        'Coding',
+        'Cycling',
+        'Running',
+      ],
       datasets: [
         {
           label: 'My First dataset',

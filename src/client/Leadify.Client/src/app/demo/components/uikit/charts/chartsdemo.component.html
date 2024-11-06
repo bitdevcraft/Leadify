@@ -12,7 +12,11 @@
 
     <div class="card flex flex-column align-items-center">
       <h5 class="text-left w-full">Polar Area Chart</h5>
-      <p-chart type="polarArea" [data]="polarData" [options]="polarOptions"></p-chart>
+      <p-chart
+        type="polarArea"
+        [data]="polarData"
+        [options]="polarOptions"
+      ></p-chart>
     </div>
   </div>
   <div class="col-12 lg:col-6">
@@ -23,12 +27,20 @@
 
     <div class="card flex flex-column align-items-center">
       <h5 class="text-left w-full">Doughnut Chart</h5>
-      <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
+      <p-chart
+        type="doughnut"
+        [data]="pieData"
+        [options]="pieOptions"
+      ></p-chart>
     </div>
 
     <div class="card flex flex-column align-items-center">
       <h5 class="text-left w-full">Radar Chart</h5>
-      <p-chart type="radar" [data]="radarData" [options]="radarOptions"></p-chart>
+      <p-chart
+        type="radar"
+        [data]="radarData"
+        [options]="radarOptions"
+      ></p-chart>
     </div>
   </div>
 </div>

@@ -6,8 +6,8 @@
   <h4>Getting Started</h4>
   <p>
     PrimeIcons use the <strong>pi pi-&#123;icon&#125;</strong> syntax such as
-    <strong>pi pi-check</strong>. A standalone icon can be displayed using an element such as
-    <i>i</i> or <i>span</i>
+    <strong>pi pi-check</strong>. A standalone icon can be displayed using an
+    element such as <i>i</i> or <i>span</i>
   </p>
 
   <pre class="app-code"><code>&lt;i class="pi pi-check"&gt;&lt;/i&gt;
@@ -19,7 +19,9 @@
   <h4>Size</h4>
   <p>Size of the icons can easily be changed using font-size property.</p>
 
-  <pre class="app-code"><code>&lt;i class="pi pi-check"&gt;&lt;/i&gt;</code></pre>
+  <pre
+    class="app-code"
+  ><code>&lt;i class="pi pi-check"&gt;&lt;/i&gt;</code></pre>
 
   <i class="pi pi-check"></i>
 
@@ -40,8 +42,11 @@
 
   <h4>List of Icons</h4>
   <p>
-    Here is the current list of PrimeIcons, more icons will be added periodically. You may also
-    <a class="text-primary hover:underline" href="https://github.com/primefaces/primeicons/issues"
+    Here is the current list of PrimeIcons, more icons will be added
+    periodically. You may also
+    <a
+      class="text-primary hover:underline"
+      href="https://github.com/primefaces/primeicons/issues"
       >request new icons</a
     >
     at the issue tracker.
@@ -57,7 +62,10 @@
   </div>
 
   <div class="grid text-center">
-    <div class="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5" *ngFor="let icon of filteredIcons">
+    <div
+      class="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5"
+      *ngFor="let icon of filteredIcons"
+    >
       <i class="text-2xl pi pi-{{ icon.properties.name }}"></i>
       <div>pi-{{ icon.properties.name }}</div>
     </div>

@@ -21,7 +21,9 @@ enum BlockView {
         <div class="block-actions">
           <a
             tabindex="0"
-            [ngClass]="{ 'block-action-active': blockView === BlockView.PREVIEW }"
+            [ngClass]="{
+              'block-action-active': blockView === BlockView.PREVIEW,
+            }"
             (click)="activateView($event, BlockView.PREVIEW)"
             ><span>Preview</span></a
           >

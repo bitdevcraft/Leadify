@@ -1,8 +1,8 @@
 <div class="card">
   <h5>Float Label</h5>
   <p>
-    All input text components support floating labels by adding (<mark>.p-float-label</mark>) to
-    wrapper class.
+    All input text components support floating labels by adding
+    (<mark>.p-float-label</mark>) to wrapper class.
   </p>
   <div class="grid p-fluid mt-3">
     <div class="field col-12 md:col-4">
@@ -51,13 +51,20 @@
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-inputMask inputId="inputmask" mask="99/99/9999" [(ngModel)]="value7"></p-inputMask>
+        <p-inputMask
+          inputId="inputmask"
+          mask="99/99/9999"
+          [(ngModel)]="value7"
+        ></p-inputMask>
         <label for="inputmask">InputMask</label>
       </span>
     </div>
     <div class="field col-12 md:col-4">
       <span class="p-float-label">
-        <p-inputNumber inputId="inputnumber" [(ngModel)]="value8"></p-inputNumber>
+        <p-inputNumber
+          inputId="inputnumber"
+          [(ngModel)]="value8"
+        ></p-inputNumber>
         <label for="inputnumber">InputNumber</label>
       </span>
     </div>
@@ -67,7 +74,12 @@
           <i class="pi pi-user"></i>
         </p-inputGroupAddon>
         <span class="p-float-label">
-          <input type="text" inputId="inputgroup" pInputText [(ngModel)]="value9" />
+          <input
+            type="text"
+            inputId="inputgroup"
+            pInputText
+            [(ngModel)]="value9"
+          />
           <label for="inputgroup">InputGroup</label>
         </span>
       </p-inputGroup>

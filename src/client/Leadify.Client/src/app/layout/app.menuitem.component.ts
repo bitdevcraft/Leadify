@@ -1,6 +1,24 @@
-import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from './app.menu.service';
@@ -13,7 +31,10 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
   selector: '[app-menuitem]',
   template: `
     <ng-container>
-      <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">
+      <div
+        *ngIf="root && item.visible !== false"
+        class="layout-menuitem-root-text"
+      >
         {{ item.label }}
       </div>
       <a
@@ -27,7 +48,10 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
       >
         <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
         <span class="layout-menuitem-text">{{ item.label }}</span>
-        <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+        <i
+          class="pi pi-fw pi-angle-down layout-submenu-toggler"
+          *ngIf="item.items"
+        ></i>
       </a>
       <a
         *ngIf="item.routerLink && !item.items && item.visible !== false"
@@ -56,10 +80,16 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
       >
         <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
         <span class="layout-menuitem-text">{{ item.label }}</span>
-        <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+        <i
+          class="pi pi-fw pi-angle-down layout-submenu-toggler"
+          *ngIf="item.items"
+        ></i>
       </a>
 
-      <ul *ngIf="item.items && item.visible !== false" [@children]="submenuAnimation">
+      <ul
+        *ngIf="item.items && item.visible !== false"
+        [@children]="submenuAnimation"
+      >
         <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
           <li
             app-menuitem
@@ -86,7 +116,10 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
           height: '*',
         }),
       ),
-      transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+      transition(
+        'collapsed <=> expanded',
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'),
+      ),
     ]),
   ],
   standalone: true,
@@ -115,18 +148,25 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     public router: Router,
     private menuService: MenuService,
   ) {
-    this.menuSourceSubscription = this.menuService.menuSource$.subscribe((value) => {
-      Promise.resolve(null).then(() => {
-        if (value.routeEvent) {
-          this.active =
-            value.key === this.key || value.key.startsWith(this.key + '-') ? true : false;
-        } else {
-          if (value.key !== this.key && !value.key.startsWith(this.key + '-')) {
-            this.active = false;
+    this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
+      (value) => {
+        Promise.resolve(null).then(() => {
+          if (value.routeEvent) {
+            this.active =
+              value.key === this.key || value.key.startsWith(this.key + '-')
+                ? true
+                : false;
+          } else {
+            if (
+              value.key !== this.key &&
+              !value.key.startsWith(this.key + '-')
+            ) {
+              this.active = false;
+            }
           }
-        }
-      });
-    });
+        });
+      },
+    );
 
     this.menuResetSubscription = this.menuService.resetSource$.subscribe(() => {
       this.active = false;
@@ -142,7 +182,9 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.key = this.parentKey ? this.parentKey + '-' + this.index : String(this.index);
+    this.key = this.parentKey
+      ? this.parentKey + '-' + this.index
+      : String(this.index);
 
     if (this.item.routerLink) {
       this.updateActiveStateFromRoute();

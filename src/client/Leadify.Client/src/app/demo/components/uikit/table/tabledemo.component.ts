@@ -88,11 +88,19 @@ export class TableDemoComponent implements OnInit {
       this.loading = false;
 
       // @ts-ignore
-      this.customers1.forEach((customer) => (customer.date = new Date(customer.date)));
+      this.customers1.forEach(
+        (customer) => (customer.date = new Date(customer.date)),
+      );
     });
-    this.customerService.getCustomersMedium().then((customers) => (this.customers2 = customers));
-    this.customerService.getCustomersLarge().then((customers) => (this.customers3 = customers));
-    this.productService.getProductsWithOrdersSmall().then((data) => (this.products = data));
+    this.customerService
+      .getCustomersMedium()
+      .then((customers) => (this.customers2 = customers));
+    this.customerService
+      .getCustomersLarge()
+      .then((customers) => (this.customers3 = customers));
+    this.productService
+      .getProductsWithOrdersSmall()
+      .then((data) => (this.products = data));
 
     this.representatives = [
       { name: 'Amy Elsner', image: 'amyelsner.png' },
@@ -156,7 +164,10 @@ export class TableDemoComponent implements OnInit {
   }
 
   formatCurrency(value: number) {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    return value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   }
 
   onGlobalFilter(table: Table, event: Event) {

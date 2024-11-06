@@ -59,7 +59,9 @@ export class OverlaysDemoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.productService.getProductsSmall().then((products) => (this.products = products));
+    this.productService
+      .getProductsSmall()
+      .then((products) => (this.products = products));
 
     this.images = [];
     this.images.push({
@@ -115,6 +117,9 @@ export class OverlaysDemoComponent implements OnInit {
   }
 
   formatCurrency(value: number) {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    return value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   }
 }

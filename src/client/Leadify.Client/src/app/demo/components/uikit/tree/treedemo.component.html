@@ -2,7 +2,11 @@
   <div class="col-12">
     <div class="card">
       <h5>Tree</h5>
-      <p-tree [value]="files1" selectionMode="checkbox" [(selection)]="selectedFiles1"></p-tree>
+      <p-tree
+        [value]="files1"
+        selectionMode="checkbox"
+        [(selection)]="selectedFiles1"
+      ></p-tree>
     </div>
   </div>
   <div class="col-12">
@@ -21,11 +25,22 @@
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+        <ng-template
+          pTemplate="body"
+          let-rowNode
+          let-rowData="rowData"
+          let-columns="columns"
+        >
           <tr>
             <td *ngFor="let col of columns; let i = index">
-              <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0"></p-treeTableToggler>
-              <p-treeTableCheckbox [value]="rowNode" *ngIf="i === 0"></p-treeTableCheckbox>
+              <p-treeTableToggler
+                [rowNode]="rowNode"
+                *ngIf="i === 0"
+              ></p-treeTableToggler>
+              <p-treeTableCheckbox
+                [value]="rowNode"
+                *ngIf="i === 0"
+              ></p-treeTableCheckbox>
               {{ rowData[col.field] }}
             </td>
           </tr>

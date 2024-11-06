@@ -5,10 +5,10 @@ import {
   RouterModule,
   withInMemoryScrolling,
 } from '@angular/router';
-import {NgModule} from '@angular/core';
-import {NotfoundComponent} from './demo/components/notfound/notfound.component';
-import {AppLayoutComponent} from './layout/app.layout.component';
-import {authGuard} from "./crm/components/auth/auth.guard";
+import { NgModule } from '@angular/core';
+import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { AppLayoutComponent } from './layout/app.layout.component';
+import { authGuard } from './crm/components/auth/auth.guard';
 
 export const routes = [
   {
@@ -19,17 +19,23 @@ export const routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./demo/components/dashboard/dashboard.module').then((m) => m.DashboardModule),
+          import('./demo/components/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule,
+          ),
       },
       {
         path: 'uikit',
         loadChildren: () =>
-          import('./demo/components/uikit/uikit.module').then((m) => m.UIkitModule),
+          import('./demo/components/uikit/uikit.module').then(
+            (m) => m.UIkitModule,
+          ),
       },
       {
         path: 'utilities',
         loadChildren: () =>
-          import('./demo/components/utilities/utilities.module').then((m) => m.UtilitiesModule),
+          import('./demo/components/utilities/utilities.module').then(
+            (m) => m.UtilitiesModule,
+          ),
       },
       {
         path: 'documentation',
@@ -48,24 +54,31 @@ export const routes = [
       {
         path: 'pages',
         loadChildren: () =>
-          import('./demo/components/pages/pages.module').then((m) => m.PagesModule),
+          import('./demo/components/pages/pages.module').then(
+            (m) => m.PagesModule,
+          ),
       },
     ],
   },
   {
     path: 'demo-auth',
-    loadChildren: () => import('./demo/components/auth/auth.module').then((m) => m.AuthModule),
-  }, {
+    loadChildren: () =>
+      import('./demo/components/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: 'auth',
-    loadChildren: () => import('./crm/components/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () =>
+      import('./crm/components/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'landing',
     loadChildren: () =>
-      import('./demo/components/landing/landing.module').then((m) => m.LandingModule),
+      import('./demo/components/landing/landing.module').then(
+        (m) => m.LandingModule,
+      ),
   },
-  {path: 'notfound', component: NotfoundComponent},
-  {path: '**', redirectTo: '/notfound'},
+  { path: 'notfound', component: NotfoundComponent },
+  { path: '**', redirectTo: '/notfound' },
 ];
 
 @NgModule({
@@ -78,8 +91,7 @@ export const routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
 
 const scrollConfig: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -87,6 +99,9 @@ const scrollConfig: ExtraOptions = {
   onSameUrlNavigation: 'reload',
 };
 
-const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling(scrollConfig);
+const inMemoryScrollingFeature: InMemoryScrollingFeature =
+  withInMemoryScrolling(scrollConfig);
 
-export const routingProviders = [provideRouter(routes, inMemoryScrollingFeature)];
+export const routingProviders = [
+  provideRouter(routes, inMemoryScrollingFeature),
+];

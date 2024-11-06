@@ -5,6 +5,11 @@ import { ChartModule } from 'primeng/chart';
 import { ChartsDemoComponent } from './chartsdemo.component';
 
 @NgModule({
-  imports: [CommonModule, ChartsDemoRoutingModule, ChartModule, ChartsDemoComponent],
+  imports: [
+    CommonModule,
+    ChartsDemoRoutingModule,
+    ChartModule,
+    ChartsDemoComponent,
+  ],
 })
 export class ChartsDemoModule {}

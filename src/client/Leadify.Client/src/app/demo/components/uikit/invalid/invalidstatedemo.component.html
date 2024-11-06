@@ -1,14 +1,19 @@
 <div class="card">
   <h5>Invalid State</h5>
   <p>
-    All form components have an invalid state style to display the validation errors when ng-invalid
-    ng-dirty combination is applied by Angular.
+    All form components have an invalid state style to display the validation
+    errors when ng-invalid ng-dirty combination is applied by Angular.
   </p>
   <div class="grid p-fluid">
     <div class="col-12 md:col-6">
       <div class="field mt-3">
         <label for="inputtext">InputText</label>
-        <input type="text" id="inputtext" pInputText class="ng-invalid ng-dirty" />
+        <input
+          type="text"
+          id="inputtext"
+          pInputText
+          class="ng-invalid ng-dirty"
+        />
       </div>
       <div class="field">
         <label for="autocomplete">AutoComplete</label>
@@ -32,11 +37,18 @@
       </div>
       <div class="field">
         <label for="chips">Chips</label>
-        <p-chips inputId="chips" [(ngModel)]="value3" class="ng-invalid ng-dirty"></p-chips>
+        <p-chips
+          inputId="chips"
+          [(ngModel)]="value3"
+          class="ng-invalid ng-dirty"
+        ></p-chips>
       </div>
       <div class="field">
         <label for="password">Password</label>
-        <p-password [(ngModel)]="value8" class="ng-invalid ng-dirty"></p-password>
+        <p-password
+          [(ngModel)]="value8"
+          class="ng-invalid ng-dirty"
+        ></p-password>
       </div>
     </div>
 

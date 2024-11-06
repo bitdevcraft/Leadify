@@ -51,7 +51,12 @@
         [columns]="cols"
         responsiveLayout="scroll"
         [rows]="10"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [globalFilterFields]="[
+          'name',
+          'country.name',
+          'representative.name',
+          'status',
+        ]"
         [paginator]="true"
         [rowsPerPageOptions]="[10, 20, 30]"
         [showCurrentPageReport]="true"
@@ -83,12 +88,22 @@
             <th style="width: 3rem">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="code">
+              Code <p-sortIcon field="code"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">
+              Name <p-sortIcon field="name"></p-sortIcon>
+            </th>
             <th>Image</th>
-            <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-            <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-            <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+            <th pSortableColumn="price">
+              Price <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th pSortableColumn="category">
+              Category <p-sortIcon field="category"></p-sortIcon>
+            </th>
+            <th pSortableColumn="rating">
+              Reviews <p-sortIcon field="rating"></p-sortIcon>
+            </th>
             <th pSortableColumn="inventoryStatus">
               Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
             </th>
@@ -127,14 +142,20 @@
             </td>
             <td style="width: 14%; min-width: 10rem">
               <span class="p-column-title">Reviews</span>
-              <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+              <p-rating
+                [ngModel]="product.rating"
+                [readonly]="true"
+                [cancel]="false"
+              ></p-rating>
             </td>
             <td style="width: 14%; min-width: 10rem">
               <span class="p-column-title">Status</span>
               <span
                 [class]="
                   'product-badge status-' +
-                  (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')
+                  (product.inventoryStatus
+                    ? product.inventoryStatus.toLowerCase()
+                    : '')
                 "
                 >{{ product.inventoryStatus }}</span
               >
@@ -215,12 +236,17 @@
             <ng-template pTemplate="selectedItem">
               <span
                 *ngIf="product && product.inventoryStatus"
-                [class]="'product-badge status-' + product.inventoryStatus.toString().toLowerCase()"
+                [class]="
+                  'product-badge status-' +
+                  product.inventoryStatus.toString().toLowerCase()
+                "
                 >{{ product.inventoryStatus }}</span
               >
             </ng-template>
             <ng-template let-option pTemplate="item">
-              <span [class]="'product-badge status-' + option.value">{{ option.label }}</span>
+              <span [class]="'product-badge status-' + option.value">{{
+                option.label
+              }}</span>
             </ng-template>
           </p-dropdown>
         </div>
@@ -280,7 +306,10 @@
           </div>
           <div class="field col">
             <label for="quantity">Quantity</label>
-            <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+            <p-inputNumber
+              id="quantity"
+              [(ngModel)]="product.quantity"
+            ></p-inputNumber>
           </div>
         </div>
       </ng-template>

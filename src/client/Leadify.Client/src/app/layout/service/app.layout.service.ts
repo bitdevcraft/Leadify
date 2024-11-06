@@ -63,7 +63,10 @@ export class LayoutService {
   }
 
   updateStyle(config: AppConfig) {
-    return config.theme !== this._config.theme || config.colorScheme !== this._config.colorScheme;
+    return (
+      config.theme !== this._config.theme ||
+      config.colorScheme !== this._config.colorScheme
+    );
   }
 
   onMenuToggle() {
@@ -75,7 +78,8 @@ export class LayoutService {
     }
 
     if (this.isDesktop()) {
-      this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
+      this.state.staticMenuDesktopInactive =
+        !this.state.staticMenuDesktopInactive;
     } else {
       this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
 

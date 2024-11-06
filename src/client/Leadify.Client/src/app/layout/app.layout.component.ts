@@ -37,50 +37,63 @@ export class AppLayoutComponent implements OnDestroy {
     public renderer: Renderer2,
     public router: Router,
   ) {
-    this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
-      if (!this.menuOutsideClickListener) {
-        this.menuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
-          const isOutsideClicked = !(
-            this.appSidebar.el.nativeElement.isSameNode(event.target) ||
-            this.appSidebar.el.nativeElement.contains(event.target) ||
-            this.appTopbar.menuButton.nativeElement.isSameNode(event.target) ||
-            this.appTopbar.menuButton.nativeElement.contains(event.target)
+    this.overlayMenuOpenSubscription =
+      this.layoutService.overlayOpen$.subscribe(() => {
+        if (!this.menuOutsideClickListener) {
+          this.menuOutsideClickListener = this.renderer.listen(
+            'document',
+            'click',
+            (event) => {
+              const isOutsideClicked = !(
+                this.appSidebar.el.nativeElement.isSameNode(event.target) ||
+                this.appSidebar.el.nativeElement.contains(event.target) ||
+                this.appTopbar.menuButton.nativeElement.isSameNode(
+                  event.target,
+                ) ||
+                this.appTopbar.menuButton.nativeElement.contains(event.target)
+              );
+
+              if (isOutsideClicked) {
+                this.hideMenu();
+              }
+            },
           );
+        }
 
-          if (isOutsideClicked) {
-            this.hideMenu();
-          }
-        });
-      }
+        if (!this.profileMenuOutsideClickListener) {
+          this.profileMenuOutsideClickListener = this.renderer.listen(
+            'document',
+            'click',
+            (event) => {
+              const isOutsideClicked = !(
+                this.appTopbar.menu.nativeElement.isSameNode(event.target) ||
+                this.appTopbar.menu.nativeElement.contains(event.target) ||
+                this.appTopbar.topbarMenuButton.nativeElement.isSameNode(
+                  event.target,
+                ) ||
+                this.appTopbar.topbarMenuButton.nativeElement.contains(
+                  event.target,
+                )
+              );
 
-      if (!this.profileMenuOutsideClickListener) {
-        this.profileMenuOutsideClickListener = this.renderer.listen(
-          'document',
-          'click',
-          (event) => {
-            const isOutsideClicked = !(
-              this.appTopbar.menu.nativeElement.isSameNode(event.target) ||
-              this.appTopbar.menu.nativeElement.contains(event.target) ||
-              this.appTopbar.topbarMenuButton.nativeElement.isSameNode(event.target) ||
-              this.appTopbar.topbarMenuButton.nativeElement.contains(event.target)
-            );
+              if (isOutsideClicked) {
+                this.hideProfileMenu();
+              }
+            },
+          );
+        }
 
-            if (isOutsideClicked) {
-              this.hideProfileMenu();
-            }
-          },
-        );
-      }
+        if (this.layoutService.state.staticMenuMobileActive) {
+          this.blockBodyScroll();
+        }
+      });
 
-      if (this.layoutService.state.staticMenuMobileActive) {
-        this.blockBodyScroll();
-      }
-    });
-
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      this.hideMenu();
-      this.hideProfileMenu();
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.hideMenu();
+        this.hideProfileMenu();
+      });
   }
 
   hideMenu() {
@@ -115,7 +128,10 @@ export class AppLayoutComponent implements OnDestroy {
       document.body.classList.remove('blocked-scroll');
     } else {
       document.body.className = document.body.className.replace(
-        new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'),
+        new RegExp(
+          '(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)',
+          'gi',
+        ),
         ' ',
       );
     }

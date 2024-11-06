@@ -7,10 +7,20 @@
           <input type="text" pInputText placeholder="Default" />
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-          <input type="text" pInputText placeholder="Disabled" [disabled]="true" />
+          <input
+            type="text"
+            pInputText
+            placeholder="Disabled"
+            [disabled]="true"
+          />
         </div>
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-          <input type="text" pInputText placeholder="Invalid" class="ng-dirty ng-invalid" />
+          <input
+            type="text"
+            pInputText
+            placeholder="Invalid"
+            class="ng-dirty ng-invalid"
+          />
         </div>
       </div>
 
@@ -44,7 +54,12 @@
       </span>
 
       <h5>Textarea</h5>
-      <textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
+      <textarea
+        rows="5"
+        cols="30"
+        placeholder="Your Message"
+        pInputTextarea
+      ></textarea>
 
       <h5>AutoComplete</h5>
       <p-autoComplete
@@ -60,7 +75,8 @@
       <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
 
       <h5>InputNumber</h5>
-      <p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100"> </p-inputNumber>
+      <p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100">
+      </p-inputNumber>
 
       <h5>Chips</h5>
       <p-chips></p-chips>
@@ -138,7 +154,12 @@
       <div class="grid formgrid">
         <div class="col-12 md:col-4">
           <div class="field-checkbox">
-            <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
+            <p-checkbox
+              name="group1"
+              value="New York"
+              [(ngModel)]="valCheck"
+              id="ny"
+            ></p-checkbox>
             <label for="ny">New York</label>
           </div>
         </div>
@@ -172,7 +193,11 @@
 
     <div class="card">
       <h5>Listbox</h5>
-      <p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true"></p-listbox>
+      <p-listbox
+        [options]="cities"
+        [(ngModel)]="selectedList"
+        [filter]="true"
+      ></p-listbox>
 
       <h5>Dropdown</h5>
       <p-dropdown

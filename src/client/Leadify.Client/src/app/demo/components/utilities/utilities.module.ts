@@ -5,6 +5,11 @@ import { UtilitiesRoutingModule } from './utilities-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-  imports: [CommonModule, UtilitiesRoutingModule, InputTextModule, IconsComponent],
+  imports: [
+    CommonModule,
+    UtilitiesRoutingModule,
+    InputTextModule,
+    IconsComponent,
+  ],
 })
 export class UtilitiesModule {}

@@ -19,7 +19,11 @@ export class FileDemoComponent {
       this.uploadedFiles.push(file);
     }
 
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'File Uploaded',
+    });
   }
 
   onBasicUpload() {

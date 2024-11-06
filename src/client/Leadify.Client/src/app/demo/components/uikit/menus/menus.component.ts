@@ -324,11 +324,19 @@ export class MenusComponent implements OnInit {
           [
             {
               label: 'Women',
-              items: [{ label: 'Women Item' }, { label: 'Women Item' }, { label: 'Women Item' }],
+              items: [
+                { label: 'Women Item' },
+                { label: 'Women Item' },
+                { label: 'Women Item' },
+              ],
             },
             {
               label: 'Men',
-              items: [{ label: 'Men Item' }, { label: 'Men Item' }, { label: 'Men Item' }],
+              items: [
+                { label: 'Men Item' },
+                { label: 'Men Item' },
+                { label: 'Men Item' },
+              ],
             },
           ],
           [
@@ -372,7 +380,11 @@ export class MenusComponent implements OnInit {
             },
             {
               label: 'Audio',
-              items: [{ label: 'Audio Item' }, { label: 'Audio Item' }, { label: 'Audio Item' }],
+              items: [
+                { label: 'Audio Item' },
+                { label: 'Audio Item' },
+                { label: 'Audio Item' },
+              ],
             },
           ],
           [
@@ -390,7 +402,10 @@ export class MenusComponent implements OnInit {
           [
             {
               label: 'Living Room',
-              items: [{ label: 'Living Room Item' }, { label: 'Living Room Item' }],
+              items: [
+                { label: 'Living Room Item' },
+                { label: 'Living Room Item' },
+              ],
             },
             {
               label: 'Kitchen',
@@ -424,7 +439,10 @@ export class MenusComponent implements OnInit {
           [
             {
               label: 'Basketball',
-              items: [{ label: 'Basketball Item' }, { label: 'Basketball Item' }],
+              items: [
+                { label: 'Basketball Item' },
+                { label: 'Basketball Item' },
+              ],
             },
             {
               label: 'Football',

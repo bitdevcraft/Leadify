@@ -16,7 +16,10 @@
   <div class="col-12">
     <div class="card card-w-title">
       <h5>Breadcrumb</h5>
-      <p-breadcrumb [model]="breadcrumbItems" [home]="{ icon: 'pi pi-home' }"></p-breadcrumb>
+      <p-breadcrumb
+        [model]="breadcrumbItems"
+        [home]="{ icon: 'pi pi-home' }"
+      ></p-breadcrumb>
     </div>
   </div>
 
@@ -27,7 +30,11 @@
         <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
 
         <h5>Steps</h5>
-        <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
+        <p-steps
+          [model]="routeItems"
+          styleClass="mt-5"
+          [readonly]="false"
+        ></p-steps>
       </div>
       <div class="col-12 md:col-4 mt-5 md:mt-0">
         <router-outlet></router-outlet>

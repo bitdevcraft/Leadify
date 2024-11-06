@@ -12,12 +12,13 @@
         [breakpoints]="{ '960px': '75vw' }"
       >
         <p class="line-height-3 m-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <ng-template pTemplate="footer">
           <button
@@ -31,7 +32,12 @@
       </p-dialog>
       <div class="grid">
         <div class="col-12">
-          <button (click)="display = true" pButton icon="pi pi-external-link" label="Show"></button>
+          <button
+            (click)="display = true"
+            pButton
+            icon="pi pi-external-link"
+            label="Show"
+          ></button>
         </div>
       </div>
     </div>
@@ -47,8 +53,16 @@
             (click)="op1.toggle($event)"
             class="p-button-success"
           ></button>
-          <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{ width: '450px' }">
-            <img src="assets/demo/images/nature/nature1.jpg" alt="Nature 1" style="width: 100%" />
+          <p-overlayPanel
+            #op1
+            [showCloseIcon]="true"
+            [style]="{ width: '450px' }"
+          >
+            <img
+              src="assets/demo/images/nature/nature1.jpg"
+              alt="Nature 1"
+              style="width: 100%"
+            />
           </p-overlayPanel>
         </div>
         <div>
@@ -59,7 +73,11 @@
             (click)="op2.toggle($event)"
             class="p-button-success"
           ></button>
-          <p-overlayPanel #op2 [showCloseIcon]="true" [style]="{ width: '450px' }">
+          <p-overlayPanel
+            #op2
+            [showCloseIcon]="true"
+            [style]="{ width: '450px' }"
+          >
             <ng-template pTemplate>
               <p-table
                 [value]="products"
@@ -136,19 +154,35 @@
         <h3 style="font-weight: normal">Left Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
+      <p-sidebar
+        [(visible)]="visibleSidebar2"
+        position="right"
+        [baseZIndex]="10000"
+      >
         <h3 style="font-weight: normal">Right Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar3" position="top" [baseZIndex]="10000">
+      <p-sidebar
+        [(visible)]="visibleSidebar3"
+        position="top"
+        [baseZIndex]="10000"
+      >
         <h3 style="font-weight: normal">Top Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar4" position="bottom" [baseZIndex]="10000">
+      <p-sidebar
+        [(visible)]="visibleSidebar4"
+        position="bottom"
+        [baseZIndex]="10000"
+      >
         <h3 style="font-weight: normal">Bottom Sidebar</h3>
       </p-sidebar>
 
-      <p-sidebar [(visible)]="visibleSidebar5" [fullScreen]="true" [baseZIndex]="10000">
+      <p-sidebar
+        [(visible)]="visibleSidebar5"
+        [fullScreen]="true"
+        [baseZIndex]="10000"
+      >
         <h3 style="font-weight: normal">Full Screen Sidebar</h3>
       </p-sidebar>
 
@@ -223,7 +257,12 @@
       <h5>ConfirmPopup</h5>
 
       <p-toast></p-toast>
-      <button (click)="confirm2($event)" pButton icon="pi pi-check" label="Confirm"></button>
+      <button
+        (click)="confirm2($event)"
+        pButton
+        icon="pi pi-check"
+        label="Confirm"
+      ></button>
       <p-confirmPopup key="confirm2"></p-confirmPopup>
     </div>
   </div>

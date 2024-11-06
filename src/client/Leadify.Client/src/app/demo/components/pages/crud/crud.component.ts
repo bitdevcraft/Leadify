@@ -109,7 +109,9 @@ export class CrudComponent implements OnInit {
 
   confirmDeleteSelected() {
     this.deleteProductsDialog = false;
-    this.products = this.products.filter((val) => !this.selectedProducts.includes(val));
+    this.products = this.products.filter(
+      (val) => !this.selectedProducts.includes(val),
+    );
     this.messageService.add({
       severity: 'success',
       summary: 'Successful',
@@ -189,7 +191,8 @@ export class CrudComponent implements OnInit {
 
   createId(): string {
     let id = '';
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (let i = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }

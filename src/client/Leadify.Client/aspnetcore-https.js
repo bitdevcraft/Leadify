@@ -11,7 +11,9 @@ const baseFolder =
 const certificateArg = process.argv
   .map((arg) => arg.match(/--name=(?<value>.+)/i))
   .filter(Boolean)[0];
-const certificateName = certificateArg ? certificateArg.groups.value : process.env.npm_package_name;
+const certificateName = certificateArg
+  ? certificateArg.groups.value
+  : process.env.npm_package_name;
 
 if (!certificateName) {
   console.error(
@@ -26,7 +28,15 @@ const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
   spawn(
     "dotnet",
-    ["dev-certs", "https", "--export-path", certFilePath, "--format", "Pem", "--no-password"],
+    [
+      "dev-certs",
+      "https",
+      "--export-path",
+      certFilePath,
+      "--format",
+      "Pem",
+      "--no-password",
+    ],
     { stdio: "inherit" },
   ).on("exit", (code) => process.exit(code));
 }

@@ -1,5 +1,5 @@
-import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
-import {catchError, throwError} from 'rxjs';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
@@ -14,10 +14,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       console.error(errorMessage);
       return throwError(() => {
         return {
-          error: new Error(errorMessage), status:
-          error.status
-        }
+          error: new Error(errorMessage),
+          status: error.status,
+        };
       });
-    })
+    }),
   );
 };

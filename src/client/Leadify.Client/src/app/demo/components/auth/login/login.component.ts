@@ -9,7 +9,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule, NgIf } from '@angular/common';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +23,15 @@ import { CommonModule, NgIf } from '@angular/common';
     `,
   ],
   standalone: true,
-  imports: [InputTextModule, PasswordModule, FormsModule, CheckboxModule, ButtonModule, RouterLink, CommonModule],
+  imports: [
+    InputTextModule,
+    PasswordModule,
+    FormsModule,
+    CheckboxModule,
+    ButtonModule,
+    RouterLink,
+    CommonModule,
+  ],
 })
 export class LoginComponent {
   valCheck: string[] = ['remember'];
@@ -32,22 +39,24 @@ export class LoginComponent {
   password!: string;
   username!: string;
 
-  constructor(public layoutService: LayoutService,private http: HttpClient) {}
+  constructor(
+    public layoutService: LayoutService,
+    private http: HttpClient,
+  ) {}
 
-  login(){
-    this.http.post<any>('/api/auth/login', {
-      username: this.username,
-      password: this.password,
-    }).subscribe(
-      (data) => {
-        console.log(data);
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
+  login() {
+    this.http
+      .post<any>('/api/auth/login', {
+        username: this.username,
+        password: this.password,
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
   }
-
-
 }

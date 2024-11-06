@@ -1,15 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MenuItem, SharedModule} from 'primeng/api';
-import {Product} from '../../api/product';
-import {ProductService} from '../../service/product.service';
-import {debounceTime, Subscription} from 'rxjs';
-import {LayoutService} from 'src/app/layout/service/app.layout.service';
-import {ChartModule} from 'primeng/chart';
-import {MenuModule} from 'primeng/menu';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {CommonModule, CurrencyPipe, NgStyle} from '@angular/common';
-import {HttpClient} from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MenuItem, SharedModule } from 'primeng/api';
+import { Product } from '../../api/product';
+import { ProductService } from '../../service/product.service';
+import { debounceTime, Subscription } from 'rxjs';
+import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { ChartModule } from 'primeng/chart';
+import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { CommonModule, CurrencyPipe, NgStyle } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 interface WeatherForecast {
   date: string;
@@ -29,7 +29,7 @@ interface WeatherForecast {
     MenuModule,
     ChartModule,
     CurrencyPipe,
-    CommonModule
+    CommonModule,
   ],
   providers: [ProductService],
 })
@@ -61,17 +61,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initChart();
-    this.productService.getProductsSmall().then((data) => (this.products = data));
+    this.productService
+      .getProductsSmall()
+      .then((data) => (this.products = data));
 
     this.items = [
-      {label: 'Add New', icon: 'pi pi-fw pi-plus'},
-      {label: 'Remove', icon: 'pi pi-fw pi-minus'},
+      { label: 'Add New', icon: 'pi pi-fw pi-plus' },
+      { label: 'Remove', icon: 'pi pi-fw pi-minus' },
     ];
 
     this.getForecasts();
-
   }
-
 
   getForecasts() {
     this.http.get<WeatherForecast[]>('/api/WeatherForecast').subscribe(
@@ -80,14 +80,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.error(error);
-      }
+      },
     );
   }
 
   initChart() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const textColorSecondary = documentStyle.getPropertyValue(
+      '--text-color-secondary',
+    );
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.chartData = {

@@ -10,7 +10,13 @@ import { ToastModule } from 'primeng/toast';
   templateUrl: './messagesdemo.component.html',
   providers: [MessageService],
   standalone: true,
-  imports: [ToastModule, ButtonModule, MessagesModule, InputTextModule, MessageModule],
+  imports: [
+    ToastModule,
+    ButtonModule,
+    MessagesModule,
+    InputTextModule,
+    MessageModule,
+  ],
 })
 export class MessagesDemoComponent {
   msgs: Message[] = [];
@@ -55,7 +61,11 @@ export class MessagesDemoComponent {
 
   showInfoViaMessages() {
     this.msgs = [];
-    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+    this.msgs.push({
+      severity: 'info',
+      summary: 'Info Message',
+      detail: 'PrimeNG rocks',
+    });
   }
 
   showWarnViaMessages() {
@@ -69,11 +79,19 @@ export class MessagesDemoComponent {
 
   showErrorViaMessages() {
     this.msgs = [];
-    this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
+    this.msgs.push({
+      severity: 'error',
+      summary: 'Error Message',
+      detail: 'Validation failed',
+    });
   }
 
   showSuccessViaMessages() {
     this.msgs = [];
-    this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    this.msgs.push({
+      severity: 'success',
+      summary: 'Success Message',
+      detail: 'Message sent',
+    });
   }
 }
