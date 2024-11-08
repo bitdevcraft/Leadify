@@ -22,17 +22,10 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
         {
             new NgMenu
             {
-                Label = "Dashboard",
-                Icon = "pi pi-fw pi-home",
-                RouterLinkArray = "/",
-                ParentId = null,
-            },
-            new NgMenu
-            {
                 Label = "Sales",
                 Icon = "pi pi-fw pi-wallet",
-                RouterLinkArray = "/",
                 ParentId = null,
+                Hierarchy = 1
             },
         };
 
@@ -45,29 +38,29 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
             {
                 Label = "Leads",
                 Icon = "pi pi-fw pi-id-card",
-                RouterLinkArray = "/",
-                ParentId = menus[1].Id,
+                ParentId = menus[0].Id,
+                Hierarchy = 0
             },
             new NgMenu
             {
                 Label = "Contacts",
                 Icon = "pi pi-fw pi-address-book",
-                RouterLinkArray = "/",
-                ParentId = menus[1].Id,
+                ParentId = menus[0].Id,
+                Hierarchy = 1
             },
             new NgMenu
             {
                 Label = "Accounts",
                 Icon = "pi pi-fw pi-building",
-                RouterLinkArray = "/",
-                ParentId = menus[1].Id,
+                ParentId = menus[0].Id,
+                Hierarchy = 2
             },
             new NgMenu
             {
                 Label = "Opportunities",
                 Icon = "pi pi-fw pi-bookmark",
-                RouterLinkArray = "/",
-                ParentId = menus[1].Id,
+                ParentId = menus[0].Id,
+                Hierarchy = 3
             },
         };
 
@@ -80,15 +73,17 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
             {
                 Label = "New Lead",
                 Icon = "pi pi-fw pi-plus",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Leads/new",
                 ParentId = sales[0].Id,
+                Hierarchy = 0
             },
             new NgMenu
             {
                 Label = "List View",
                 Icon = "pi pi-fw pi-list",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Leads/list-view",
                 ParentId = sales[0].Id,
+                Hierarchy = 1
             },
         };
 
@@ -101,15 +96,17 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
             {
                 Label = "New Contact",
                 Icon = "pi pi-fw pi-plus",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Contacts/new",
                 ParentId = sales[1].Id,
+                Hierarchy = 0
             },
             new NgMenu
             {
                 Label = "List View",
                 Icon = "pi pi-fw pi-list",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Contacts/list-view",
                 ParentId = sales[1].Id,
+                Hierarchy = 1
             },
         };
 
@@ -122,15 +119,17 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
             {
                 Label = "New Account",
                 Icon = "pi pi-fw pi-plus",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Accounts/new",
                 ParentId = sales[2].Id,
+                Hierarchy = 0
             },
             new NgMenu
             {
                 Label = "List View",
                 Icon = "pi pi-fw pi-list",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Accounts/list-view",
                 ParentId = sales[2].Id,
+                Hierarchy = 1
             },
         };
 
@@ -143,15 +142,17 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
             {
                 Label = "New Opportunity",
                 Icon = "pi pi-fw pi-plus",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Opportunities/new",
                 ParentId = sales[3].Id,
+                Hierarchy = 0
             },
             new NgMenu
             {
                 Label = "List View",
                 Icon = "pi pi-fw pi-list",
-                RouterLinkArray = "/",
+                RouterLinkArray = "/r/Opportunities/list-view",
                 ParentId = sales[3].Id,
+                Hierarchy = 1
             },
         };
 

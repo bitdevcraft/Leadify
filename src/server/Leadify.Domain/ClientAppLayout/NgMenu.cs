@@ -31,5 +31,7 @@ public class NgMenu
     public NgMenu? Parent { get; set; }
     public Ulid? ParentId { get; set; }
 
-    public ICollection<NgMenu> Items { get; set; } = [];
+    public ICollection<NgMenu>? Items { get; set; }
+
+    public int Hierarchy { get; set; }
 }

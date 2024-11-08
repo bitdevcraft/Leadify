@@ -19,16 +19,9 @@ internal sealed class RegisterContactCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        var contact = Contact.Create(
-            Ulid.NewUlid(),
-            request.Contact.Name,
-            request.Contact.Email,
-            request.Contact.Mobile,
-            request.Contact.Phone
-        );
-        _contactRepository.Add(contact);
+        _contactRepository.Add(request.Contact);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return contact.Id;
+        return request.Contact.Id;
     }
 }

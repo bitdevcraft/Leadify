@@ -21,25 +21,35 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-    private List<NgMenu> GetMenuTree()
+    private List<NgMenu>? GetMenuTree()
     {
         // Get all menus with their children
-        var allMenus = _dbContext.Set<NgMenu>().Include(menu => menu.Items).OrderBy(x => x.Id).ToList();
+        var allMenus = _dbContext.Set<NgMenu>()
+            .Include(menu => menu.Items)
+            .OrderBy(x => x.Hierarchy)
+            .ToList();
 
         // Build the menu tree
-        List<NgMenu> menuTree = BuildTree(allMenus, null);
+        List<NgMenu>? menuTree = BuildTree(allMenus, null);
         return menuTree;
     }
 
-    private static List<NgMenu> BuildTree(List<NgMenu> allMenus, Ulid? parentId) =>
-        allMenus
+    private static List<NgMenu>? BuildTree(List<NgMenu> allMenus, Ulid? parentId)
+    {
+        var menus = allMenus
             .Where(menu => menu.ParentId == parentId)
+            .OrderBy(menu => menu.Hierarchy)
             .Select(menu => new NgMenu
             {
                 Id = menu.Id,
                 Label = menu.Label,
                 Icon = menu.Icon,
+                RouterLinkArray = menu.RouterLinkArray,
+                UrlArray = menu.UrlArray,
                 Items = BuildTree(allMenus, menu.Id) // Recursive call to get children
             })
             .ToList();
+
+        return menus.Count != 0 ? menus : null;
+    }
 }

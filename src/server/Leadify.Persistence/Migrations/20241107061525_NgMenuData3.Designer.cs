@@ -3,6 +3,7 @@ using System;
 using Leadify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leadify.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241107061525_NgMenuData3")]
+    partial class NgMenuData3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -128,114 +131,127 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01JC56HW9TG69EH5NE70XNB0Z9",
-                            Hierarchy = 1,
-                            Icon = "pi pi-fw pi-wallet",
-                            Label = "Sales"
+                            Id = "01JC2M6TFV8PF1PR1JXP8W6R78",
+                            Hierarchy = 0,
+                            Icon = "pi pi-fw pi-home",
+                            Label = "Dashboard",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9T3489FCEGZCHS9J1P",
+                            Id = "01JC2M6TFVNNP31Z83BFY8X7ZE",
+                            Hierarchy = 1,
+                            Icon = "pi pi-fw pi-wallet",
+                            Label = "Sales",
+                            RouterLinkArray = "/"
+                        },
+                        new
+                        {
+                            Id = "01JC2M6TFVG8DPZN20G9T9PD15",
                             Hierarchy = 0,
                             Icon = "pi pi-fw pi-id-card",
                             Label = "Leads",
-                            ParentId = "01JC56HW9TG69EH5NE70XNB0Z9"
+                            ParentId = "01JC2M6TFVNNP31Z83BFY8X7ZE",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9T5AZ7Z100SMKJWJG7",
+                            Id = "01JC2M6TFVKVVC4ED2V4F7PZHC",
                             Hierarchy = 1,
                             Icon = "pi pi-fw pi-address-book",
                             Label = "Contacts",
-                            ParentId = "01JC56HW9TG69EH5NE70XNB0Z9"
+                            ParentId = "01JC2M6TFVNNP31Z83BFY8X7ZE",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9TM8D0FFT63DBVWNX4",
+                            Id = "01JC2M6TFVNT3GCB4F4KCA2EXP",
                             Hierarchy = 2,
                             Icon = "pi pi-fw pi-building",
                             Label = "Accounts",
-                            ParentId = "01JC56HW9TG69EH5NE70XNB0Z9"
+                            ParentId = "01JC2M6TFVNNP31Z83BFY8X7ZE",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9T34R0FMN659VAMMV8",
+                            Id = "01JC2M6TFVJ6HT8NXGGNMFZP3M",
                             Hierarchy = 3,
                             Icon = "pi pi-fw pi-bookmark",
                             Label = "Opportunities",
-                            ParentId = "01JC56HW9TG69EH5NE70XNB0Z9"
+                            ParentId = "01JC2M6TFVNNP31Z83BFY8X7ZE",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VDWVEZX8G2SP01HMJ",
+                            Id = "01JC2M6TFVCS4DPWYR4Z2CR0AD",
                             Hierarchy = 0,
                             Icon = "pi pi-fw pi-plus",
                             Label = "New Lead",
-                            ParentId = "01JC56HW9T3489FCEGZCHS9J1P",
-                            RouterLinkArray = "/r/Leads/new"
+                            ParentId = "01JC2M6TFVG8DPZN20G9T9PD15",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VDRVJWFRHD9FG3GSE",
+                            Id = "01JC2M6TFVJHQ0CFB21AZ4MA8D",
                             Hierarchy = 1,
                             Icon = "pi pi-fw pi-list",
                             Label = "List View",
-                            ParentId = "01JC56HW9T3489FCEGZCHS9J1P",
-                            RouterLinkArray = "/r/Leads/list-view"
+                            ParentId = "01JC2M6TFVG8DPZN20G9T9PD15",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VFBQN6XHC2DZ207FX",
+                            Id = "01JC2M6TFVB404Y71A6Z3XZ5BS",
                             Hierarchy = 0,
                             Icon = "pi pi-fw pi-plus",
                             Label = "New Contact",
-                            ParentId = "01JC56HW9T5AZ7Z100SMKJWJG7",
-                            RouterLinkArray = "/r/Contacts/new"
+                            ParentId = "01JC2M6TFVKVVC4ED2V4F7PZHC",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VFKA8KXCNMZTWK359",
+                            Id = "01JC2M6TFVT8MK5C5TPJA53WH2",
                             Hierarchy = 1,
                             Icon = "pi pi-fw pi-list",
                             Label = "List View",
-                            ParentId = "01JC56HW9T5AZ7Z100SMKJWJG7",
-                            RouterLinkArray = "/r/Contacts/list-view"
+                            ParentId = "01JC2M6TFVKVVC4ED2V4F7PZHC",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VJ637D0ZKPBP4CZ40",
+                            Id = "01JC2M6TFVCSC57DMRRWFH2750",
                             Hierarchy = 0,
                             Icon = "pi pi-fw pi-plus",
                             Label = "New Account",
-                            ParentId = "01JC56HW9TM8D0FFT63DBVWNX4",
-                            RouterLinkArray = "/r/Accounts/new"
+                            ParentId = "01JC2M6TFVNT3GCB4F4KCA2EXP",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9VDAGY05XTH0GRWM5Y",
+                            Id = "01JC2M6TFV3HZA831J2BQGKKMF",
                             Hierarchy = 1,
                             Icon = "pi pi-fw pi-list",
                             Label = "List View",
-                            ParentId = "01JC56HW9TM8D0FFT63DBVWNX4",
-                            RouterLinkArray = "/r/Accounts/list-view"
+                            ParentId = "01JC2M6TFVNT3GCB4F4KCA2EXP",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9V2CZWHN216SWGPJNR",
+                            Id = "01JC2M6TFVHF2CQT23W87CXE0Q",
                             Hierarchy = 0,
                             Icon = "pi pi-fw pi-plus",
                             Label = "New Opportunity",
-                            ParentId = "01JC56HW9T34R0FMN659VAMMV8",
-                            RouterLinkArray = "/r/Opportunities/new"
+                            ParentId = "01JC2M6TFVJ6HT8NXGGNMFZP3M",
+                            RouterLinkArray = "/"
                         },
                         new
                         {
-                            Id = "01JC56HW9V23JJD169A96CH1RX",
+                            Id = "01JC2M6TFVHNB8BBPPRP83Z8GP",
                             Hierarchy = 1,
                             Icon = "pi pi-fw pi-list",
                             Label = "List View",
-                            ParentId = "01JC56HW9T34R0FMN659VAMMV8",
-                            RouterLinkArray = "/r/Opportunities/list-view"
+                            ParentId = "01JC2M6TFVJ6HT8NXGGNMFZP3M",
+                            RouterLinkArray = "/"
                         });
                 });
 
@@ -251,14 +267,6 @@ namespace Leadify.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Mobile")
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
@@ -267,7 +275,7 @@ namespace Leadify.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(255)
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
@@ -277,53 +285,6 @@ namespace Leadify.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contacts", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "01JC56HW9P8G05BF26VEQCG9QY",
-                            CreatedOnUtc = new DateTime(2024, 11, 8, 6, 14, 29, 942, DateTimeKind.Utc).AddTicks(1312),
-                            Email = "john.doe@example.com",
-                            Mobile = "+123456789",
-                            Name = "John Doe",
-                            Phone = "+987654321"
-                        },
-                        new
-                        {
-                            Id = "01JC56HW9PKTD788EC5DYET43Q",
-                            CreatedOnUtc = new DateTime(2024, 11, 8, 6, 14, 29, 942, DateTimeKind.Utc).AddTicks(1316),
-                            Email = "jane.smith@example.com",
-                            Mobile = "+987654321",
-                            Name = "Jane Smith",
-                            Phone = "+123456789"
-                        },
-                        new
-                        {
-                            Id = "01JC56HW9P75TWVTBJVAE39M3K",
-                            CreatedOnUtc = new DateTime(2024, 11, 8, 6, 14, 29, 942, DateTimeKind.Utc).AddTicks(1319),
-                            Email = "alice.brown@example.com",
-                            Mobile = "+1029384756",
-                            Name = "Alice Brown",
-                            Phone = "+5647382910"
-                        },
-                        new
-                        {
-                            Id = "01JC56HW9P9A69XCC1M2YNTS2R",
-                            CreatedOnUtc = new DateTime(2024, 11, 8, 6, 14, 29, 942, DateTimeKind.Utc).AddTicks(1322),
-                            Email = "bob.johnson@example.com",
-                            Mobile = "+567890123",
-                            Name = "Bob Johnson",
-                            Phone = "+210987654"
-                        },
-                        new
-                        {
-                            Id = "01JC56HW9P45980GM105FPD1JN",
-                            CreatedOnUtc = new DateTime(2024, 11, 8, 6, 14, 29, 942, DateTimeKind.Utc).AddTicks(1324),
-                            Email = "charlie.davis@example.com",
-                            Mobile = "+789012345",
-                            Name = "Charlie Davis",
-                            Phone = "+321654987"
-                        });
                 });
 
             modelBuilder.Entity("Leadify.Domain.Users.Permission", b =>
@@ -354,73 +315,73 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01JC56HW9VXP99Z27Z0GDJE3YR",
+                            Id = "01JC2M6TFWYEP1KDEEXPTEHKM8",
                             Name = "Permissions.Contacts.Create",
                             NormalizedName = "PERMISSIONS.CONTACTS.CREATE"
                         },
                         new
                         {
-                            Id = "01JC56HW9VZHD6WWAHKXB24MH6",
+                            Id = "01JC2M6TFWGNSNT9BSPHZHYZG9",
                             Name = "Permissions.Contacts.View",
                             NormalizedName = "PERMISSIONS.CONTACTS.VIEW"
                         },
                         new
                         {
-                            Id = "01JC56HW9VHMSBEGBA48SPWHND",
+                            Id = "01JC2M6TFW33Z626NPG74H2DX3",
                             Name = "Permissions.Contacts.Edit",
                             NormalizedName = "PERMISSIONS.CONTACTS.EDIT"
                         },
                         new
                         {
-                            Id = "01JC56HW9VF8ZKQVDD3CDPPJSN",
+                            Id = "01JC2M6TFWEHVS4PT7BDTPGGK9",
                             Name = "Permissions.Contacts.Delete",
                             NormalizedName = "PERMISSIONS.CONTACTS.DELETE"
                         },
                         new
                         {
-                            Id = "01JC56HW9V0FEJTDCZ1C9SD7YB",
+                            Id = "01JC2M6TFWVFKXXY0A89SG4HP1",
                             Name = "Permissions.Users.Create",
                             NormalizedName = "PERMISSIONS.USERS.CREATE"
                         },
                         new
                         {
-                            Id = "01JC56HW9VFJGZ6H792DSDY6SF",
+                            Id = "01JC2M6TFWJMPAC1W1923R4NJS",
                             Name = "Permissions.Users.View",
                             NormalizedName = "PERMISSIONS.USERS.VIEW"
                         },
                         new
                         {
-                            Id = "01JC56HW9VXPC1N51QJJWJTMZG",
+                            Id = "01JC2M6TFWSKAXAHA1VQD2WTE5",
                             Name = "Permissions.Users.Edit",
                             NormalizedName = "PERMISSIONS.USERS.EDIT"
                         },
                         new
                         {
-                            Id = "01JC56HW9VTSKH020W4DXMC9GD",
+                            Id = "01JC2M6TFWG9F8V9JPD8YVNMCJ",
                             Name = "Permissions.Users.Delete",
                             NormalizedName = "PERMISSIONS.USERS.DELETE"
                         },
                         new
                         {
-                            Id = "01JC56HW9V2265405Q0A96JAXV",
+                            Id = "01JC2M6TFWZNH77NPZFEZSZGE2",
                             Name = "Permissions.Roles.Create",
                             NormalizedName = "PERMISSIONS.ROLES.CREATE"
                         },
                         new
                         {
-                            Id = "01JC56HW9VRTSAWW7C71P33JKA",
+                            Id = "01JC2M6TFWGKTSYD8H3R1JHEMD",
                             Name = "Permissions.Roles.View",
                             NormalizedName = "PERMISSIONS.ROLES.VIEW"
                         },
                         new
                         {
-                            Id = "01JC56HW9VQN6Z8E8JDFSWC475",
+                            Id = "01JC2M6TFWWAZMA8CQX1MYXC0K",
                             Name = "Permissions.Roles.Edit",
                             NormalizedName = "PERMISSIONS.ROLES.EDIT"
                         },
                         new
                         {
-                            Id = "01JC56HW9VJQ2D5G32W8EAK8EF",
+                            Id = "01JC2M6TFW0G00ATENGN3DXCRT",
                             Name = "Permissions.Roles.Delete",
                             NormalizedName = "PERMISSIONS.ROLES.DELETE"
                         });
@@ -483,19 +444,19 @@ namespace Leadify.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01JC56HW9WGRM36N1QYVYQGSD2",
+                            Id = "01JC2M6TFYE1DR3QJR81XG9AQX",
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01JC56HW9W2P1S3737M9K3MJ6R",
+                            Id = "01JC2M6TFYST2QZGZ3890CQCBP",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "01JC56HW9WZC0CA3FW455JFKQ9",
+                            Id = "01JC2M6TFYR7YWYBY2RKG1NS0F",
                             Name = "User",
                             NormalizedName = "USER"
                         });
