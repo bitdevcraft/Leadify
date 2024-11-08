@@ -58,6 +58,13 @@ export const routes = [
             (m) => m.PagesModule,
           ),
       },
+      {
+        path: 'r',
+        loadChildren: () =>
+          import('./crm/components/object/object.module').then(
+            (m) => m.ObjectModule,
+          ),
+      },
     ],
   },
   {
