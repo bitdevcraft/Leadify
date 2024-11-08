@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div class="mb-3">
+                <p-button
+                        icon="pi pi-plus"
+                        label="Expand all"
+                        (onClick)="expandAll()"
+                        class="mr-2"/>
+                <p-button
+                        icon="pi pi-minus"
+                        label="Collapse all"
+                        (onClick)="collapseAll()"/>
+            </div>
+            <p-tree [value]="menus" selectionMode="single"
+                    [(selection)]="selectedFile"
+                    [contextMenu]="cm"
+                    [draggableNodes]="true"
+                    [droppableNodes]="true"
+                    draggableScope="self"
+                    droppableScope="self"
+                    (onNodeDrop)="nodeDrop($event)"
+                    class="w-full md:w-30rem"/>
+            <p-toast/>
+        </div>
+        <p-contextMenu #cm [model]="items"/>
+    </div>
+
+    <p-dialog
+            [(visible)]="newMenuDialog"
+            [style]="{ width: '450px' }"
+            header="New Menu"
+            [modal]="true"
+            class="p-fluid"
+    >
+        {{ selectedFile?.label }}
+    </p-dialog>
+    
+    <p-dialog
+            [(visible)]="newDirectoryDialog"
+            [style]="{ width: '450px' }"
+            header="New Directory"
+            [modal]="true"
+            class="p-fluid"
+    >
+        {{ selectedFile?.label }}
+    </p-dialog>
+
+
+</div>

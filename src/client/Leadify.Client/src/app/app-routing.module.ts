@@ -65,6 +65,20 @@ export const routes = [
             (m) => m.ObjectModule,
           ),
       },
+      {
+        path: 'setup',
+        loadChildren: () =>
+          import('./crm/components/setup/setup.module').then(
+            (m) => m.SetupModule,
+          ),
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./crm/components/settings/settings.module').then(
+            (m) => m.SettingsModule,
+          ),
+      },
     ],
   },
   {

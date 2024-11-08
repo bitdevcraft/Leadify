@@ -11,9 +11,21 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
 {
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    public string GetRootNode() => JsonSerializer.Serialize(GetMenuTree(), s_writeOptions);
+    public string GetRootNode() => JsonSerializer.Serialize(GetMenuTree(), _sWriteOptions);
 
-    private static readonly JsonSerializerOptions s_writeOptions =
+    public string GetTreeNode() => JsonSerializer.Serialize(GetMenuTreeKey(), _sWriteOptions);
+
+    public void Add(NgMenu menu) => _dbContext.Set<NgMenu>().Add(menu);
+
+    public void Delete(NgMenu menu) => _dbContext.Set<NgMenu>().Remove(menu);
+
+    public void Update(NgMenu menu) => _dbContext.Set<NgMenu>().Update(menu);
+
+    public async Task<NgMenu?> GetByIdAsync(Ulid id, CancellationToken cancellationToken = default) =>
+        await _dbContext.Set<NgMenu>()
+            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+
+    private static readonly JsonSerializerOptions _sWriteOptions =
         new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -34,6 +46,19 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
         return menuTree;
     }
 
+    private List<NgMenu>? GetMenuTreeKey()
+    {
+        // Get all menus with their children
+        var allMenus = _dbContext.Set<NgMenu>()
+            .OrderBy(x => x.Hierarchy)
+            .ToList();
+
+
+        // Build the menu tree
+        List<NgMenu>? menuTree = BuildTreeKey(allMenus, null);
+        return menuTree;
+    }
+
     private static List<NgMenu>? BuildTree(List<NgMenu> allMenus, Ulid? parentId)
     {
         var menus = allMenus
@@ -47,6 +72,25 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
                 RouterLinkArray = menu.RouterLinkArray,
                 UrlArray = menu.UrlArray,
                 Items = BuildTree(allMenus, menu.Id) // Recursive call to get children
+            })
+            .ToList();
+
+        return menus.Count != 0 ? menus : null;
+    }
+
+    private static List<NgMenu>? BuildTreeKey(List<NgMenu> allMenus, Ulid? parentId)
+    {
+        var menus = allMenus
+            .Where(menu => menu.ParentId == parentId)
+            .OrderBy(menu => menu.Hierarchy)
+            .Select(menu => new NgMenu
+            {
+                Id = menu.Id,
+                Label = menu.Label,
+                Icon = menu.Icon,
+                RouterLinkArray = menu.RouterLinkArray,
+                UrlArray = menu.UrlArray,
+                Children = BuildTreeKey(allMenus, menu.Id) // Recursive call to get children
             })
             .ToList();
 

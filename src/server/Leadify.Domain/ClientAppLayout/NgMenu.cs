@@ -33,5 +33,9 @@ public class NgMenu
 
     public ICollection<NgMenu>? Items { get; set; }
 
+    [NotMapped] public ICollection<NgMenu>? Children { get; set; }
+    [NotMapped] public Ulid? Key => Id;
+    [NotMapped] public string? Data => Label;
+    [NotMapped] public bool Droppable => RouterLinkArray is null && UrlArray is null;
     public int Hierarchy { get; set; }
 }

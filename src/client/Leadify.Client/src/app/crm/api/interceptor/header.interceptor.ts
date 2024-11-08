@@ -41,6 +41,7 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
           }),
         );
       }
+      authService.logout(router.url);
       return of(error);
     }),
   );

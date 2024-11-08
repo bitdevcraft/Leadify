@@ -10,5 +10,7 @@
   <ItemGroup>
     <Folder Include="src\app\crm\api\interceptor\"/>
     <Folder Include="src\app\crm\components\"/>
+    <Folder Include="src\app\crm\components\setup\administrations\"/>
+    <Folder Include="src\app\crm\components\setup\settings\"/>
   </ItemGroup>
 </Project>

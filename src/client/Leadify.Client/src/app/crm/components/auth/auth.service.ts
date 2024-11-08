@@ -60,6 +60,7 @@ export class AuthService {
   logout(returnUrl: string = '/') {
     this.token = null;
     localStorage.removeItem('authToken');
+    localStorage.removeItem('menu');
     this.isAuthenticated.next(false);
     this.router.navigate(['/auth/login'], {
       queryParams: {
