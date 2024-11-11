@@ -11,5 +11,5 @@ public interface INgMenuRepository
     void Add(NgMenu menu);
     void Delete(NgMenu menu);
     void Update(NgMenu menu);
-    Task<NgMenu?> GetByIdAsync(Ulid id, CancellationToken cancellationToken);
+    Task<NgMenu?> GetByIdAsync(Ulid? id, CancellationToken cancellationToken);
 }

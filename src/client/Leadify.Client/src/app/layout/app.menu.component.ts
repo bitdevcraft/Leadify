@@ -13,27 +13,23 @@ import { MenuService } from './app.menu.service';
   standalone: true,
   imports: [NgFor, NgIf, AppMenuitemComponent],
 })
-export class AppMenuComponent implements OnInit, OnDestroy {
-  model: any[] = [];
-
-  subscription: Subscription;
+export class AppMenuComponent implements OnInit {
+  model: any[] = [
+    {
+      label: 'Home',
+      items: [
+        { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+      ],
+    },
+  ];
 
   constructor(
     public layoutService: LayoutService,
-    public menuService: MenuService,
     private authService: AuthService,
     private http: HttpClient,
   ) {}
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   ngOnInit() {
-    this.menuService.menuData$.subscribe((data) => {
-      this.model = data;
-    });
-
     const demoMenu = [
       {
         label: 'Demo Template',
@@ -284,7 +280,7 @@ export class AppMenuComponent implements OnInit, OnDestroy {
 
     this.model.push(...demoMenu);
 
-    this.subscription = this.authService.isLoggedIn$
+    this.authService.isLoggedIn$
       .pipe(
         switchMap((isLoggedIn: boolean) => {
           if (isLoggedIn)

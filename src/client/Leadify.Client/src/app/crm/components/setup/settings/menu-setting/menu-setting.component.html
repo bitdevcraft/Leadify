@@ -1,50 +1,142 @@
-<div class="grid">
-    <div class="col-12">
-        <div class="card">
-            <div class="mb-3">
-                <p-button
-                        icon="pi pi-plus"
-                        label="Expand all"
-                        (onClick)="expandAll()"
-                        class="mr-2"/>
-                <p-button
-                        icon="pi pi-minus"
-                        label="Collapse all"
-                        (onClick)="collapseAll()"/>
-            </div>
-            <p-tree [value]="menus" selectionMode="single"
-                    [(selection)]="selectedFile"
-                    [contextMenu]="cm"
-                    [draggableNodes]="true"
-                    [droppableNodes]="true"
-                    draggableScope="self"
-                    droppableScope="self"
-                    (onNodeDrop)="nodeDrop($event)"
-                    class="w-full md:w-30rem"/>
-            <p-toast/>
-        </div>
-        <p-contextMenu #cm [model]="items"/>
+<div class="grid" xmlns="http://www.w3.org/1999/html">
+  <div class="col-12">
+    <div class="card">
+      <div class="mb-3">
+        <p-buttonGroup>
+          <p-button
+            icon="pi pi-arrow-up-right-and-arrow-down-left-from-center"
+            (onClick)="expandAll()"
+            [outlined]="true"
+            severity="secondary"
+          />
+          <p-button
+            icon="pi pi-arrow-down-left-and-arrow-up-right-to-center"
+            (onClick)="collapseAll()"
+            [outlined]="true"
+            severity="secondary"
+          />
+        </p-buttonGroup>
+
+        <p-toggleButton
+          [(ngModel)]="draggable"
+          onLabel="Arrange On"
+          offLabel="Arrange Off"
+          class="ml-3"
+        />
+      </div>
+      <p-tree
+        [value]="menus"
+        selectionMode="single"
+        [(selection)]="selectedFile"
+        [contextMenu]="cm"
+        [draggableNodes]="draggable"
+        [droppableNodes]="true"
+        draggableScope="self"
+        droppableScope="self"
+        (onNodeDrop)="nodeDrop($event)"
+        [filter]="true"
+        filterPlaceholder="Find"
+        class="w-full md:w-30rem"
+      />
+      <p-toast/>
     </div>
+    <p-contextMenu #cm [model]="items"/>
+  </div>
 
-    <p-dialog
-            [(visible)]="newMenuDialog"
-            [style]="{ width: '450px' }"
-            header="New Menu"
-            [modal]="true"
-            class="p-fluid"
-    >
-        {{ selectedFile?.label }}
-    </p-dialog>
-    
-    <p-dialog
-            [(visible)]="newDirectoryDialog"
-            [style]="{ width: '450px' }"
-            header="New Directory"
-            [modal]="true"
-            class="p-fluid"
-    >
-        {{ selectedFile?.label }}
-    </p-dialog>
+  <p-dialog
+    [(visible)]="newMenuDialog"
+    [style]="{ width: '450px' }"
+    header="Create Menu"
+    [modal]="true"
+    class="p-fluid"
+    (onHide)="selectedIcon = undefined"
+  >
+    <h5 class="mb-6">Parent Directory: {{ selectedFile?.label }}</h5>
 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="field grid">
+        <label htmlFor="menuLabel" class="col-12 mb-2 md:col-2 md:mb-0">Label</label>
+        <div class="col-12 md:col-10">
+          <input pInputText id="menuLabel" type="text" formControlName="label"/>
+        </div>
+      </div>
+      <div class="field grid">
+        <label htmlFor="menuPath" class="col-12 mb-2 md:col-2 md:mb-0">Path</label>
+        <div class="col-12 md:col-10">
+          <input pInputText id="menuPath" type="text" formControlName="routerLink"/>
+        </div>
+      </div>
+
+      <div class="field grid mb-2">
+        <label htmlFor="menuIcon" class="col-12 mb-2 md:col-2 md:mb-0">Path</label>
+        <div class="col-12 md:col-10">
+          <p-dropdown
+            id="menuIcon"
+            formControlName="selectedIcon"
+            [(ngModel)]="selectedIcon"
+            overlayOptions="{baseZIndex:999}"
+            [options]="icons"
+            optionLabel="label"
+            [showClear]="true"
+            appendTo="body"
+            placeholder="Select a Icon">
+            <ng-template pTemplate="selectedItem">
+              <div class="flex align-items-center gap-2" *ngIf="selectedIcon">
+                <i [ngClass]="selectedIcon.value" class="pi pi-fw"></i>
+                <div>{{ selectedIcon.label }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-icon pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <i [ngClass]="icon.value" class="pi pi-fw"></i>
+                <span class="layout-menuitem-text">{{ icon.label }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+
+      </div>
+
+
+      <div class="flex justify-content-end gap-2">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          (onClick)="newMenuDialog = false"
+        />
+        <p-button label="Save" type="submit"/>
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-dialog
+    [(visible)]="newDirectoryDialog"
+    [style]="{ width: '450px' }"
+    header="Create Directory"
+    [modal]="true"
+    class="p-fluid"
+  >
+    <h5 class="mb-6">Parent Directory: {{ selectedFile?.label }}</h5>
+
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="field grid">
+        <label htmlFor="dirLabel" class="col-12 mb-2 md:col-2 md:mb-0">Label</label>
+        <div class="col-12 md:col-10">
+          <input pInputText id="dirLabel" type="text" formControlName="label"/>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end gap-2">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          (onClick)="newDirectoryDialog = false"
+        />
+        <p-button label="Save" type="submit"/>
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-confirmDialog/>
 
 </div>

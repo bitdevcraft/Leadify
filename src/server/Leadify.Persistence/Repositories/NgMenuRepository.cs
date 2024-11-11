@@ -21,7 +21,7 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
 
     public void Update(NgMenu menu) => _dbContext.Set<NgMenu>().Update(menu);
 
-    public async Task<NgMenu?> GetByIdAsync(Ulid id, CancellationToken cancellationToken = default) =>
+    public async Task<NgMenu?> GetByIdAsync(Ulid? id, CancellationToken cancellationToken = default) =>
         await _dbContext.Set<NgMenu>()
             .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 

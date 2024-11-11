@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import {
+  ConfirmationService,
   MenuItem,
   MessageService,
   SharedModule,
@@ -16,6 +17,20 @@ import { ToastModule } from 'primeng/toast';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { ulid } from 'ulid';
+import { ButtonGroupModule } from 'primeng/buttongroup';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MenuSettingService } from './menu-setting.service';
+import { MenuConfig } from '../../../../../layout/api/menu';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { IconsService } from '../../../../services/icons.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 interface MenuDetail extends TreeNode {
   id?: string;
@@ -24,6 +39,12 @@ interface MenuDetail extends TreeNode {
   target?: string;
   children?: MenuDetail[];
   label?: string;
+  hierarchy?: number;
+}
+
+interface DDOption {
+  label: string;
+  value: string;
 }
 
 @Component({
@@ -39,12 +60,22 @@ interface MenuDetail extends TreeNode {
     ToastModule,
     DialogModule,
     SelectButtonModule,
+    ButtonGroupModule,
+    ToggleButtonModule,
+    FormsModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    NgClass,
+    ConfirmDialogModule,
   ],
-  providers: [MessageService, TreeDragDropService],
+  providers: [MessageService, TreeDragDropService, ConfirmationService],
   templateUrl: './menu-setting.component.html',
   styleUrl: './menu-setting.component.scss',
 })
 export class MenuSettingComponent implements OnInit {
+  formGroup: FormGroup | undefined;
+
   menus: MenuDetail[] = [
     {
       label: 'App',
@@ -54,9 +85,13 @@ export class MenuSettingComponent implements OnInit {
     },
   ];
 
+  draggable: boolean = false;
+
   selectedFile!: MenuDetail | null;
 
   items!: MenuItem[];
+  icons: DDOption[] | undefined;
+  selectedIcon: DDOption | undefined;
 
   newMenuDialog: boolean = false;
   newDirectoryDialog: boolean = false;
@@ -70,12 +105,17 @@ export class MenuSettingComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private menuSettingService: MenuSettingService,
+    private iconService: IconsService,
+    private confirmationService: ConfirmationService,
   ) {}
 
   ngOnInit(): void {
     this.http.get<MenuDetail[]>('/api/app/menuTree').subscribe((data: any) => {
       this.menus[0].children = data;
     });
+
+    this.iconService.getIcons().then((data) => (this.icons = data));
 
     this.items = [
       {
@@ -104,9 +144,53 @@ export class MenuSettingComponent implements OnInit {
         label: 'Delete',
         icon: 'pi pi-trash',
         styleClass: 'p-error',
-        command: (event) => this.deleteMenu(this.selectedFile),
+        command: (event) => this.deleteConfirm(event as Event),
       },
     ];
+
+    this.formGroup = new FormGroup({
+      label: new FormControl<string>('Name'),
+      routerLink: new FormControl<string | null>(null),
+      selectedIcon: new FormControl<DDOption | null>(null),
+    });
+  }
+
+  onSubmit() {
+    if (this.formGroup.valid) {
+      const newId = ulid();
+
+      const link = this.newMenuDialog
+        ? [this.formGroup.value.routerLink ?? '/']
+        : null;
+
+      const newMenu: MenuDetail = {
+        label: this.formGroup.value.label,
+        id: newId,
+        key: newId,
+        icon: `pi pi-fw ${this.formGroup.value.selectedIcon.value}`,
+        routerLink: link,
+        droppable: this.newDirectoryDialog,
+        children: this.newDirectoryDialog ? [] : null,
+        hierarchy: this.selectedFile.children.length,
+      };
+
+      this.menuSettingService
+        .newMenu(this.selectedFile.id, newMenu as MenuConfig)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.selectedFile.children.push(newMenu);
+            this.selectedFile.expanded = true;
+          },
+          (error) => {
+            console.log('error new menu', error);
+          },
+        );
+    }
+
+    this.newMenuDialog = false;
+    this.newDirectoryDialog = false;
+    this.selectedIcon = undefined;
   }
 
   viewMenu(file: MenuDetail) {
@@ -134,14 +218,6 @@ export class MenuSettingComponent implements OnInit {
     }
 
     this.newMenuDialog = !this.newMenuDialog;
-    // const newId = ulid();
-    // file.children.push({
-    //   label: 'New Test',
-    //   id: newId,
-    //   key: newId,
-    // });
-    //
-    // file.expanded = true;
   }
 
   newDirectory(file: MenuDetail) {
@@ -158,34 +234,18 @@ export class MenuSettingComponent implements OnInit {
     }
 
     this.newDirectoryDialog = !this.newDirectoryDialog;
-    // const newId = ulid();
-    // file.children.push({
-    //   label: 'New Test',
-    //   id: newId,
-    //   key: newId,
-    // });
-    //
-    // file.expanded = true;
   }
 
   deleteMenu(file: MenuDetail) {
-    console.log(file);
-
-    if (file.children?.length > 0) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Directory has children',
-        detail: file.label,
-      });
-      return;
-    }
-    console.log('@@@ Id', file.id);
-
-    this.deleteLeafNode(this.menus, file.id);
-
-    console.log('Finished');
-
-    this.unselectFile();
+    this.menuSettingService.deleteMenu(file.id).subscribe(
+      (response) => {
+        this.deleteLeafNode(this.menus, file.id);
+        this.unselectFile();
+      },
+      (error) => {
+        console.error(error);
+      },
+    );
   }
 
   deleteLeafNode(menu: MenuDetail[], idToDelete: string): MenuDetail[] {
@@ -238,6 +298,33 @@ export class MenuSettingComponent implements OnInit {
       severity: 'info',
       summary: 'Node Drop',
       detail: event.dragNode.label,
+    });
+  }
+
+  deleteConfirm(event: Event) {
+    if (this.selectedFile.children?.length > 0) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Directory has existing items',
+        detail: this.selectedFile.label,
+      });
+      return;
+    }
+
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Do you want to delete this item "${this.selectedFile.label}"?`,
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+
+      accept: () => {
+        this.deleteMenu(this.selectedFile);
+      },
+      reject: () => {},
     });
   }
 }

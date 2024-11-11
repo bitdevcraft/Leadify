@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Leadify.Application.AppMenus.CreateNgMenu;
+using Leadify.Application.AppMenus.DeleteNgMenu;
 using Leadify.Application.AppMenus.GetNgMenu;
 using Leadify.Application.AppMenus.GetNgMenuTree;
 using Leadify.Domain.ClientAppLayout;
@@ -28,5 +30,23 @@ public class AppController(ISender sender) : ApiController(sender)
         Result<string> result = await _sender.Send(query);
 
         return result.IsFailure ? HandleFailure(result) : Ok(result.Value);
+    }
+
+    [HttpPost("newMenu")]
+    public async Task<IActionResult> CreateNgMenu(NgMenu menu)
+    {
+        var query = new CreateNgMenuCommand(menu);
+        Result result = await _sender.Send(query);
+
+        return result.IsFailure ? HandleFailure(result) : Ok();
+    }
+
+    [HttpPost("deleteMenu/{id}")]
+    public async Task<IActionResult> DeleteNgMenu(string id)
+    {
+        var query = new DeleteNgMenuCommand(id);
+        Result result = await _sender.Send(query);
+
+        return result.IsFailure ? HandleFailure(result) : Ok();
     }
 }

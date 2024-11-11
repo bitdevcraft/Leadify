@@ -39,7 +39,7 @@
     "jest-editor-support": "*",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primeng": "17.2.0",
+    "primeng": "^17.18.11",
     "prismjs": "^1.29.0",
     "quill": "^2.0.2",
     "run-script-os": "*",
