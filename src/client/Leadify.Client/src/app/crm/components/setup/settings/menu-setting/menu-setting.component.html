@@ -79,7 +79,10 @@
             optionLabel="label"
             [showClear]="true"
             appendTo="body"
-            placeholder="Select a Icon">
+            placeholder="Select a Icon"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+          >
             <ng-template pTemplate="selectedItem">
               <div class="flex align-items-center gap-2" *ngIf="selectedIcon">
                 <i [ngClass]="selectedIcon.value" class="pi pi-fw"></i>

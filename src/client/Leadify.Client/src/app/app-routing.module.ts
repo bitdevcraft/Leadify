@@ -72,13 +72,6 @@ export const routes = [
             (m) => m.SetupModule,
           ),
       },
-      {
-        path: 'settings',
-        loadChildren: () =>
-          import('./crm/components/settings/settings.module').then(
-            (m) => m.SettingsModule,
-          ),
-      },
     ],
   },
   {
