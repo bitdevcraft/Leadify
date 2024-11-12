@@ -1,0 +1,8 @@
+:host::ng-deep .label-required:before {
+  content: " * ";
+  color: red;
+}
+
+:host::ng-deep .label {
+  font-weight: bold;
+}

@@ -90,6 +90,7 @@ public class NgMenuRepository(ApplicationDbContext dbContext) : INgMenuRepositor
                 Icon = menu.Icon,
                 RouterLinkArray = menu.RouterLinkArray,
                 UrlArray = menu.UrlArray,
+                CanDelete = menu.CanDelete,
                 Children = BuildTreeKey(allMenus, menu.Id) // Recursive call to get children
             })
             .ToList();

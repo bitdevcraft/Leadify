@@ -12,7 +12,14 @@ const routes: Routes = [
   {
     path: 'user',
     loadComponent: () =>
-      import('./user/user.component').then((c) => c.UserComponent),
+      import('./users/user/user.component').then((c) => c.AppUserComponent),
+  },
+  {
+    path: 'user/new',
+    loadComponent: () =>
+      import('./users/create-user/create-user.component').then(
+        (c) => c.CreateUserComponent,
+      ),
   },
   {
     path: 'role',

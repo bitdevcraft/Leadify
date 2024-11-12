@@ -32,7 +32,8 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Label = "Setup",
                 Icon = "pi pi-fw pi-cog",
                 ParentId = null,
-                Hierarchy = 1
+                Hierarchy = 1,
+                CanDelete = false,
             },
         };
 
@@ -173,14 +174,16 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Label = "Administrations",
                 Icon = "pi pi-fw pi-users",
                 ParentId = menus[1].Id,
-                Hierarchy = 0
+                Hierarchy = 0,
+                CanDelete = false,
             },
             new NgMenu
             {
                 Label = "Settings",
                 Icon = "pi pi-fw pi-wrench",
                 ParentId = menus[1].Id,
-                Hierarchy = 1
+                Hierarchy = 1,
+                CanDelete = false,
             },
         };
 
@@ -194,7 +197,8 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Icon = "pi pi-fw",
                 ParentId = setup[0].Id,
                 RouterLinkArray = "/setup/administrations/permission",
-                Hierarchy = 0
+                Hierarchy = 0,
+                CanDelete = false,
             },
             new NgMenu
             {
@@ -202,7 +206,8 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Icon = "pi pi-fw ",
                 ParentId = setup[0].Id,
                 RouterLinkArray = "/setup/administrations/role",
-                Hierarchy = 1
+                Hierarchy = 1,
+                CanDelete = false,
             },
             new NgMenu
             {
@@ -210,7 +215,8 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Icon = "pi pi-fw ",
                 ParentId = setup[0].Id,
                 RouterLinkArray = "/setup/administrations/user",
-                Hierarchy = 2
+                Hierarchy = 2,
+                CanDelete = false,
             },
         };
 
@@ -224,7 +230,8 @@ public class NgMenuConfiguration : IEntityTypeConfiguration<NgMenu>
                 Icon = "pi pi-fw",
                 ParentId = setup[1].Id,
                 RouterLinkArray = "/setup/settings/menu",
-                Hierarchy = 0
+                Hierarchy = 0,
+                CanDelete = false,
             },
         };
 

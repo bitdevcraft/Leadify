@@ -82,6 +82,8 @@
             placeholder="Select a Icon"
             [virtualScroll]="true"
             [virtualScrollItemSize]="38"
+            [filter]="true"
+            filterBy="label"
           >
             <ng-template pTemplate="selectedItem">
               <div class="flex align-items-center gap-2" *ngIf="selectedIcon">
@@ -127,6 +129,40 @@
         <div class="col-12 md:col-10">
           <input pInputText id="dirLabel" type="text" formControlName="label"/>
         </div>
+      </div>
+      <div class="field grid mb-2">
+        <label htmlFor="menuIcon" class="col-12 mb-2 md:col-2 md:mb-0">Path</label>
+        <div class="col-12 md:col-10">
+          <p-dropdown
+            id="menuIcon"
+            formControlName="selectedIcon"
+            [(ngModel)]="selectedIcon"
+            overlayOptions="{baseZIndex:999}"
+            [options]="icons"
+            optionLabel="label"
+            [showClear]="true"
+            appendTo="body"
+            placeholder="Select a Icon"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+            [filter]="true"
+            filterBy="label"
+          >
+            <ng-template pTemplate="selectedItem">
+              <div class="flex align-items-center gap-2" *ngIf="selectedIcon">
+                <i [ngClass]="selectedIcon.value" class="pi pi-fw"></i>
+                <div>{{ selectedIcon.label }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-icon pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <i [ngClass]="icon.value" class="pi pi-fw"></i>
+                <span class="layout-menuitem-text">{{ icon.label }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+
       </div>
 
       <div class="flex justify-content-end gap-2">

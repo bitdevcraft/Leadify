@@ -1,0 +1,131 @@
+<div class="grid" xmlns="http://www.w3.org/1999/html">
+  <div class="col-12">
+    <div class="card">
+      <div class="grid p-fluid field">
+        <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary "></p-button>
+        <h5 class="mb-5">New User</h5>
+      </div>
+
+      <p-fieldset legend="General Information">
+        <div class="p-fluid p-formgrid grid mt-1">
+          <!-- Group field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class=" grid">
+              <label htmlFor="name" class="col-12 mb-2 md:col-2 md:mb-0 label">Name</label>
+              <div class="col-12 md:col-10" id="name">
+
+                <!-- Sub Group field-->
+                <div class="field">
+                  <label htmlFor="salutation" class="mb-0">Salutation</label>
+                  <p-dropdown
+                    [options]="salutations"
+                    optionLabel="name"
+                    [(ngModel)]="selectSalutation"
+                  ></p-dropdown>
+                </div>
+
+                <!-- Sub Group field-->
+                <div class="field">
+                  <label htmlFor="firstName" class="mb-0">First Name</label>
+                  <input pInputText id="firstName" type="text"/>
+                </div>
+
+                <!-- Sub Group field-->
+                <div class="field">
+                  <label htmlFor="middleName" class="mb-0">Middle Name</label>
+                  <input pInputText id="middleName" type="text"/>
+                </div>
+
+                <!-- Sub Group field-->
+                <div class="field">
+                  <label htmlFor="lastName" class="mb-0 label-required">Last Name</label>
+                  <input pInputText id="lastName" type="text"/>
+                </div>
+
+                <!-- Sub Group field-->
+                <div class="field">
+                  <label htmlFor="suffix" class="mb-0">Suffix</label>
+                  <input pInputText id="suffix" type="text"/>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="title" class="col-6 mb-2 md:col-2 md:mb-0 label">Title</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="title" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="userName"
+                     class="col-6 mb-2 md:col-2 md:mb-0 label-required label">Username</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="userName" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="email" class="col-6 mb-2 md:col-2 md:mb-0 label-required label">Email</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="email" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="mobile" class="col-6 mb-2 md:col-2 md:mb-0 label">Mobile</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="mobile" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="phone" class="col-6 mb-2 md:col-2 md:mb-0 label">Phone</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="phone" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="fax" class="col-6 mb-2 md:col-2 md:mb-0 label">Fax</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="fax" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1 field -->
+          <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
+            <div class="field grid">
+              <label htmlFor="department" class="col-6 mb-2 md:col-2 md:mb-0 label">Deparment</label>
+              <div class="col-12 md:col-10">
+                <input pInputText id="department" type="text"/>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </p-fieldset>
+    </div>
+  </div>
+</div>

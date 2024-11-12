@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic;
 
 namespace Leadify.Domain.Users;
 
@@ -13,7 +14,14 @@ public class User : IdentityUser<Ulid>
     public virtual ICollection<UserRole> UserRoles { get; set; } = [];
     public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = [];
     public virtual ICollection<UserActivity> UserActivities { get; set; } = [];
+
+    public User? Manager { get; set; }
+    public Ulid? ManagerId { get; set; }
+    public ICollection<User>? Members { get; set; }
+
+
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
 }
 
-// TODO : Create a self referencing to have a hierarchy style
 // TODO : Add a IsInternal / IsExternal property to identity the user

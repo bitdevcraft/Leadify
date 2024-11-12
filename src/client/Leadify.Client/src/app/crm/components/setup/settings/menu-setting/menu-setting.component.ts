@@ -40,6 +40,7 @@ interface MenuDetail extends TreeNode {
   children?: MenuDetail[];
   label?: string;
   hierarchy?: number;
+  canDelete?: boolean;
 }
 
 interface DDOption {
@@ -82,6 +83,7 @@ export class MenuSettingComponent implements OnInit {
       data: 'root',
       expanded: true,
       droppable: true,
+      canDelete: false,
     },
   ];
 
@@ -167,11 +169,11 @@ export class MenuSettingComponent implements OnInit {
         label: this.formGroup.value.label,
         id: newId,
         key: newId,
-        icon: `pi pi-fw ${this.formGroup.value.selectedIcon.value}`,
+        icon: `pi pi-fw ${this.formGroup.value.selectedIcon?.value}`,
         routerLink: link,
         droppable: this.newDirectoryDialog,
         children: this.newDirectoryDialog ? [] : null,
-        hierarchy: this.selectedFile.children.length,
+        hierarchy: this.selectedFile.children?.length ?? 0,
       };
 
       this.menuSettingService
@@ -179,6 +181,7 @@ export class MenuSettingComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log(response);
+            if (!this.selectedFile.children) this.selectedFile.children = [];
             this.selectedFile.children.push(newMenu);
             this.selectedFile.expanded = true;
           },
@@ -302,6 +305,14 @@ export class MenuSettingComponent implements OnInit {
   }
 
   deleteConfirm(event: Event) {
+    if (!this.selectedFile.canDelete) {
+      this.messageService.add({
+        severity: 'error',
+        summary: `Invalid, cannot delete this path`,
+        detail: this.selectedFile.label,
+      });
+      return;
+    }
     if (this.selectedFile.children?.length > 0) {
       this.messageService.add({
         severity: 'error',

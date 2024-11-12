@@ -26,5 +26,12 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .WithOne(e => e.User)
             .HasForeignKey(ur => ur.UserId)
             .IsRequired();
+
+        // Self-Referencing
+        builder.HasOne(x => x.Manager)
+            .WithMany(x => x.Members)
+            .HasForeignKey(x => x.ManagerId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

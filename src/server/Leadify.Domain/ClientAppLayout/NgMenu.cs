@@ -37,5 +37,7 @@ public class NgMenu
     [NotMapped] public Ulid? Key => Id;
     [NotMapped] public string? Data => Label;
     [NotMapped] public bool Droppable => RouterLinkArray is null && UrlArray is null;
+
+    public bool CanDelete { get; set; } = true;
     public int Hierarchy { get; set; }
 }
