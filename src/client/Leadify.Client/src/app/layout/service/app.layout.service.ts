@@ -28,7 +28,7 @@ export class LayoutService {
     inputStyle: 'outlined',
     menuMode: 'static',
     colorScheme: 'light',
-    theme: 'lara-light-indigo',
+    theme: 'aura-light-blue',
     scale: 14,
   };
 
@@ -134,6 +134,7 @@ export class LayoutService {
 
     this.replaceThemeLink(newHref);
   }
+
   replaceThemeLink(href: string) {
     const id = 'theme-css';
     let themeLink = <HTMLLinkElement>document.getElementById(id);

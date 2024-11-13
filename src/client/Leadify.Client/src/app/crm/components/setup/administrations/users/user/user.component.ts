@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -28,6 +29,8 @@ export class AppUserComponent implements OnInit {
 
   records!: any[];
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit(): void {
     this.cols = [
       { field: 'userName', header: 'Username' },
@@ -35,5 +38,13 @@ export class AppUserComponent implements OnInit {
       { field: 'role', header: 'Role' },
       { field: 'active', header: 'Active' },
     ];
+
+    this.refreshUserList();
+  }
+
+  refreshUserList() {
+    this.http.get<any[]>('/api/user').subscribe((data: any) => {
+      this.records = data;
+    });
   }
 }

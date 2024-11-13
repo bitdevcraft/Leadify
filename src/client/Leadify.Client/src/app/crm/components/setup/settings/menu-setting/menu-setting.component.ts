@@ -308,7 +308,7 @@ export class MenuSettingComponent implements OnInit {
     if (!this.selectedFile.canDelete) {
       this.messageService.add({
         severity: 'error',
-        summary: `Invalid, cannot delete this path`,
+        summary: `System Menu cannot be deleted`,
         detail: this.selectedFile.label,
       });
       return;

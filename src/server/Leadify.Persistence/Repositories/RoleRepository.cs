@@ -44,11 +44,11 @@ public class RoleRepository(
         return await _unitOfWork.SaveChangesAsync();
     }
 
-    public async Task<int> AddUsersAsync(Role role, IEnumerable<string> userIds)
+    public async Task<int> AddUsersAsync(Role role, IEnumerable<Ulid> userIds)
     {
         List<User> users = await _context
             .Set<User>()
-            .Where(x => userIds.Contains(x.Id.ToString()))
+            .Where(x => userIds.Contains(x.Id))
             .ToListAsync();
 
         List<User> existingUsers = await _context
@@ -79,4 +79,8 @@ public class RoleRepository(
 
         return await _unitOfWork.SaveChangesAsync();
     }
+
+    public async Task<Role?> GetRoleByNameAsync(string role, CancellationToken cancellationToken) => await _context
+        .Set<Role>()
+        .FirstOrDefaultAsync(e => e.NormalizedName == role.ToUpperInvariant(), cancellationToken);
 }

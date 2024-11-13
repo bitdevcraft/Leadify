@@ -12,7 +12,7 @@ internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
 {
     private readonly JwtOptions _options = options.Value;
 
-    public string Generate(User user)
+    public string Generate(User user, IList<string> roles)
     {
         var claims = new List<Claim> { new(JwtRegisteredClaimNames.Sub, user.Id.ToString()) };
 
@@ -24,6 +24,11 @@ internal sealed class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
         if (user.UserName is not null)
         {
             claims.Add(new Claim(JwtRegisteredClaimNames.Name, user.UserName));
+        }
+
+        if (roles.Count > 0)
+        {
+            claims.Add(new Claim("roles", string.Join(",", roles)));
         }
 
         var signingCredentials = new SigningCredentials(

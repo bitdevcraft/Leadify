@@ -1,53 +1,83 @@
 <div class="grid" xmlns="http://www.w3.org/1999/html">
   <div class="col-12">
-    <div class="card">
-      <div class="grid p-fluid field">
-        <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary "></p-button>
-        <h5 class="mb-5">New User</h5>
+    <div class="card mb-3 p-4">
+      <h6 class="mb-0">SETUP</h6>
+      <h4 class="mt-0 mb-0">Users</h4>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="card p-4">
+      <div class="flex justify-content-between align-items-center p-0 mb-3">
+
+        <div class="flex align-items-center justify-items-center ">
+          <p-button
+            icon="pi pi-arrow-left"
+            [text]="true"
+            severity="secondary"
+            [rounded]="true"
+            routerLink="/setup/administrations/user"
+          ></p-button>
+          <h5 class="m-0">New User</h5>
+        </div>
+
+        <div>
+          <p-button icon="pi pi-check" label="Submit" type="submit" [outlined]="true" class="mr-2"
+          ></p-button>
+          <p-button icon="pi pi-times" label="Cancel" severity="danger" class="mr-2"
+                    routerLink="/setup/administrations/user"></p-button>
+        </div>
       </div>
 
+
       <p-fieldset legend="General Information">
-        <div class="p-fluid p-formgrid grid mt-1">
+        <div class="p-fluid p-formgrid grid pt-3">
           <!-- Group field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
-            <div class=" grid">
-              <label htmlFor="name" class="col-12 mb-2 md:col-2 md:mb-0 label">Name</label>
+            <div class="grid">
+              <label htmlFor="name" class="col-12 mb-2 md:col-2 md:mb-0 label"
+              >Name</label
+              >
               <div class="col-12 md:col-10" id="name">
-
                 <!-- Sub Group field-->
                 <div class="field">
                   <label htmlFor="salutation" class="mb-0">Salutation</label>
                   <p-dropdown
                     [options]="salutations"
                     optionLabel="name"
-                    [(ngModel)]="selectSalutation"
+
+                    formControlName="salutation"
                   ></p-dropdown>
                 </div>
 
                 <!-- Sub Group field-->
                 <div class="field">
                   <label htmlFor="firstName" class="mb-0">First Name</label>
-                  <input pInputText id="firstName" type="text"/>
+                  <input pInputText id="firstName" type="text" formControlName="firstName"/>
                 </div>
 
                 <!-- Sub Group field-->
                 <div class="field">
                   <label htmlFor="middleName" class="mb-0">Middle Name</label>
-                  <input pInputText id="middleName" type="text"/>
+                  <input pInputText id="middleName" type="text" formControlName="middleName"/>
                 </div>
 
                 <!-- Sub Group field-->
                 <div class="field">
-                  <label htmlFor="lastName" class="mb-0 label-required">Last Name</label>
-                  <input pInputText id="lastName" type="text"/>
+                  <label htmlFor="lastName" class="mb-0 label-required"
+
+                  >Last Name</label
+                  >
+                  <input pInputText id="lastName" type="text" formControlName="lastName"/>
+                  <div
+                    *ngIf="formGroup.get('lastName').invalid && (formGroup.get('lastName').dirty || formGroup.get('lastName').touched)"
+                    class="p-error">
+                    <small *ngIf="formGroup.get('lastName').hasError('required')">Last Name is required.</small>
+                  </div>
                 </div>
 
                 <!-- Sub Group field-->
                 <div class="field">
                   <label htmlFor="suffix" class="mb-0">Suffix</label>
-                  <input pInputText id="suffix" type="text"/>
+                  <input pInputText id="suffix" type="text" formControlName="suffix"/>
                 </div>
-
               </div>
             </div>
           </div>
@@ -55,9 +85,11 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="title" class="col-6 mb-2 md:col-2 md:mb-0 label">Title</label>
+              <label htmlFor="title" class="col-6 mb-2 md:col-2 md:mb-0 label"
+              >Title</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="title" type="text"/>
+                <input pInputText id="title" type="text" formControlName="title"/>
               </div>
             </div>
           </div>
@@ -65,10 +97,20 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="userName"
-                     class="col-6 mb-2 md:col-2 md:mb-0 label-required label">Username</label>
+              <label
+                htmlFor="userName"
+                class="col-6 mb-2 md:col-2 md:mb-0 label-required label"
+              >Username</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="userName" type="text"/>
+                <input pInputText id="userName" type="text" formControlName="userName"/>
+                <div
+                  *ngIf="formGroup.get('userName').invalid && (formGroup.get('userName').dirty || formGroup.get('userName').touched)"
+                  class="p-error">
+                  <small *ngIf="formGroup.get('userName').hasError('required')">Username is required.</small>
+                  <small *ngIf="formGroup.get('userName').hasError('minlength')">Username must be at least 3
+                    characters long.</small>
+                </div>
               </div>
             </div>
           </div>
@@ -76,9 +118,19 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="email" class="col-6 mb-2 md:col-2 md:mb-0 label-required label">Email</label>
+              <label
+                htmlFor="email"
+                class="col-6 mb-2 md:col-2 md:mb-0 label-required label"
+              >Email</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="email" type="text"/>
+                <input pInputText id="email" type="text" formControlName="email" email="true"/>
+                <div
+                  *ngIf="formGroup.get('email').invalid && (formGroup.get('email').dirty || formGroup.get('email').touched)"
+                  class="p-error">
+                  <small *ngIf="formGroup.get('email').hasError('required')">Email is required.</small>
+                  <small *ngIf="formGroup.get('email').hasError('pattern')">Invalid Email.</small>
+                </div>
               </div>
             </div>
           </div>
@@ -86,9 +138,11 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="mobile" class="col-6 mb-2 md:col-2 md:mb-0 label">Mobile</label>
+              <label htmlFor="mobile" class="col-6 mb-2 md:col-2 md:mb-0 label"
+              >Mobile</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="mobile" type="text"/>
+                <input pInputText id="mobile" type="text" formControlName="mobile"/>
               </div>
             </div>
           </div>
@@ -96,9 +150,11 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="phone" class="col-6 mb-2 md:col-2 md:mb-0 label">Phone</label>
+              <label htmlFor="phone" class="col-6 mb-2 md:col-2 md:mb-0 label"
+              >Phone</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="phone" type="text"/>
+                <input pInputText id="phone" type="text" formControlName="phone"/>
               </div>
             </div>
           </div>
@@ -106,9 +162,11 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="fax" class="col-6 mb-2 md:col-2 md:mb-0 label">Fax</label>
+              <label htmlFor="fax" class="col-6 mb-2 md:col-2 md:mb-0 label"
+              >Fax</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="fax" type="text"/>
+                <input pInputText id="fax" type="text" formControlName="fax"/>
               </div>
             </div>
           </div>
@@ -116,9 +174,20 @@
           <!-- 1 field -->
           <div class="field col-12 md:col-6 pl-5 pr-5 mb-0 mt-0 p-0">
             <div class="field grid">
-              <label htmlFor="department" class="col-6 mb-2 md:col-2 md:mb-0 label">Deparment</label>
+              <label htmlFor="role" class="col-6 mb-2 md:col-2 md:mb-0 label"
+              >Role</label
+              >
               <div class="col-12 md:col-10">
-                <input pInputText id="department" type="text"/>
+                <p-dropdown
+                  [options]="roles"
+
+                  formControlName="role"
+                ></p-dropdown>
+                <div
+                  *ngIf="formGroup.get('role').invalid && (formGroup.get('role').dirty || formGroup.get('role').touched)"
+                  class="p-error">
+                  <small *ngIf="formGroup.get('role').hasError('required')">Role is required.</small>
+                </div>
               </div>
             </div>
           </div>
@@ -126,6 +195,6 @@
 
         </div>
       </p-fieldset>
-    </div>
+    </form>
   </div>
 </div>

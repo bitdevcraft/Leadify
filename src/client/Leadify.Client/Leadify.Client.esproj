@@ -8,6 +8,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\leadify.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\crm\api\guard\"/>
     <Folder Include="src\app\crm\api\interceptor\"/>
     <Folder Include="src\app\crm\components\"/>
     <Folder Include="src\app\crm\components\setup\administrations\"/>

@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { authGuard } from './crm/components/auth/auth.guard';
+import { roleGuard } from './crm/api/guard/role.guard';
 
 export const routes = [
   {
@@ -67,6 +68,7 @@ export const routes = [
       },
       {
         path: 'setup',
+        canActivateChild: [roleGuard],
         loadChildren: () =>
           import('./crm/components/setup/setup.module').then(
             (m) => m.SetupModule,

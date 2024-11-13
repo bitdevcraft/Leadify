@@ -25,6 +25,7 @@ import { headerInterceptor } from './app/crm/api/interceptor/header.interceptor'
 import { errorInterceptor } from './app/crm/api/interceptor/error.interceptor';
 import { loggingInterceptor } from './app/crm/api/interceptor/logging.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MessageService } from 'primeng/api';
 
 if (environment.production) {
   enableProdMode();
@@ -57,6 +58,7 @@ bootstrapApplication(AppComponent, {
     PhotoService,
     ProductService,
     IdleUserService,
+    MessageService,
     provideHttpClient(
       // registering interceptors
       withInterceptorsFromDi(),

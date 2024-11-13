@@ -36,8 +36,10 @@ public class LoginCommandHandler(
             return Result.Failure<LoginResponse>(Error.Unauthorized());
         }
 
+        IList<string> roles = await _userManager.GetRolesAsync(user);
+
         string refreshToken = _refreshTokenProvider.GenerateRefreshToken();
-        string token = _jwtProvider.Generate(user);
+        string token = _jwtProvider.Generate(user, roles);
 
         user.RefreshTokens.Add(new Domain.Users.RefreshToken { User = user, Token = refreshToken });
 

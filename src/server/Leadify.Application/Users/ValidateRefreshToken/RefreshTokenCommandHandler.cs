@@ -35,7 +35,10 @@ public class RefreshTokenCommandHandler(
         }
 
         string newRefreshToken = _refreshTokenProvider.GenerateRefreshToken();
-        string token = _jwtProvider.Generate(refreshToken.User);
+
+        IList<string> roles = await _userManager.GetRolesAsync(refreshToken.User);
+
+        string token = _jwtProvider.Generate(refreshToken.User, roles);
 
         refreshToken.User.RefreshTokens.Add(new RefreshToken
             { User = refreshToken.User, Token = newRefreshToken });

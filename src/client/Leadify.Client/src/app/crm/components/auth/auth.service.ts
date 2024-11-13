@@ -16,6 +16,7 @@ export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isAuthenticated.asObservable();
   private token: string | null = null;
+  private tokenSubject: BehaviorSubject<string | null>;
 
   constructor(
     private http: HttpClient,
@@ -23,6 +24,7 @@ export class AuthService {
   ) {
     // Check for a token in local storage on initialization
     this.token = localStorage.getItem('authToken');
+    this.tokenSubject = new BehaviorSubject<string | null>(this.token);
     this.isAuthenticated.next(!!this.token); // Set state based on token existence
   }
 
@@ -34,9 +36,7 @@ export class AuthService {
       .post<userToken>('/api/auth/login', credentials)
       .pipe(
         switchMap((response) => {
-          this.token = response.token;
-          localStorage.setItem('authToken', this.token);
-          this.isAuthenticated.next(true);
+          this.setToken(response.token);
 
           return this.getIpAddress().pipe(
             map((response) => {
@@ -58,10 +58,7 @@ export class AuthService {
   }
 
   logout(returnUrl: string = '/') {
-    this.token = null;
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('menu');
-    this.isAuthenticated.next(false);
+    this.clearToken();
     this.router.navigate(['/auth/login'], {
       queryParams: {
         returnUrl: returnUrl === '/auth/login' ? '/' : returnUrl,
@@ -97,5 +94,26 @@ export class AuthService {
 
   accessToken() {
     return localStorage.getItem('authToken');
+  }
+
+  // Getter to access the token as Observable
+  get token$(): Observable<string | null> {
+    return this.tokenSubject.asObservable();
+  }
+
+  // Set the token and store it in localStorage
+  setToken(token: string): void {
+    localStorage.setItem('authToken', token); // Save to localStorage
+    this.tokenSubject.next(token); // Emit new token to subscribers
+    this.isAuthenticated.next(true);
+    this.token = token;
+  }
+
+  // Clear the token
+  clearToken(): void {
+    localStorage.removeItem('authToken');
+    this.token = null;
+    this.tokenSubject.next(null);
+    this.isAuthenticated.next(false);
   }
 }

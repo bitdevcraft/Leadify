@@ -14,14 +14,7 @@ import { MenuService } from './app.menu.service';
   imports: [NgFor, NgIf, AppMenuitemComponent],
 })
 export class AppMenuComponent implements OnInit {
-  model: any[] = [
-    {
-      label: 'Home',
-      items: [
-        { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-      ],
-    },
-  ];
+  model: any[] = [];
 
   constructor(
     public layoutService: LayoutService,
@@ -278,7 +271,12 @@ export class AppMenuComponent implements OnInit {
       },
     ];
 
-    this.model.push(...demoMenu);
+    this.model.push({
+      label: 'Home',
+      items: [
+        { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+      ],
+    });
 
     this.authService.isLoggedIn$
       .pipe(

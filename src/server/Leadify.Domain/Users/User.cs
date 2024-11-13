@@ -22,6 +22,12 @@ public class User : IdentityUser<Ulid>
 
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    public string? MiddleName { get; set; }
+    public string? Suffix { get; set; }
+    public string? Salutation { get; set; }
+    public string? Mobile { get; set; }
+    public string? Phone { get; set; }
+    public string? Fax { get; set; }
+    public string? Title { get; set; }
+    public bool Active { get; set; } = true;
 }
-
-// TODO : Add a IsInternal / IsExternal property to identity the user

@@ -5,7 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import {
   ActivatedRoute,
   Router,
@@ -18,6 +18,9 @@ import { IdleExpiry, SimpleExpiry } from '@ng-idle/core';
 import { IdleMessages, IdleStatus, IdleUserTimes } from './utils/models';
 import { Subscription } from 'rxjs';
 import { AuthService } from './crm/components/auth/auth.service';
+import { MessageModule } from 'primeng/message';
+import { AppToastService } from './layout/service/app.toast.service';
+import { ToastModule } from 'primeng/toast';
 
 const SERVICES: any[] = [IdleUserService];
 
@@ -25,8 +28,8 @@ const SERVICES: any[] = [IdleUserService];
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [RouterOutlet, NgIdleKeepaliveModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, NgIdleKeepaliveModule, MessageModule, ToastModule],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     // Add Keepalive to providers
     Keepalive,
@@ -35,6 +38,7 @@ const SERVICES: any[] = [IdleUserService];
       useClass: SimpleExpiry,
     },
     SERVICES,
+    MessageService,
   ],
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -48,6 +52,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private authService: AuthService,
     private router: Router,
+    private messageService: MessageService,
+    private toastService: AppToastService,
   ) {}
 
   ngOnInit() {
@@ -72,6 +78,12 @@ export class AppComponent implements OnInit, OnDestroy {
         } else {
           this.idleUserService.stopWatching();
         }
+      }),
+    );
+
+    this.subscription.push(
+      this.toastService.message$.subscribe((message) => {
+        this.messageService.add(message);
       }),
     );
 

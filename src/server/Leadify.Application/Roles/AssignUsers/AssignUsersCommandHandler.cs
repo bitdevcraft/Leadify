@@ -27,7 +27,7 @@ internal sealed class AssignUsersCommandHandler(
             return Result.Failure(Error.NotFound());
         }
 
-        bool result = await _roleRepository.AddUsersAsync(role, request.UserId) > 0;
+        bool result = await _roleRepository.AddUsersAsync(role, request.UserId.Select(Id => Ulid.Parse(Id))) > 0;
 
         if (result is false)
         {

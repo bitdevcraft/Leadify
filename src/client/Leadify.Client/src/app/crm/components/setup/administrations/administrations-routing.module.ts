@@ -22,6 +22,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'user/:id',
+    loadComponent: () =>
+      import('./users/user-details/user-details.component').then(
+        (c) => c.UserDetailsComponent,
+      ),
+  },
+  {
     path: 'role',
     loadComponent: () =>
       import('./role/role.component').then((c) => c.RoleComponent),
