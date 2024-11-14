@@ -15,7 +15,7 @@ public static class DependencyInjection
     {
         // Setup the connection to the Database
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
         );
 
         services.AddIdentityService(configuration);
