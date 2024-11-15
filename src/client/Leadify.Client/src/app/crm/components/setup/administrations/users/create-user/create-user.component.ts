@@ -44,14 +44,7 @@ export class CreateUserComponent implements OnInit {
   roles: any[] = [];
   formGroup: FormGroup | undefined;
 
-  salutations = [
-    { name: 'Mr.', code: 'Mr.' },
-    { name: 'Ms.', code: 'Ms.' },
-    { name: 'Mrs.', code: 'Mrs.' },
-    { name: 'Dr.', code: 'Dr.' },
-    { name: 'Prof.', code: 'Prof.' },
-    { name: 'Mx.', code: 'Mx.' },
-  ];
+  salutations = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof', 'Mx.'];
 
   constructor(
     private http: HttpClient,
