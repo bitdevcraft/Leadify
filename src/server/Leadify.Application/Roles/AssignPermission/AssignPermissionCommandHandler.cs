@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Leadify.Application.Abstraction.Messaging;
+﻿using Leadify.Application.Abstraction.Messaging;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
@@ -33,7 +28,7 @@ internal sealed class AssignPermissionCommandHandler(
 
         bool result = await _roleRepository.AddToPermissionAsync(role, request.PermissionNames) > 0;
 
-        if (result is false)
+        if (!result)
         {
             return Result.Failure(Error.Validation("Error Encountered"));
         }

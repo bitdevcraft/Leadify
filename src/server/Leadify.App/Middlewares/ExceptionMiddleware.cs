@@ -4,7 +4,7 @@ using Leadify.Domain.Shared;
 
 namespace Leadify.App.Middlewares;
 
-public class ExceptionMiddleware(
+internal sealed class ExceptionMiddleware(
     RequestDelegate next,
     ILogger<ExceptionMiddleware> logger,
     IHostEnvironment env
@@ -34,12 +34,12 @@ public class ExceptionMiddleware(
                 )
                 : new ServerError(context.Response.StatusCode, "Internal Server Error");
 
-            string json = JsonSerializer.Serialize(response, s_writeOptions);
+            string json = JsonSerializer.Serialize(response, _sWriteOptions);
 
             await context.Response.WriteAsync(json);
         }
     }
 
-    private static readonly JsonSerializerOptions s_writeOptions =
+    private static readonly JsonSerializerOptions _sWriteOptions =
         new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 }

@@ -1,5 +1,4 @@
 ﻿using Leadify.Application.Abstraction.Messaging;
-using Leadify.Domain.Entities;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 
@@ -20,7 +19,7 @@ internal sealed class RegisterContactCommandHandler(
     )
     {
         _contactRepository.Add(request.Contact);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _ = await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return request.Contact.Id;
     }

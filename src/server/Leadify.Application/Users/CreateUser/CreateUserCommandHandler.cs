@@ -1,5 +1,4 @@
 using AutoMapper;
-using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using MediatR;

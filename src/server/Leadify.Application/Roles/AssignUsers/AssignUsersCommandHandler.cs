@@ -3,7 +3,6 @@ using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Leadify.Application.Roles.AssignUsers;
 
@@ -29,7 +28,7 @@ internal sealed class AssignUsersCommandHandler(
 
         bool result = await _roleRepository.AddUsersAsync(role, request.UserId.Select(Id => Ulid.Parse(Id))) > 0;
 
-        if (result is false)
+        if (!result)
         {
             return Result.Failure(Error.Validation("Error Encountered"));
         }

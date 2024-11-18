@@ -18,6 +18,9 @@ public class EntityAuditInformation
         {
             EntityState.Added => "Create",
             EntityState.Modified => "Update",
+            EntityState.Detached => "Detach",
+            EntityState.Unchanged => "",
+            EntityState.Deleted => "Delete",
             _ => string.Empty,
         };
 }

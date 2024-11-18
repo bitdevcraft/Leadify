@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Leadify.Domain.Users;
+﻿using Leadify.Domain.Users;
 
 namespace Leadify.Domain.Repositories;
 

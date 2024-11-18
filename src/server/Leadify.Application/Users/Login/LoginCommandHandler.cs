@@ -3,7 +3,6 @@ using Leadify.Domain.Shared;
 using Leadify.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using static Leadify.Application.Abstraction.Authentication.IRefreshTokenProvider;
 
 namespace Leadify.Application.Users.Login;
 

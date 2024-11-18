@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Leadify.Application.Abstraction.Authorization;
+﻿using Leadify.Application.Abstraction.Authorization;
 using Leadify.Application.Abstraction.Caching;
 using Leadify.Application.Abstraction.UserAccess;
 using Leadify.Domain.Repositories;

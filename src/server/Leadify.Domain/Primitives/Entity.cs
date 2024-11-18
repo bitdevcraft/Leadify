@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Leadify.Domain.Primitives;
+﻿namespace Leadify.Domain.Primitives;
 
 public abstract class Entity
 {

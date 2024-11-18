@@ -1,6 +1,4 @@
 using Leadify.Application.Abstraction.Messaging;
-using Leadify.Domain.ClientAppLayout;
-using Leadify.Domain.Extensions;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 

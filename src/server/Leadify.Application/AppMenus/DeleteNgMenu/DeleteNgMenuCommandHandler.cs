@@ -29,7 +29,7 @@ public class DeleteNgMenuCommandHandler(
 
         await _cacheService.RemoveAsync("AppMenu-Root", cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _ = await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

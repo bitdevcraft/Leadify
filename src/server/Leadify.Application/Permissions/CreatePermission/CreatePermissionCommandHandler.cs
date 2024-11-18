@@ -24,7 +24,7 @@ internal sealed class CreatePermissionCommandHandler(IPermissionRepository permi
 
         bool result = await _permissionRepository.CreateAsync(request.PermissionName) > 0;
 
-        if (result is false)
+        if (!result)
         {
             return Result.Failure(Error.Validation("Failed to create Permission"));
         }

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Leadify.Application.Contacts.CreateContact;
+﻿using Leadify.Application.Contacts.CreateContact;
 using Leadify.Application.Contacts.DeleteContactById;
 using Leadify.Application.Contacts.GetContactById;
 using Leadify.Application.Contacts.ListContact;
@@ -8,7 +7,6 @@ using Leadify.Domain.Entities;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leadify.Presentation.Controllers;

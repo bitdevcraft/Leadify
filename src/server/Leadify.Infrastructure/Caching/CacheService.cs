@@ -1,7 +1,4 @@
-﻿using System.Buffers;
-using System.Text.Json;
-using AutoMapper.Execution;
-using Leadify.Application.Abstraction.Caching;
+﻿using Leadify.Application.Abstraction.Caching;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 

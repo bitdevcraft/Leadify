@@ -19,7 +19,7 @@ internal sealed class DeleteRoleCommandHandler(RoleManager<Role> roleManager)
             return Result.Failure(Error.NotFound());
         }
 
-        await _roleManager.DeleteAsync(role);
+        _ = await _roleManager.DeleteAsync(role);
 
         return Result.Success();
     }

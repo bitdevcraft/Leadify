@@ -40,10 +40,9 @@ public class RefreshTokenCommandHandler(
 
         string token = _jwtProvider.Generate(refreshToken.User, roles);
 
-        refreshToken.User.RefreshTokens.Add(new RefreshToken
-            { User = refreshToken.User, Token = newRefreshToken });
+        refreshToken.User.RefreshTokens.Add(new RefreshToken { User = refreshToken.User, Token = newRefreshToken });
 
-        await _userManager.UpdateAsync(refreshToken.User);
+        _ = await _userManager.UpdateAsync(refreshToken.User);
 
         return new LoginResponse(refreshToken.User.UserName, token, newRefreshToken);
     }

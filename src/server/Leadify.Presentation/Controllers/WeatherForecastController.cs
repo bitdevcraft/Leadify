@@ -1,15 +1,13 @@
 using Leadify.Presentation.Abstraction;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Leadify.Presentation.Controllers;
 
-
 public class WeatherForecastController(ISender sender) : ApiController(sender)
 {
-    private static readonly string[] Summaries = new[]
-    {
+    private static readonly string[] _summaries =
+    [
         "Freezing",
         "Bracing",
         "Chilly",
@@ -20,26 +18,25 @@ public class WeatherForecastController(ISender sender) : ApiController(sender)
         "Hot",
         "Sweltering",
         "Scorching"
-    };
-
+    ];
 
 
     [HttpGet()]
 #pragma warning disable CA5394 // Do not use insecure randomness
-    public Task<IActionResult> Get ()
+    public Task<IActionResult> Get()
     {
-       WeatherForecast[] result =  Enumerable
+        WeatherForecast[] result = Enumerable
             .Range(1, 5)
             .Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                Summary = _summaries[Random.Shared.Next(_summaries.Length)]
             })
             .ToArray();
-       
-       return Task.FromResult<IActionResult>(Ok(result));
-    } 
-        
+
+        return Task.FromResult<IActionResult>(Ok(result));
+    }
+
 #pragma warning restore CA5394 // Do not use insecure randomness
 }

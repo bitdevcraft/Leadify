@@ -1,7 +1,4 @@
 using Leadify.Application.Abstraction.UserAccess;
-using Leadify.Application.Users.Login;
-using Leadify.Application.Users.Register;
-using Leadify.Domain.Constants;
 using Leadify.Domain.Repositories;
 using Leadify.Domain.Shared;
 using Leadify.Domain.Users;

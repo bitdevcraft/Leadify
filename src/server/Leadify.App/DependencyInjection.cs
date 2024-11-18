@@ -1,11 +1,9 @@
-﻿using Leadify.Application.Abstraction;
-using Leadify.Domain.Repositories;
-using Leadify.Infrastructure.Security.Authentication;
+﻿using Leadify.Domain.Repositories;
 using Leadify.Persistence.Repositories;
 
 namespace Leadify.App;
 
-public static class DependencyInjection
+internal static class DependencyInjection
 {
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {

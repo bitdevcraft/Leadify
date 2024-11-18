@@ -1,10 +1,8 @@
-using System.Text.Json;
 using Leadify.Application.AppMenus.CreateNgMenu;
 using Leadify.Application.AppMenus.DeleteNgMenu;
 using Leadify.Application.AppMenus.GetNgMenu;
 using Leadify.Application.AppMenus.GetNgMenuTree;
 using Leadify.Domain.ClientAppLayout;
-using Leadify.Domain.Extensions;
 using Leadify.Domain.Shared;
 using Leadify.Presentation.Abstraction;
 using MediatR;

@@ -33,7 +33,12 @@ public class CreateNgMenuCommandHandler(
 
         await _cacheService.RemoveAsync("AppMenu-Root", cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        bool success = await _unitOfWork.SaveChangesAsync(cancellationToken) > 0;
+
+        if (!success)
+        {
+            return Result.Failure(Error.Validation("Something went wrong"));
+        }
 
         return Result.Success();
     }

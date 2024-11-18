@@ -29,7 +29,7 @@ public class UpdateContactByIdCommandHandler(
             return Result.Failure<Unit>(Error.NotFound());
         }
 
-        _mapper.Map(request.Contact, contact);
+        _ = _mapper.Map(request.Contact, contact);
 
         bool result = await _unitOfWork.SaveChangesAsync(cancellationToken) > 0;
 
