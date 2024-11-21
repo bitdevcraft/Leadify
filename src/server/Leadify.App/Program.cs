@@ -38,6 +38,8 @@ builder.Services.Scan(selector =>
 
 WebApplication app = builder.Build();
 
+app.EnableMultiTenant();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -50,6 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     await app.InitialiseDatabaseAsync();
 }
+
 
 app.UseHttpsRedirection();
 

@@ -32,24 +32,65 @@ internal class PermissionConfiguration : IEntityTypeConfiguration<Permission>
             .IsRequired();
 
         // Seed Data
-
-        string[] modules = ["Contacts", "Users", "Roles"];
-        var permissions = new HashSet<Permission>();
-
-        foreach (string item in modules)
+        var permissions = new HashSet<Permission>
         {
-            ICollection<string> tmpPermissions = Permissions.GeneratePermissionsForModule(item);
-
-            foreach (string permissionName in tmpPermissions)
+            new Permission
             {
-                permissions.Add(
-                    new Permission(permissionName)
-                    {
-                        NormalizedName = permissionName.ToUpperInvariant()
-                    }
-                );
-            }
-        }
+                Id = Ulid.Parse("00000000004YS4BQKB4DT7DH13"),
+                Name = $"Permissions.Users.Create",
+                NormalizedName = "Permissions.Users.Create".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("0000000000GEDF9899Z64EFA9S"),
+                Name = $"Permissions.Users.View",
+                NormalizedName = "Permissions.Users.View".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("00000000004P8QQ3TGZHAZG6S4"),
+                Name = $"Permissions.Users.Edit",
+                NormalizedName = "Permissions.Users.Edit".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("0000000000KQEFJD2YSEP419FR"),
+                Name = $"Permissions.Users.Delete",
+                NormalizedName = "Permissions.Users.Delete".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("0000000000RM77M5MAH0K8ZEEM"),
+                Name = $"Permissions.Roles.Create",
+                NormalizedName = "Permissions.Roles.Create".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("00000000007WVG42QKK0NM9HF8"),
+                Name = $"Permissions.Roles.View",
+                NormalizedName = "Permissions.Roles.View".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("0000000000FKQC7CSXBVDBF5FY"),
+                Name = $"Permissions.Roles.Edit",
+                NormalizedName = "Permissions.Roles.Edit".ToUpperInvariant(),
+            },
+
+            new Permission
+            {
+                Id = Ulid.Parse("0000000000ASTQJK9JP6GW3T5C"),
+                Name = $"Permissions.Roles.Delete",
+                NormalizedName = "Permissions.Roles.Delete".ToUpperInvariant(),
+            },
+        };
+
 
         builder.HasData(permissions);
     }

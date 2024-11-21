@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Finbuckle.MultiTenant;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Leadify.Persistence.Seed;
@@ -16,4 +17,7 @@ public static class InitialiserExtensions
 
         await initialiser.SeedAsync();
     }
+
+    public static void EnableMultiTenant(this WebApplication app)
+        => app.UseMultiTenant();
 }

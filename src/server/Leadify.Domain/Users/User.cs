@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Leadify.Domain.Users;
 
@@ -19,14 +20,14 @@ public class User : IdentityUser<Ulid>
     public ICollection<User>? Members { get; set; }
 
 
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string? MiddleName { get; set; }
-    public string? Suffix { get; set; }
-    public string? Salutation { get; set; }
-    public string? Mobile { get; set; }
-    public string? Phone { get; set; }
-    public string? Fax { get; set; }
-    public string? Title { get; set; }
+    [MaxLength(255)] public string? FirstName { get; set; }
+    [MaxLength(255)] public string? LastName { get; set; }
+    [MaxLength(255)] public string? MiddleName { get; set; }
+    [MaxLength(255)] public string? Suffix { get; set; }
+    [MaxLength(255)] public string? Salutation { get; set; }
+    [MaxLength(255)] public string? Mobile { get; set; }
+    [MaxLength(255)] public string? Phone { get; set; }
+    [MaxLength(255)] public string? Fax { get; set; }
+    [MaxLength(255)] public string? Title { get; set; }
     public bool Active { get; set; } = true;
 }
