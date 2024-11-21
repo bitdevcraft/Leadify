@@ -19,11 +19,14 @@ public sealed class ApplicationDbContext
     >
 {
     public ApplicationDbContext(DbContextOptions options)
-        : base(options) { }
+        : base(options)
+    {
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        Console.WriteLine("OnModelCreating");
 
         builder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
     }
