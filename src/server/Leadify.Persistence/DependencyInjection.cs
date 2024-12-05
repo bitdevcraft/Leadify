@@ -17,7 +17,6 @@ public static class DependencyInjection
         // Setup the connection to the Database
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
-                .ConfigureWarnings(warnings => warnings.Log(RelationalEventId.PendingModelChangesWarning))
         );
 
         services.AddIdentityService(configuration);

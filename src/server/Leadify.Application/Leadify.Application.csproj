@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <!-- Configure code analysis. -->
@@ -12,14 +12,14 @@
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
+        
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="13.0.1"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0"/>
-        <PackageReference Include="MediatR" Version="12.4.1"/>
-        <PackageReference Include="Serilog" Version="4.1.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2"/>
+        <PackageReference Include="MediatR" Version="12.4.0"/>
+        <PackageReference Include="Serilog" Version="4.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
