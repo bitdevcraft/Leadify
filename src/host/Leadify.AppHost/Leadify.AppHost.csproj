@@ -18,7 +18,5 @@
     <ItemGroup>
         <ProjectReference Include="..\..\server\Leadify.App\Leadify.App.csproj"/>
     </ItemGroup>
-
-    <Sdk Name="Aspire.AppHost.Sdk" Version="8.0.0"/>
-
+    
 </Project>
